@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "cd client && yarn start",
-    "server": "nodemon index.js",
-    "dev": "concurrently \"yarn start\" \"yarn server\"",
+    "start":"node index.js",
+    "start-client": "cd client && yarn start",
+    "start-server": "nodemon index.js",
+    "dev": "concurrently \"yarn start-client\" \"yarn start-server\"",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "repository": "git@github.com:noidname01/wp2020-final-project-g16.git",
