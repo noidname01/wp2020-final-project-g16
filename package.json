@@ -7,7 +7,8 @@
     "start-client": "cd client && yarn start",
     "start-server": "nodemon index.js",
     "dev": "concurrently \"yarn start-client\" \"yarn start-server\"",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
+    "heroku-postbuild": "cd client && yarn && yarn run build",
+    "client-build":"cd client && yarn run build"
   },
   "repository": "git@github.com:noidname01/wp2020-final-project-g16.git",
   "author": "noidname <tim983649@gmail.com>",
