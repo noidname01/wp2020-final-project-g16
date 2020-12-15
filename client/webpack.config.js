@@ -1,5 +1,5 @@
 const path = require('path')
-// const HtmlWebpackPlugin = require("html-webpack-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: path.resolve(__dirname, 'src', 'index.js'),
@@ -16,11 +16,11 @@ module.exports = {
   // },
   //===================================================================
   //=============== html template plugin (currently not use) ==========
-  // plugins:[
-  //   new HtmlWebpackPlugin({
-  //     template: path.resolve(__dirname, "dist/index.html")
-  //   })
-  // ],
+  plugins:[
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "src/index.html")
+    })
+  ],
   //===================================================================
   module:{
     rules: [
