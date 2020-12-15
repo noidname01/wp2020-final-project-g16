@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './containers/App'
 
 ReactDOM.render(
   <div>
-    I finally setup a enviroment!!!
-    Why it not work?
+    <App/>
   </div>
 ,document.getElementById('app'))
