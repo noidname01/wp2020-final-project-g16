@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './containers/App'
+import Routes from './routes/Routes'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
     <div>
-        <App />
+        <Routes />
     </div>,
     document.getElementById('app')
 )
