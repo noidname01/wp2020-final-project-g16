@@ -12,6 +12,7 @@
         "@babel/preset-env": "^7.12.10",
         "@babel/preset-react": "^7.12.10",
         "babel-loader": "^8.2.2",
+        "bootstrap": "^5.0.0-beta1",
         "css-loader": "^5.0.1",
         "dotenv": "^8.2.0",
         "file-loader": "^6.2.0",
