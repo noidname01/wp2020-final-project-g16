@@ -1,7 +1,12 @@
 import React from 'react'
+import HTMLEmailEditor from '../components/EmailEditor'
 
 const App = () => {
-    return <div>Hello World</div>
+    return (
+        <div>
+            <HTMLEmailEditor />
+        </div>
+    )
 }
 
 export default App
