@@ -10,9 +10,10 @@ const MailTester = (props) => {
 
     const Mail_Options = {
         from: Test_Config.user,
-        to: Test_Config.user,
-        subject: 'Test',
-        html: '<b>Test mail</b>',
+        to: 'b08901062@ntu.edu.tw',
+        subject: '驚! 酪梨竟可以助孕?!!!捯捯捯捯捯',
+        html:
+            '<p>經研究指出，酪梨豐富的脂質含量有助於女性受孕<b>(小提醒:並不是幹酪梨喔)</b>，而最近很夯的南瓜也在好孕食物的行列裡面。 P.S.家翔好夯</p>',
     }
 
     const sendMail = (e) => {

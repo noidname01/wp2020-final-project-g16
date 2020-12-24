@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer')
 
 module.exports = function (transporterConfig, mailOption) {
     let { host, user, pass } = transporterConfig
-    let { receiver, subject, html } = mailOption
+    let { to, subject, html } = mailOption
     this.transporter = nodemailer.createTransport({
         host: host,
         auth: {
@@ -13,7 +13,7 @@ module.exports = function (transporterConfig, mailOption) {
 
     this.mailOption = {
         from: user,
-        to: `<${receiver}>`,
+        to: to,
         subject: subject,
         html: html,
     }
