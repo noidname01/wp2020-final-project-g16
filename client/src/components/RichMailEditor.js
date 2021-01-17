@@ -13,25 +13,33 @@ const RichTextEditor = () => {
         console.log('onChange', content)
     }
 
+    const handleClick = (e) => {
+        e.preventDefault()
+        ReactSummernote.insertNode(<p>XD</p>)
+    }
+
     return (
-        <ReactSummernote
-            value='Default value'
-            options={{
-                lang: 'zh-TW',
-                height: 350,
-                dialogsInBody: true,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview']],
-                ],
-            }}
-            onChange={onChange}
-        ></ReactSummernote>
+        <>
+            <ReactSummernote
+                value='Default value'
+                options={{
+                    lang: 'zh-TW',
+                    height: 350,
+                    dialogsInBody: true,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview']],
+                    ],
+                }}
+                onChange={onChange}
+            ></ReactSummernote>
+            <button onClick={handleClick}>Test</button>
+        </>
     )
 }
 
