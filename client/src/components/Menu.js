@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import user from '../images/user.png'
 
 export default function Menu({ menuOpen }) {
@@ -15,7 +16,7 @@ export default function Menu({ menuOpen }) {
                 >
                     <ul class='navbar-nav mr-auto'>
                         <li class='nav-item'>
-                            <div class='nav-link profile' href='#'>
+                            <Link class='nav-link profile' to='/profile'>
                                 <img
                                     src={user}
                                     height='30'
@@ -23,32 +24,32 @@ export default function Menu({ menuOpen }) {
                                     alt=''
                                 />
                                 <span>Profile</span>
-                            </div>
+                            </Link>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <Link class='nav-link' to='/'>
                                 New
-                            </a>
+                            </Link>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <Link class='nav-link' href='/draft'>
                                 Draft
-                            </a>
+                            </Link>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <Link class='nav-link' href='/template'>
                                 Template
-                            </a>
+                            </Link>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <Link class='nav-link' href='sent'>
                                 Sent
-                            </a>
+                            </Link>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <Link class='nav-link' href='/settings'>
                                 Settings
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </nav>

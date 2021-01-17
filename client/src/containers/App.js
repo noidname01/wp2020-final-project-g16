@@ -12,12 +12,12 @@ function App() {
     const menuIcon = useRef()
     const [menuOpen, setMenuOpen] = useState(true)
     return (
-        <div className='editor'>
+        <div className='container-fluid editor'>
             <div className='row'>
-                <div className='col-2'>
+                <div className='d-inline-block'>
                     <Menu menuOpen={menuOpen} />
                 </div>
-                <div className='col'>
+                <div className='d-inline-block'>
                     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
                     <Routes />
                 </div>
