@@ -1,12 +1,31 @@
 import React from 'react'
-import '../sidebar.css'
-export default function Menu({ open }) {
+import user from '../images/user.png'
+
+export default function Menu({ menuOpen }) {
     return (
         <>
             <div class='wrapper'>
-                <nav id='sidebar' class='navbar-light bg-light'>
+                <nav
+                    id='sidebar'
+                    class={
+                        menuOpen
+                            ? 'navbar-light bg-light'
+                            : 'navbar-light bg-light active'
+                    }
+                >
                     <ul class='navbar-nav mr-auto'>
-                        <li class='nav-item active'>
+                        <li class='nav-item'>
+                            <div class='nav-link profile' href='#'>
+                                <img
+                                    src={user}
+                                    height='30'
+                                    class='d-inline-block pr-4'
+                                    alt=''
+                                />
+                                Profile
+                            </div>
+                        </li>
+                        <li class='nav-item'>
                             <a class='nav-link' href='#'>
                                 New
                             </a>
