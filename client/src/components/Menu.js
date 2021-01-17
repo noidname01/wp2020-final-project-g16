@@ -22,7 +22,7 @@ export default function Menu({ menuOpen }) {
                                     class='d-inline-block pr-4'
                                     alt=''
                                 />
-                                Profile
+                                <span>Profile</span>
                             </div>
                         </li>
                         <li class='nav-item'>

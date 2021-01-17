@@ -92,8 +92,10 @@ ul ul a {
 }
 
 .profile {
-    margin: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
     padding: 20px;
-    font-size: 1.1em;
+    font-size: 1.5em;
     display: block;
 }

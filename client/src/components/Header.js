@@ -7,13 +7,12 @@ import user from '../images/user.png'
 export default function Header({ menuOpen, setMenuOpen }) {
     return (
         <>
-            <nav class='navbar navbar-expand-lg navbar-dark background-dark'>
+            <nav class='navbar navbar-expand navbar-dark background-dark'>
                 <a class='navbar-brand col-md-1' href='#'>
                     <button
                         class='btn btn-default mr-sm-0'
                         type='button'
                         id='sidebarCollapse'
-                        onClick={() => setMenuOpen(!menuOpen)}
                     >
                         <img
                             src={menu}
@@ -55,3 +54,4 @@ export default function Header({ menuOpen, setMenuOpen }) {
         </>
     )
 }
+//onClick={() => setMenuOpen(!menuOpen)}

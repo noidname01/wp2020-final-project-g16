@@ -13,7 +13,7 @@ function App() {
     return (
         <div className='editor'>
             <div className='row'>
-                <div className='col-md-2'>
+                <div className='col-2'>
                     <Menu menuOpen={menuOpen} />
                 </div>
                 <div className='col'>
