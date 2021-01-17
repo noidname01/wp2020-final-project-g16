@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import menu from '../images/menu.png'
 import send from '../images/send.png'
 import save from '../images/save.png'
@@ -27,24 +28,24 @@ export default function Header({ menuOpen, setMenuOpen }) {
                 >
                     <ul class='navbar-nav mr-auto'>
                         <li class='nav-item active'>
-                            <a class='nav-link' href='#'>
-                                Editor <span class='sr-only'>(current)</span>
-                            </a>
+                            <Link class='nav-link' to='/'>
+                                Editor
+                            </Link>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <Link class='nav-link' to='/excel'>
                                 Table
-                            </a>
+                            </Link>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='#'>
+                            <Link class='nav-link' to='/preview'>
                                 Preview
-                            </a>
+                            </Link>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link disabled' href='#'>
+                            <Link class='nav-link' to='/send'>
                                 Send
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
