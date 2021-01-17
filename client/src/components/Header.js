@@ -8,9 +8,9 @@ import user from '../images/user.png'
 export default function Header({ menuOpen, setMenuOpen }) {
     return (
         <>
-            <div class='navbar navbar-expand navbar-dark background-dark'>
+            <div className='navbar navbar-expand navbar-dark background-dark'>
                 <button
-                    class='btn btn-default ml-0 mr-3'
+                    className='btn btn-default ml-0 mr-3'
                     type='button'
                     id='sidebarCollapse'
                 >
@@ -18,32 +18,32 @@ export default function Header({ menuOpen, setMenuOpen }) {
                         src={menu}
                         width='20'
                         height='20'
-                        class='d-inline-block'
+                        className='d-inline-block'
                         alt=''
                     />
                 </button>
                 <div
-                    class='collapse navbar-collapse container-fluid'
+                    className='collapse navbar-collapse container-fluid'
                     id='navbarSupportedContent'
                 >
-                    <ul class='navbar-nav mr-auto'>
-                        <li class='nav-item active'>
-                            <Link class='nav-link' to='/'>
+                    <ul className='navbar-nav mr-auto'>
+                        <li className='nav-item active'>
+                            <Link className='nav-link' to='/editor'>
                                 Editor
                             </Link>
                         </li>
-                        <li class='nav-item'>
-                            <Link class='nav-link' to='/excel'>
+                        <li className='nav-item'>
+                            <Link className='nav-link' to='/excel'>
                                 Table
                             </Link>
                         </li>
-                        <li class='nav-item'>
-                            <Link class='nav-link' to='/preview'>
+                        <li className='nav-item'>
+                            <Link className='nav-link' to='/preview'>
                                 Preview
                             </Link>
                         </li>
-                        <li class='nav-item'>
-                            <Link class='nav-link' to='/send'>
+                        <li className='nav-item'>
+                            <Link className='nav-link' to='/send'>
                                 Send
                             </Link>
                         </li>

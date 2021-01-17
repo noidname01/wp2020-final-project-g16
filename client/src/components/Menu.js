@@ -5,49 +5,49 @@ import user from '../images/user.png'
 export default function Menu({ menuOpen }) {
     return (
         <>
-            <div class='wrapper'>
+            <div className='wrapper'>
                 <nav
                     id='sidebar'
-                    class={
+                    className={
                         menuOpen
                             ? 'navbar-light bg-light'
                             : 'navbar-light bg-light active'
                     }
                 >
-                    <ul class='navbar-nav mr-auto'>
-                        <li class='nav-item'>
-                            <Link class='nav-link profile' to='/profile'>
+                    <ul className='navbar-nav mr-auto'>
+                        <li className='nav-item'>
+                            <Link className='nav-link profile' to='/profile'>
                                 <img
                                     src={user}
                                     height='30'
-                                    class='d-inline-block pr-4'
+                                    className='d-inline-block pr-4'
                                     alt=''
                                 />
                                 <span>Profile</span>
                             </Link>
                         </li>
-                        <li class='nav-item'>
-                            <Link class='nav-link' to='/'>
+                        <li className='nav-item'>
+                            <Link className='nav-link' to='/'>
                                 New
                             </Link>
                         </li>
-                        <li class='nav-item'>
-                            <Link class='nav-link' href='/draft'>
+                        <li className='nav-item'>
+                            <Link className='nav-link' to='/draft'>
                                 Draft
                             </Link>
                         </li>
-                        <li class='nav-item'>
-                            <Link class='nav-link' href='/template'>
+                        <li className='nav-item'>
+                            <Link className='nav-link' to='/template'>
                                 Template
                             </Link>
                         </li>
-                        <li class='nav-item'>
-                            <Link class='nav-link' href='sent'>
+                        <li className='nav-item'>
+                            <Link className='nav-link' to='sent'>
                                 Sent
                             </Link>
                         </li>
-                        <li class='nav-item'>
-                            <Link class='nav-link' href='/settings'>
+                        <li className='nav-item'>
+                            <Link className='nav-link' to='/settings'>
                                 Settings
                             </Link>
                         </li>
