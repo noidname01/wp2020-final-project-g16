@@ -1,23 +1,20 @@
 import React from 'react'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import App from '../containers/App'
-
-import Excel from '../containers/Excel'
-import MailTester from '../containers/TestMail'
-import RichMailEditor from '../components/RichMailEditor'
-
+import New from '../containers/New'
+import Draft from '../containers/Draft'
+import Template from '../containers/Template'
+import Sent from '../containers/Sent'
+import Settings from '../containers/Settings'
 
 const Routes = () => {
     return (
         <BrowserRouter>
             <Switch>
-
-                <Route path='/excel' component={Excel}></Route>
-
-                <Route exact path='/' component={App}></Route>
-                <Route path='/test' component={MailTester}></Route>
-                <Route path='/rich' component={RichMailEditor}></Route>
-
+                <Route path='/new' component={New}></Route>
+                <Route path='/draft' component={Draft}></Route>
+                <Route path='/template' component={Template}></Route>
+                <Route path='/sent' component={Sent}></Route>
+                <Route path='/settings' component={Settings}></Route>
             </Switch>
         </BrowserRouter>
     )

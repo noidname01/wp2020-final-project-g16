@@ -4,6 +4,7 @@ import Menu from '../components/Menu'
 import Body from '../components/Body'
 import '../bootstrap.css'
 import '../sidebar.css'
+import Routes from '../routes/Routes'
 
 // https://codepen.io/maximakymenko/pen/aboWJpX/
 
@@ -18,7 +19,7 @@ function App() {
                 </div>
                 <div className='col'>
                     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-                    <div>helooo</div>
+                    <Routes />
                 </div>
             </div>
         </div>
