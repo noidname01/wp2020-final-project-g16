@@ -1,19 +1,26 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import Header from '../components/Header'
 import Menu from '../components/Menu'
 import Body from '../components/Body'
 import '../bootstrap.css'
+import '../sidebar.css'
 
 // https://codepen.io/maximakymenko/pen/aboWJpX/
 
 function App() {
-    const menuIcon = React.useRef()
-    const [menuOpen, setOpen] = React.useState(false)
+    const menuIcon = useRef()
+    const [menuOpen, setMenuOpen] = useState(true)
     return (
         <div className='editor'>
-            <Header menuOpen={menuOpen} setOpen={setOpen} />
-            <Menu open={open} setOpen={setOpen} />
-            <Body />
+            <div className='row'>
+                <div className='col-2'>
+                    <Menu menuOpen={menuOpen} />
+                </div>
+                <div className='col'>
+                    <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+                    <div>helooo</div>
+                </div>
+            </div>
         </div>
     )
 }
