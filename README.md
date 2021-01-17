@@ -45,4 +45,21 @@ yarn run dev
   "nodemon": "^2.0.6",
   "path": "^0.12.7"  
   ```
-
+## Schema
+### User
+* username
+* userId
+* emailAddress
+* emailPassword
+### Template
+* templatetId
+* userId
+* content
+### Draft
+* draftId
+* userId
+* templateId
+* xlsxContent
+### Sent
+* sentId
+* draftContent
