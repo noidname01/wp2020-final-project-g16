@@ -1,46 +1,28 @@
 import React, { useState, useRef } from 'react'
 import ReactDataSheet from 'react-datasheet'
 import ExcelJs from 'exceljs'
+import { saveAs } from 'file-saver'
 import './Excel.css'
 
+async function saveAsExcel(filename, grid) {
+	const wb = new ExcelJs.Workbook()
+
+	const ws = wb.addWorksheet()
+
+	const row = ws.addRow(grid[0].map((r) => r.value))
+	row.font = { bold: true }
+
+	for (let i = 1; i < grid.length; i++) {
+		const row = ws.addRow(grid[i].map((r) => r.value))
+	}
+
+	const buf = await wb.xlsx.writeBuffer()
+
+	saveAs(new Blob([buf]), `${filename}.xlsx`)
+}
+
 function EditableTable(props) {
-	const [grid, setGrid] = useState([
-		[
-			{ readOnly: true, value: '' },
-			{ value: 'A', readOnly: true },
-			{ value: 'B', readOnly: true },
-			{ value: 'C', readOnly: true },
-			{ value: 'D', readOnly: true },
-		],
-		[
-			{ readOnly: true, value: 1 },
-			{ value: 1 },
-			{ value: 3 },
-			{ value: 3 },
-			{ value: 3 },
-		],
-		[
-			{ readOnly: true, value: 2 },
-			{ value: 2 },
-			{ value: 4 },
-			{ value: 4 },
-			{ value: 4 },
-		],
-		[
-			{ readOnly: true, value: 3 },
-			{ value: 1 },
-			{ value: 3 },
-			{ value: 3 },
-			{ value: 3 },
-		],
-		[
-			{ readOnly: true, value: 4 },
-			{ value: 2 },
-			{ value: 4 },
-			{ value: 4 },
-			{ value: 'gfdsjhk' },
-		],
-	])
+	const [grid, setGrid] = useState([])
 
 	const getFile = (f) => {
 		const wb = new ExcelJs.Workbook()
@@ -83,6 +65,7 @@ function EditableTable(props) {
 	return (
 		<React.Fragment>
 			<input type='file' onChange={(ev) => handleFileInput(ev)}></input>
+			<button onClick={() => saveAsExcel('Temp', grid)}>Save As</button>
 			<ReactDataSheet
 				data={grid}
 				valueRenderer={(cell) => cell.value}
