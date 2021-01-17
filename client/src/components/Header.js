@@ -7,22 +7,20 @@ import user from '../images/user.png'
 export default function Header({ menuOpen, setMenuOpen }) {
     return (
         <>
-            <nav class='navbar navbar-expand navbar-dark background-dark'>
-                <a class='navbar-brand col-md-1' href='#'>
-                    <button
-                        class='btn btn-default mr-sm-0'
-                        type='button'
-                        id='sidebarCollapse'
-                    >
-                        <img
-                            src={menu}
-                            width='20'
-                            height='20'
-                            class='d-inline-block'
-                            alt=''
-                        />
-                    </button>
-                </a>
+            <div class='navbar navbar-expand navbar-dark background-dark'>
+                <button
+                    class='btn btn-default ml-0 mr-3'
+                    type='button'
+                    id='sidebarCollapse'
+                >
+                    <img
+                        src={menu}
+                        width='20'
+                        height='20'
+                        class='d-inline-block'
+                        alt=''
+                    />
+                </button>
                 <div
                     class='collapse navbar-collapse container-fluid'
                     id='navbarSupportedContent'
@@ -50,7 +48,7 @@ export default function Header({ menuOpen, setMenuOpen }) {
                         </li>
                     </ul>
                 </div>
-            </nav>
+            </div>
         </>
     )
 }
