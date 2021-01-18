@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useLocation, Link } from 'react-router-dom'
 import ReactSummernote from 'react-summernote'
 import 'react-summernote/dist/react-summernote.css' // import styles
@@ -14,40 +14,27 @@ import { editorConfig } from '../config/editorConfig'
 // ===== import config ====
 
 const Editor = (props) => {
-    const { state } = useParams()
+    // const { state } = useParams()
     const location = useLocation()
-
-    // console.log(location)
-
-    let idCounter = 0
-    let varList = []
-    let html = ''
-    /* format
-    {
-        id:
-        varname:
-    }
-     */
+    const [html, setHtml] = useState('')
+    const [idCounter, setIdCounter] = useState(0)
 
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
 
     const handleEditorChange = (content) => {
         console.log('onChange', content)
-        html = content
+        // html = content
+        setHtml(content)
     }
 
-    const handleVarChange = (e) => {
+    const handleVarChange = async (e) => {
         let newVarName = e.target.value
 
-        console.log(newVarName)
+        // console.log(newVarName)
         let text = ctx.measureText(newVarName)
 
         e.target.name = newVarName
-
-        varList[e.target.id].varname = newVarName
-
-        console.log(varList)
 
         e.target.style.width = `calc( 4.5rem + 1.2 * ${text.width + 1 + 'px'})`
     }
@@ -63,21 +50,15 @@ const Editor = (props) => {
 
         newVar.oninput = handleVarChange
 
-        varList.push({
-            id: idCounter,
-            varname: '',
-            color: bgColor,
-        })
-
-        idCounter++
-
         return newVar
     }
     // =======Test Ugly method ==========
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault()
         ReactSummernote.insertNode(createTag('#123456'))
+
+        setIdCounter((state) => state + 1)
     }
 
     return (
@@ -93,7 +74,6 @@ const Editor = (props) => {
                 to={{
                     pathname: '/excel',
                     state: {
-                        varlist: varList,
                         html: html,
                     },
                 }}
