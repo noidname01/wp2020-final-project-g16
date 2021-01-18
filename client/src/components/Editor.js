@@ -15,7 +15,7 @@ import { editorConfig } from '../config/editorConfig'
 
 const Editor = (props) => {
     // const { state } = useParams()
-    const location = useLocation()
+    //const location = useLocation()
     const [html, setHtml] = useState('')
     const [idCounter, setIdCounter] = useState(0)
 
@@ -97,7 +97,7 @@ const Editor = (props) => {
                 </div>
             </form>
             <ReactSummernote
-                value={location.state.defaultValue}
+                //value={location.state.defaultValue}
                 options={editorConfig}
                 onChange={handleEditorChange}
                 className='summernote'

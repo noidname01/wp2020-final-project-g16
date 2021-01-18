@@ -13,7 +13,7 @@ import Send from '../components/Send'
 const Routes = () => {
     return (
         <>
-            {/* <Route path='/new' component={New}></Route> */}
+            <Route path='/new' component={New}></Route>
             <Route path='/draft' component={Draft}></Route>
             <Route path='/template' component={Template}></Route>
             <Route path='/sent' component={Sent}></Route>
