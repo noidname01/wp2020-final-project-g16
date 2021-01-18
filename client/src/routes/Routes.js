@@ -18,12 +18,6 @@ const Routes = () => {
             <Route path='/template' component={Template}></Route>
             <Route path='/sent' component={Sent}></Route>
             <Route path='/settings' component={Settings}></Route>
-            <Route path='/editor/:state'>
-                <Editor />
-            </Route>
-            <Route path='/excel' component={Excel}></Route>
-            <Route path='/preview' component={Preview}></Route>
-            <Route path='/send' component={Send}></Route>
         </>
     )
 }

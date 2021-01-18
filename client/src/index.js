@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 // import Routes from './routes/Routes'
 import App from './containers/App'
+import Login from './containers/Login'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactDataSheet from 'react-datasheet'
@@ -18,12 +19,10 @@ const client = new ApolloClient({
 })
 
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <BrowserRouter>
-            <Switch>
-                <Route path='/' component={App}></Route>
-            </Switch>
-        </BrowserRouter>
-    </ApolloProvider>,
+    <BrowserRouter>
+        <Switch>
+            <Outapp></Outapp>
+        </Switch>
+    </BrowserRouter>,
     document.getElementById('app')
 )
