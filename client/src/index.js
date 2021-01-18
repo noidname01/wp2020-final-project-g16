@@ -2,8 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 // import Routes from './routes/Routes'
 import App from './containers/App'
+import Outapp from './containers/Outapp'
 import Login from './containers/Login'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactDataSheet from 'react-datasheet'
 // Be sure to include styles at some point, probably during your bootstrapping
@@ -22,7 +23,7 @@ ReactDOM.render(
     <ApolloProvider client={client}>
         <BrowserRouter>
             <Switch>
-                <Route path='/' component={App}></Route>
+                <Outapp></Outapp>
             </Switch>
         </BrowserRouter>
     </ApolloProvider>,

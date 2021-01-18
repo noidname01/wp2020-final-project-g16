@@ -12,14 +12,14 @@ import Settings from '../containers/Settings'
 const Routes = () => {
     return (
         <>
-            <Route path='/welcome' component={Welcome}></Route>
-            <Route path='/register' component={Register}></Route>
-            <Route path='/login' component={Login}></Route>
-            <Route path='/new' component={New}></Route>
-            <Route path='/draft' component={Draft}></Route>
-            <Route path='/template' component={Template}></Route>
-            <Route path='/sent' component={Sent}></Route>
-            <Route path='/settings' component={Settings}></Route>
+            <Route path='/ee/welcome' component={Welcome}></Route>
+            <Route path='/ee/register' component={Register}></Route>
+            <Route path='/ee/login' component={Login}></Route>
+            <Route path='/ee/new' component={New}></Route>
+            <Route path='/ee/draft' component={Draft}></Route>
+            <Route path='/ee/template' component={Template}></Route>
+            <Route path='/ee/sent' component={Sent}></Route>
+            <Route path='/ee/settings' component={Settings}></Route>
         </>
     )
 }

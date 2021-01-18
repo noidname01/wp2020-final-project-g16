@@ -16,7 +16,7 @@ export default function Menu({ menuOpen }) {
                 >
                     <ul className='navbar-nav mr-auto'>
                         <li className='nav-item'>
-                            <Link className='nav-link profile' to='/profile'>
+                            <Link className='nav-link profile' to='/ee/profile'>
                                 <img
                                     src={user}
                                     height='30'
@@ -30,7 +30,7 @@ export default function Menu({ menuOpen }) {
                             <Link
                                 className='nav-link'
                                 to={{
-                                    pathname: '/new',
+                                    pathname: '/ee/new',
                                     state: {
                                         defaultValue: 'Start Writing!',
                                     },
@@ -40,22 +40,22 @@ export default function Menu({ menuOpen }) {
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link className='nav-link' to='/draft'>
+                            <Link className='nav-link' to='/ee/draft'>
                                 Draft
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link className='nav-link' to='/template'>
+                            <Link className='nav-link' to='/ee/template'>
                                 Template
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link className='nav-link' to='sent'>
+                            <Link className='nav-link' to='/ee/sent'>
                                 Sent
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link className='nav-link' to='/settings'>
+                            <Link className='nav-link' to='/ee/settings'>
                                 Settings
                             </Link>
                         </li>
