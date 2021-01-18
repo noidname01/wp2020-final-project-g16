@@ -188,3 +188,30 @@ ul ul a {
 .fa.fa-child {
     color: white;
 }
+
+.loginP {
+    color: #535353;
+    font-size: 14px;
+}
+
+.loginP a {
+    color: black;
+}
+
+.loginF {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.loginF::placeholder {
+    color: #a8a8a8;
+}
+
+.loginF:focus {
+    outline-color: #c4c4c4;
+}
