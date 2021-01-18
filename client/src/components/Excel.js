@@ -10,7 +10,27 @@ import { re } from '../config/parserConfig'
 const MAX_RECEIVERS = 11
 
 function createComponent(e) {
-	return <span style={{ color: e.color }}>{e.varname}</span>
+	if (e.bgcolor !== undefined) {
+		return (
+			<span
+				style={{
+					color: e.color,
+					fontWeight: 'bold',
+					backgroundColor: e.bgcolor,
+					width: '100%',
+					height: '100%',
+				}}
+			>
+				{e.varname}
+			</span>
+		)
+	} else {
+		return (
+			<span style={{ color: e.color, fontWeight: 'bold' }}>
+				{e.varname}
+			</span>
+		)
+	}
 }
 
 function arraysEqual(a, b) {
@@ -93,7 +113,12 @@ function EditableTable(props) {
 			{
 				value: 'Email_Address',
 				readOnly: true,
-				className: 'email-title',
+				forceComponent: true,
+				component: createComponent({
+					varname: 'Email_Address',
+					color: 'black',
+					bgcolor: 'rgb(100,100,100)',
+				}),
 			},
 			...sht,
 		]
