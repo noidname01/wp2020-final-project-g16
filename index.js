@@ -2,6 +2,10 @@ const express = require('express')
 const path = require('path')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+const flash = require('connect-flash')
+const session = require('express-session')
+const passport = require('passport')
 
 // =========require test ==========
 // const mailer = require('./server/test/mailer.js')
@@ -35,6 +39,43 @@ app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname + '/client/dist/index.html'))
     // next()
 })
+
+// //===========================Login DB==================================
+// // Passport Config
+// require('./src/config/passport')(passport)
+
+// // DB Config
+// const db = require('./src/config/keys').MongoURI
+
+// // DB Connection
+// mongoose
+//     .connect(db, { useNewUrlParser: true })
+//     .then(() => console.log('Mongo Connected!'))
+//     .catch((err) => console.log(err))
+
+// // Express Session
+// app.use(
+//     session({
+//         secret: 'keyboard cat',
+//         resave: true,
+//         saveUninitialized: true,
+//     })
+// )
+
+// // Passport Middleware
+// app.use(passport.initialize())
+// app.use(passport.session())
+
+// // Connect Flash
+// app.use(flash())
+
+// // Global Vars
+// app.use((req, res, next) => {
+//     res.locals.success_msg = req.flash('success_msg')
+//     res.locals.error_msg = req.flash('error_msg')
+//     res.locals.error = req.flash('error')
+//     next()
+// })
 
 //==============================routes=================================
 const port = process.env.PORT || 5000

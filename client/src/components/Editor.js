@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { useParams, useLocation, Link } from 'react-router-dom'
 import ReactSummernote from 'react-summernote'
 import 'react-summernote/dist/react-summernote.css' // import styles
 import 'react-summernote/lang/summernote-zh-TW' // you can import any other locale
@@ -12,26 +13,24 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { editorConfig } from '../config/editorConfig'
 // ===== import config ====
 
-const Editor = () => {
-    let idCounter = 0
-    /* format
-    {
-        id:
-        varname:
-    }
-     */
+const Editor = (props) => {
+    // const { state } = useParams()
+    //const location = useLocation()
+    const [idCounter, setIdCounter] = useState(0)
 
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
 
     const handleEditorChange = (content) => {
         console.log('onChange', content)
+        // html = content
+        props.setHtml(content)
     }
 
-    const handleVarChange = (e) => {
+    const handleVarChange = async (e) => {
         let newVarName = e.target.value
 
-        console.log(newVarName)
+        // console.log(newVarName)
         let text = ctx.measureText(newVarName)
 
         e.target.name = newVarName
@@ -50,25 +49,67 @@ const Editor = () => {
 
         newVar.oninput = handleVarChange
 
-        idCounter++
-
         return newVar
     }
     // =======Test Ugly method ==========
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault()
-        ReactSummernote.insertNode(createTag('pink'))
+        ReactSummernote.insertNode(createTag('#123456'))
+
+        setIdCounter((state) => state + 1)
     }
 
     return (
         <>
+            <form className='mx-2'>
+                <div className='form-group row'>
+                    <label
+                        htmlFor='inputEmail'
+                        className='col-sm-1 col-form-label'
+                    >
+                        收件者
+                    </label>
+                    <div className='col-sm-10'>
+                        <input
+                            type='text'
+                            className='emailform'
+                            id='inputEmail'
+                            placeholder='example@gmail.com'
+                        />
+                    </div>
+                </div>
+                <div className='form-group row'>
+                    <label
+                        htmlFor='inputSubject'
+                        className='col-sm-1 col-form-label'
+                    >
+                        主旨
+                    </label>
+                    <div className='col-sm-10'>
+                        <input
+                            type='text'
+                            className='emailform'
+                            id='inputSubject'
+                        />
+                    </div>
+                </div>
+            </form>
             <ReactSummernote
-                value='Default value'
+                //value={location.state.defaultValue}
                 options={editorConfig}
                 onChange={handleEditorChange}
+                className='summernote'
             ></ReactSummernote>
             <button onClick={handleClick}>Test</button>
+
+            <Link
+                to={{
+                    pathname: '/excel',
+                }}
+            >
+                <button> Next</button>
+            </Link>
         </>
     )
 }
