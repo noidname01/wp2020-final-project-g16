@@ -102,8 +102,46 @@ ul ul a {
 .profile {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 50px;
     padding: 20px;
     font-size: 1.5em;
     display: block;
+}
+
+.draftcard {
+    width: 15rem;
+    height: 15rem;
+}
+
+.main {
+    margin: 50px;
+}
+
+.editArea {
+    margin: 20px;
+    margin-top: 40px;
+}
+
+.flex-container-main {
+    display: flex;
+    flex-direction: row;
+    background-color: #2e2e2e;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.grid-col {
+    display: flex;
+    padding: 15px;
+}
+
+.excelfile {
+    width: 300px;
 }

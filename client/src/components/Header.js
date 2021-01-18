@@ -1,49 +1,49 @@
 import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import menu from '../images/menu.png'
-import send from '../images/send.png'
-import save from '../images/save.png'
-import user from '../images/user.png'
+import next from '../images/next.png'
 
 export default function Header({ menuOpen, setMenuOpen }) {
     return (
         <>
             <div className='navbar navbar-expand navbar-dark background-dark'>
-                <button
-                    className='btn btn-default ml-0 mr-3'
-                    type='button'
-                    id='sidebarCollapse'
-                >
-                    <img
-                        src={menu}
-                        width='20'
-                        height='20'
-                        className='d-inline-block'
-                        alt=''
-                    />
-                </button>
                 <div
                     className='collapse navbar-collapse container-fluid'
                     id='navbarSupportedContent'
                 >
                     <ul className='navbar-nav mr-auto'>
-                        <li className='nav-item active'>
+                        <li className='nav-item flex-row'>
                             <Link className='nav-link' to='/editor'>
                                 Editor
                             </Link>
-                        </li>
-                        <li className='nav-item'>
+                            <img
+                                src={next}
+                                width='10'
+                                height='10'
+                                className='flex mx-1'
+                                alt=''
+                            />
                             <Link className='nav-link' to='/excel'>
                                 Table
                             </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link className='nav-link' to='/preview'>
+                            <img
+                                src={next}
+                                width='10'
+                                height='10'
+                                className='flex mx-1'
+                                alt=''
+                            />
+                            <Link className='nav-link disabled' to='/preview'>
                                 Preview
                             </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link className='nav-link' to='/send'>
+                            <img
+                                src={next}
+                                width='10'
+                                height='10'
+                                className='flex mx-1'
+                                alt=''
+                            />
+                            <Link className='nav-link disabled' to='/send'>
                                 Send
                             </Link>
                         </li>
