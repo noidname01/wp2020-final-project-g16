@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import ReactDataSheet from 'react-datasheet'
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
+import { useLocation } from 'react-router-dom'
 import './Excel.css'
 
 async function saveAsExcel(filename, grid) {
@@ -23,6 +24,10 @@ async function saveAsExcel(filename, grid) {
 
 function EditableTable(props) {
     const [grid, setGrid] = useState([])
+
+    const location = useLocation()
+
+    console.log(location)
 
     const getFile = (f) => {
         const wb = new ExcelJs.Workbook()
@@ -64,6 +69,7 @@ function EditableTable(props) {
     }
     return (
         <React.Fragment>
+
             <div class='flex-row'>
                 <div className='custom-file excelfile flex'>
                     <input
@@ -86,6 +92,7 @@ function EditableTable(props) {
                     Save
                 </button>
             </div>
+
             <ReactDataSheet
                 data={grid}
                 valueRenderer={(cell) => cell.value}

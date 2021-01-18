@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactDataSheet from 'react-datasheet'
 // Be sure to include styles at some point, probably during your bootstrapping
 import 'react-datasheet/lib/react-datasheet.css'
-import Routes from './routes/Routes'
 
 ReactDOM.render(
     <BrowserRouter>
