@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const TemplateSchema = new Schema({
-    templateId: {
+    id: {
         type: String,
         required: true,
     },
