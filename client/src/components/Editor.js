@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, Link } from 'react-router-dom'
 import ReactSummernote from 'react-summernote'
 import 'react-summernote/dist/react-summernote.css' // import styles
 import 'react-summernote/lang/summernote-zh-TW' // you can import any other locale
@@ -16,9 +16,12 @@ import { editorConfig } from '../config/editorConfig'
 const Editor = (props) => {
     const { state } = useParams()
     const location = useLocation()
-    console.log(location)
+
+    // console.log(location)
 
     let idCounter = 0
+    let varList = []
+    let html = ''
     /* format
     {
         id:
@@ -31,6 +34,7 @@ const Editor = (props) => {
 
     const handleEditorChange = (content) => {
         console.log('onChange', content)
+        html = content
     }
 
     const handleVarChange = (e) => {
@@ -40,6 +44,10 @@ const Editor = (props) => {
         let text = ctx.measureText(newVarName)
 
         e.target.name = newVarName
+
+        varList[e.target.id].varname = newVarName
+
+        console.log(varList)
 
         e.target.style.width = `calc( 4.5rem + 1.2 * ${text.width + 1 + 'px'})`
     }
@@ -55,6 +63,12 @@ const Editor = (props) => {
 
         newVar.oninput = handleVarChange
 
+        varList.push({
+            id: idCounter,
+            varname: '',
+            color: bgColor,
+        })
+
         idCounter++
 
         return newVar
@@ -63,7 +77,7 @@ const Editor = (props) => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        ReactSummernote.insertNode(createTag('pink'))
+        ReactSummernote.insertNode(createTag('#123456'))
     }
 
     return (
@@ -74,6 +88,18 @@ const Editor = (props) => {
                 onChange={handleEditorChange}
             ></ReactSummernote>
             <button onClick={handleClick}>Test</button>
+
+            <Link
+                to={{
+                    pathname: '/excel',
+                    state: {
+                        varlist: varList,
+                        html: html,
+                    },
+                }}
+            >
+                <button> Next</button>
+            </Link>
         </>
     )
 }
