@@ -24,6 +24,7 @@ async function saveAsExcel(filename, grid) {
 
 function EditableTable(props) {
     const [grid, setGrid] = useState([])
+
     const location = useLocation()
 
     console.log(location)
@@ -68,8 +69,30 @@ function EditableTable(props) {
     }
     return (
         <React.Fragment>
-            <input type='file' onChange={(ev) => handleFileInput(ev)}></input>
-            <button onClick={() => saveAsExcel('Temp', grid)}>Save As</button>
+
+            <div class='flex-row'>
+                <div className='custom-file excelfile flex'>
+                    <input
+                        type='file'
+                        className=''
+                        id='inputGroupFile01'
+                        aria-describedby='inputGroupFileAddon01'
+                        onChange={(ev) => handleFileInput(ev)}
+                    />
+                    <label className='custom-file-label' for='inputGroupFile01'>
+                        未選擇任何檔案
+                    </label>
+                </div>
+                <button
+                    class='btn btn-light ml-5 flex'
+                    type='button'
+                    id='inputGroupFileAddon04'
+                    onClick={() => saveAsExcel('Temp', grid)}
+                >
+                    Save
+                </button>
+            </div>
+
             <ReactDataSheet
                 data={grid}
                 valueRenderer={(cell) => cell.value}
