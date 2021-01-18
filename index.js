@@ -7,6 +7,12 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
 
+// ========= Apollo(GraphQL) ======
+const { ApolloServer } = require('apollo-server-express')
+const { typeDefs } = require('./schema')
+const { resolvers } = require('./resolvers')
+// ========= Apollo(GraphQL) ======
+
 // =========require test ==========
 // const mailer = require('./server/test/mailer.js')
 //
@@ -14,7 +20,11 @@ const passport = require('passport')
 const sendMails = require('./server/sendMails')
 // =========require files =========
 
+const server = new ApolloServer({ typeDefs, resolvers })
+
 const app = express()
+
+server.applyMiddleware({ app })
 
 app.use(cors())
 app.use(express.json())
