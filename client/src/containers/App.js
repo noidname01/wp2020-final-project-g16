@@ -18,7 +18,7 @@ function App() {
                     <Menu menuOpen={menuOpen} />
                 </div>
                 <div className='d-inline-block'>
-                    <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+                    {/* <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} /> */}
                     <Routes />
                 </div>
             </div>

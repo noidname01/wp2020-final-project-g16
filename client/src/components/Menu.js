@@ -27,7 +27,15 @@ export default function Menu({ menuOpen }) {
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link className='nav-link' to='/'>
+                            <Link
+                                className='nav-link'
+                                to={{
+                                    pathname: '/editor/new',
+                                    state: {
+                                        defaultValue: 'Start Writing!',
+                                    },
+                                }}
+                            >
                                 New
                             </Link>
                         </li>

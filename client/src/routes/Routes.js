@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import New from '../containers/New'
 import Draft from '../containers/Draft'
 import Template from '../containers/Template'
@@ -13,12 +13,14 @@ import Send from '../components/Send'
 const Routes = () => {
     return (
         <>
-            <Route path='/new' component={New}></Route>
+            {/* <Route path='/new' component={New}></Route> */}
             <Route path='/draft' component={Draft}></Route>
             <Route path='/template' component={Template}></Route>
             <Route path='/sent' component={Sent}></Route>
             <Route path='/settings' component={Settings}></Route>
-            <Route path='/editor' component={Editor}></Route>
+            <Route path='/editor/:state'>
+                <Editor />
+            </Route>
             <Route path='/excel' component={Excel}></Route>
             <Route path='/preview' component={Preview}></Route>
             <Route path='/send' component={Send}></Route>
