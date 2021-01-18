@@ -74,6 +74,7 @@ a[data-toggle='collapse'] {
 #sidebar ul li a {
     padding: 20px;
     padding-left: 40px;
+    padding-right: 40px;
     font-size: 1.1em;
     display: block;
 }
@@ -102,7 +103,6 @@ ul ul a {
 .profile {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 50px;
     padding: 20px;
     font-size: 1.5em;
     display: block;

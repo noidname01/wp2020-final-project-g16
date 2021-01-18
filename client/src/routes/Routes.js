@@ -1,25 +1,28 @@
 import React from 'react'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import App from '../containers/App'
-
-import Excel from '../containers/Excel'
-import MailTester from '../containers/TestMail'
-import RichMailEditor from '../components/RichMailEditor'
-
+import New from '../containers/New'
+import Draft from '../containers/Draft'
+import Template from '../containers/Template'
+import Sent from '../containers/Sent'
+import Settings from '../containers/Settings'
+import Editor from '../components/Editor'
+import Excel from '../components/Excel'
+import Preview from '../components/Preview'
+import Send from '../components/Send'
 
 const Routes = () => {
     return (
-        <BrowserRouter>
-            <Switch>
-
-                <Route path='/excel' component={Excel}></Route>
-
-                <Route exact path='/' component={App}></Route>
-                <Route path='/test' component={MailTester}></Route>
-                <Route path='/rich' component={RichMailEditor}></Route>
-
-            </Switch>
-        </BrowserRouter>
+        <>
+            <Route path='/new' component={New}></Route>
+            <Route path='/draft' component={Draft}></Route>
+            <Route path='/template' component={Template}></Route>
+            <Route path='/sent' component={Sent}></Route>
+            <Route path='/settings' component={Settings}></Route>
+            <Route path='/editor' component={Editor}></Route>
+            <Route path='/excel' component={Excel}></Route>
+            <Route path='/preview' component={Preview}></Route>
+            <Route path='/send' component={Send}></Route>
+        </>
     )
 }
 

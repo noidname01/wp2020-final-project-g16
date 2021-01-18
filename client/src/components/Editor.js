@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { editorConfig } from '../config/editorConfig'
 // ===== import config ====
 
-const RichTextEditor = () => {
+const Editor = () => {
     let idCounter = 0
     /* format
     {
@@ -73,4 +73,4 @@ const RichTextEditor = () => {
     )
 }
 
-export default RichTextEditor
+export default Editor
