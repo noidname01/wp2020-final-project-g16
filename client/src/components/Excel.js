@@ -65,6 +65,7 @@ function EditableTable(props) {
 				readOnly: true,
 			}
 		})
+		sht = [{ value: 'Email_Address', readOnly: true }, ...sht]
 		setGrid(createSht([sht]))
 	}, [])
 
