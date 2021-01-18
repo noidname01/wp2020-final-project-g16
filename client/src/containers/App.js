@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import Header from '../components/Header'
+//import Header from '../components/Header2'
 import Menu from '../components/Menu'
 import Body from '../components/Body'
 import '../bootstrap.css'
@@ -18,7 +18,7 @@ function App() {
             </div>
             <div className='flex w100'>
                 <div className='main w100'>
-                    <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+                    {/*<Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />*/}
                     <div className='editArea'>
                         <Routes />
                     </div>

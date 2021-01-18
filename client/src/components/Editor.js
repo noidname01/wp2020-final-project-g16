@@ -17,8 +17,7 @@ $ = require('jquery')
 
 const Editor = (props) => {
     // const { state } = useParams()
-    const location = useLocation()
-    const [html, setHtml] = useState('')
+    //const location = useLocation()
     const [idCounter, setIdCounter] = useState(0)
 
     const canvas = document.createElement('canvas')
@@ -27,7 +26,7 @@ const Editor = (props) => {
     const handleEditorChange = (content) => {
         console.log('onChange', content)
         // html = content
-        setHtml(content)
+        props.setHtml(content)
     }
 
     const handleVarChange = async (e) => {
@@ -101,11 +100,21 @@ const Editor = (props) => {
                 </div>
             </form>
             <ReactSummernote
-                value={location.state.defaultValue}
+                //value={location.state.defaultValue}
                 options={editorConfig}
                 onChange={handleEditorChange}
                 className='summernote'
             ></ReactSummernote>
+
+            <button onClick={handleClick}>Test</button>
+
+            <Link
+                to={{
+                    pathname: '/excel',
+                }}
+            >
+                <button> Next</button>
+            </Link>
         </>
     )
 }

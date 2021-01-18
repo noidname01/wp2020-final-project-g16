@@ -9,8 +9,8 @@ const passport = require('passport')
 
 // ========= Apollo(GraphQL) ======
 const { ApolloServer } = require('apollo-server-express')
-const { typeDefs } = require('./schema')
-const { resolvers } = require('./resolvers')
+const { typeDefs } = require('./server/schema')
+const { resolvers } = require('./server/resolvers')
 // ========= Apollo(GraphQL) ======
 
 // =========require test ==========
