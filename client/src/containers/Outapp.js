@@ -1,5 +1,4 @@
 import React from 'react'
-import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import Welcome from '../containers/Welcome'
 import Login from '../containers/Login'
@@ -27,7 +26,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const Outapp = () => {
     return (
         <>
-            <Route path='/welcome' component={Welcome}></Route>
+            <Route exact path='/' component={Welcome}></Route>
             <Route path='/login' component={Login}></Route>
             <Route path='/register' component={Register}></Route>
             <PrivateRoute path='/ee' component={App}></PrivateRoute>

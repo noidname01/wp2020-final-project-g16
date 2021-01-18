@@ -6,7 +6,7 @@ const Login = () => {
             <div className='col-md-4 m-auto'>
                 <div className='card card-body'>
                     <h1 className='text-center mb-3'>Login</h1>
-                    <form action='/users/login' method='POST'>
+                    <form action='/login' method='POST'>
                         <div className='form-group'>
                             <label className='loginP' htmlFor='email'>
                                 Email
@@ -39,7 +39,7 @@ const Login = () => {
                         </button>
                     </form>
                     <p className='loginP mt-4'>
-                        No Account? <a href='/users/register'>Register</a>
+                        No Account? <a href='/register'>Register</a>
                     </p>
                 </div>
             </div>
