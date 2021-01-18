@@ -28,7 +28,7 @@ export default function Header({ menuOpen, setMenuOpen }) {
                 >
                     <ul class='navbar-nav mr-auto'>
                         <li class='nav-item active'>
-                            <Link class='nav-link' to='/'>
+                            <Link class='nav-link' to='/#'>
                                 Editor
                             </Link>
                         </li>
