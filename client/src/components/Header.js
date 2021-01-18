@@ -33,7 +33,7 @@ export default function Header({ menuOpen, setMenuOpen }) {
                                 className='flex mx-1'
                                 alt=''
                             />
-                            <Link className='nav-link disabled' to='/preview'>
+                            <Link className='nav-link ' to='/preview'>
                                 Preview
                             </Link>
                             <img

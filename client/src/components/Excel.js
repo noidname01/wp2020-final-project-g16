@@ -5,8 +5,8 @@ import { saveAs } from 'file-saver'
 import { useLocation } from 'react-router-dom'
 import './Excel.css'
 
-
 import { re } from '../config/parserConfig'
+
 const MAX_RECEIVERS = 11
 
 function createComponent(e) {
@@ -60,12 +60,26 @@ async function saveAsExcel(filename, grid) {
 }
 
 function EditableTable(props) {
-
 	const [grid, setGrid] = useState([])
 	const location = useLocation()
-
+	const parser = (html) => {
+		let matches_array = html.match(re)
+		console.log(matches_array)
+		let varList = matches_array.map((input) => {
+			return {
+				id: input.match(/id="([0-9]*)"/m)[1],
+				varname: input.match(/name="([\w]*)"/m)[1],
+				color: input.match(/background-color: (rgb\([0-9, ]*\))/m)[1],
+			}
+		})
+		console.log(varList)
+		return varList
+	}
 	useEffect(() => {
-		const titles = location.state.varlist
+		if (location.state === undefined) {
+			return
+		}
+		const titles = parser(location.state.html)
 
 		let sht = titles.map((e) => {
 			return {
@@ -75,23 +89,17 @@ function EditableTable(props) {
 				component: createComponent(e),
 			}
 		})
-		sht = [{ value: 'Email_Address', readOnly: true }, ...sht]
+		sht = [
+			{
+				value: 'Email_Address',
+				readOnly: true,
+				className: 'email-title',
+			},
+			...sht,
+		]
 		setGrid(createSht([sht]))
 	}, [])
-  
-  const parser = (html) => {
-        let matches_array = html.match(re)
-        console.log(matches_array)
-        let varList = matches_array.map((input) => {
-            return {
-                id: input.match(/id="([0-9]*)"/m)[1],
-                varname: input.match(/name="([\w]*)"/m)[1],
-                color: input.match(/background-color: (rgb\([0-9, ]*\))/m)[1],
-            }
-        })
-        console.log(varList)
-    }
-  
+
 	const getFile = (f) => {
 		const wb = new ExcelJs.Workbook()
 		const reader = new FileReader()
@@ -136,7 +144,7 @@ function EditableTable(props) {
 	}
 	return (
 		<React.Fragment>
-			<div class='flex-row'>
+			<div className='flex-row'>
 				<div className='custom-file excelfile flex'>
 					<input
 						type='file'
@@ -145,12 +153,15 @@ function EditableTable(props) {
 						aria-describedby='inputGroupFileAddon01'
 						onChange={(ev) => handleFileInput(ev)}
 					/>
-					<label className='custom-file-label' for='inputGroupFile01'>
+					<label
+						className='custom-file-label'
+						htmlFor='inputGroupFile01'
+					>
 						未選擇任何檔案
 					</label>
 				</div>
 				<button
-					class='btn btn-light ml-5 flex'
+					className='btn btn-light ml-5 flex'
 					type='button'
 					id='inputGroupFileAddon04'
 					onClick={() => saveAsExcel('Temp', grid)}
@@ -172,7 +183,6 @@ function EditableTable(props) {
 			/>
 		</React.Fragment>
 	)
-
 }
 
 export default EditableTable
