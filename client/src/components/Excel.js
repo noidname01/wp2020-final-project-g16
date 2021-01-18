@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import ReactDataSheet from 'react-datasheet'
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
 import { useLocation } from 'react-router-dom'
 import './Excel.css'
+
+import { re } from '../config/parserConfig'
 
 async function saveAsExcel(filename, grid) {
     const wb = new ExcelJs.Workbook()
@@ -27,6 +29,19 @@ function EditableTable(props) {
     const location = useLocation()
 
     console.log(location)
+
+    const parser = (html) => {
+        let matches_array = html.match(re)
+        console.log(matches_array)
+        let varList = matches_array.map((input) => {
+            return {
+                id: input.match(/id="([0-9]*)"/m)[1],
+                varname: input.match(/name="([\w]*)"/m)[1],
+                color: input.match(/background-color: (rgb\([0-9, ]*\))/m)[1],
+            }
+        })
+        console.log(varList)
+    }
 
     const getFile = (f) => {
         const wb = new ExcelJs.Workbook()
@@ -66,6 +81,11 @@ function EditableTable(props) {
     const handleFileInput = (ev) => {
         getFile(ev.target.files[0])
     }
+
+    useEffect(() => {
+        console.log(location.state.html)
+        parser(location.state.html)
+    }, [])
     return (
         <React.Fragment>
             <input type='file' onChange={(ev) => handleFileInput(ev)}></input>
