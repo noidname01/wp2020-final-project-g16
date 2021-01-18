@@ -28,7 +28,7 @@ function arraysEqual(a, b) {
 function createSht(sht) {
 	let result = []
 	const colNumber = sht[0].length
-	console.log('colNumber: ' + colNumber)
+	//console.log('colNumber: ' + colNumber)
 	let emptyRow = []
 	for (let i = 0; i < colNumber; i++) {
 		emptyRow.push({ value: '' })
