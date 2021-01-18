@@ -7,6 +7,10 @@ import './Excel.css'
 
 const MAX_RECEIVERS = 11
 
+function createComponent(e) {
+	return <span style={{ color: e.color }}>{e.varname}</span>
+}
+
 function arraysEqual(a, b) {
 	if (a === b) return true
 	if (a == null || b == null) return false
@@ -58,11 +62,14 @@ function EditableTable(props) {
 	const location = useLocation()
 
 	useEffect(() => {
-		const titles = location.state.varlist.map((e) => e.varname)
+		const titles = location.state.varlist
+
 		let sht = titles.map((e) => {
 			return {
-				value: e,
+				value: e.varname,
 				readOnly: true,
+				forceComponent: true,
+				component: createComponent(e),
 			}
 		})
 		sht = [{ value: 'Email_Address', readOnly: true }, ...sht]
