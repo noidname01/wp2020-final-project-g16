@@ -8,11 +8,22 @@ import ReactDataSheet from 'react-datasheet'
 // Be sure to include styles at some point, probably during your bootstrapping
 import 'react-datasheet/lib/react-datasheet.css'
 
+// ======== Apollo Client (GrqphQL) ========
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+// ======== Apollo Client (GrqphQL) ========
+
+const client = new ApolloClient({
+    uri: 'http://localhost:5000', //temp
+    cache: new InMemoryCache(),
+})
+
 ReactDOM.render(
-    <BrowserRouter>
-        <Switch>
-            <Route path='/' component={App}></Route>
-        </Switch>
-    </BrowserRouter>,
+    <ApolloProvider client={client}>
+        <BrowserRouter>
+            <Switch>
+                <Route path='/' component={App}></Route>
+            </Switch>
+        </BrowserRouter>
+    </ApolloProvider>,
     document.getElementById('app')
 )
