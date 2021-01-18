@@ -60,7 +60,7 @@ async function saveAsExcel(filename, grid) {
 }
 
 function EditableTable(props) {
-	const [grid, setGrid] = useState([])
+	//const [grid, setGrid] = useState([])
 	const location = useLocation()
 	const parser = (html) => {
 		let matches_array = html.match(re)
@@ -76,10 +76,10 @@ function EditableTable(props) {
 		return varList
 	}
 	useEffect(() => {
-		if (location.state === undefined) {
+		if (props.html === undefined) {
 			return
 		}
-		const titles = parser(location.state.html)
+		const titles = parser(props.html)
 
 		let sht = titles.map((e) => {
 			return {
@@ -97,7 +97,7 @@ function EditableTable(props) {
 			},
 			...sht,
 		]
-		setGrid(createSht([sht]))
+		props.setGrid(createSht([sht]))
 	}, [])
 
 	const getFile = (f) => {
@@ -130,8 +130,8 @@ function EditableTable(props) {
 						sht.push(rows)
 					})
 				})
-				if (arraysEqual(sht[0], grid[0])) {
-					setGrid(createSht(sht))
+				if (arraysEqual(sht[0], props.grid[0])) {
+					props.setGrid(createSht(sht))
 				} else {
 					alert('Not Matched')
 				}
@@ -164,21 +164,21 @@ function EditableTable(props) {
 					className='btn btn-light ml-5 flex'
 					type='button'
 					id='inputGroupFileAddon04'
-					onClick={() => saveAsExcel('Temp', grid)}
+					onClick={() => saveAsExcel('Temp', props.grid)}
 				>
 					Save
 				</button>
 			</div>
 
 			<ReactDataSheet
-				data={grid}
+				data={props.grid}
 				valueRenderer={(cell) => cell.value}
 				onCellsChanged={(changes) => {
-					const temp = grid.map((row) => [...row])
+					const temp = props.grid.map((row) => [...row])
 					changes.forEach(({ cell, row, col, value }) => {
 						temp[row][col] = { ...temp[row][col], value }
 					})
-					setGrid(temp)
+					props.setGrid(temp)
 				}}
 			/>
 		</React.Fragment>

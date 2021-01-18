@@ -7,15 +7,25 @@ import Header from '../components/Header2'
 const New = () => {
 	const [step, setStep] = useState('Editor') // Editor, Excel, Preview, Send
 	const titleList = ['Editor', 'Excel', 'Preview', 'Send']
+	const [html, setHtml] = useState()
+	const [grid, setGrid] = useState([])
 
 	return (
 		<React.Fragment>
 			<Header setStep={(e) => setStep(e)} titleList={titleList}></Header>
 
-			{step === 'Editor' ? <Editor></Editor> : <div></div>}
-			{step === 'Excel' ? <Excel></Excel> : <div></div>}
+			{step === 'Editor' ? (
+				<Editor setHtml={setHtml}></Editor>
+			) : (
+				<div></div>
+			)}
+			{step === 'Excel' ? (
+				<Excel html={html} setGrid={setGrid} grid={grid}></Excel>
+			) : (
+				<div></div>
+			)}
 			{step === 'Preview' ? <Preview></Preview> : <div></div>}
-			{step === 'Send' ? <div></div> : <div></div>}
+			{step === 'Send' ? <div>fdsfds</div> : <div></div>}
 		</React.Fragment>
 	)
 }

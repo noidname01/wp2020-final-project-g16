@@ -16,7 +16,6 @@ import { editorConfig } from '../config/editorConfig'
 const Editor = (props) => {
     // const { state } = useParams()
     //const location = useLocation()
-    const [html, setHtml] = useState('')
     const [idCounter, setIdCounter] = useState(0)
 
     const canvas = document.createElement('canvas')
@@ -25,7 +24,7 @@ const Editor = (props) => {
     const handleEditorChange = (content) => {
         console.log('onChange', content)
         // html = content
-        setHtml(content)
+        props.setHtml(content)
     }
 
     const handleVarChange = async (e) => {
@@ -107,9 +106,6 @@ const Editor = (props) => {
             <Link
                 to={{
                     pathname: '/excel',
-                    state: {
-                        html: html,
-                    },
                 }}
             >
                 <button> Next</button>
