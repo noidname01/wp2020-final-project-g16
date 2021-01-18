@@ -112,6 +112,10 @@ ul ul a {
     height: 15rem;
 }
 
+.w100 {
+    width: 100%;
+}
+
 .main {
     margin: 50px;
 }
@@ -119,6 +123,7 @@ ul ul a {
 .editArea {
     margin: 20px;
     margin-top: 40px;
+    color: white;
 }
 
 .flex-container-main {
@@ -144,4 +149,24 @@ ul ul a {
 
 .excelfile {
     width: 300px;
+}
+
+.summernote {
+    width: 100%;
+}
+
+.edit {
+    margin: 10px;
+}
+
+.emailform {
+    color: white;
+    border: none;
+    border-bottom: 2px solid grey;
+    background-color: transparent;
+    width: 100%;
+}
+
+.emailform:focus {
+    outline: none;
 }
