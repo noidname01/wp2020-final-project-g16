@@ -10,7 +10,6 @@ import 'react-datasheet/lib/react-datasheet.css'
 
 // ======== Apollo Client (GrqphQL) ========
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
-import { cache } from 'webpack'
 // ======== Apollo Client (GrqphQL) ========
 
 const client = new ApolloClient({
