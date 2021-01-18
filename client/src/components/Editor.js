@@ -13,6 +13,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { editorConfig } from '../config/editorConfig'
 // ===== import config ====
 
+$ = require('jquery')
+
 const Editor = (props) => {
     // const { state } = useParams()
     const location = useLocation()
@@ -64,28 +66,12 @@ const Editor = (props) => {
     return (
         <>
             <form className='mx-2'>
-                <div className='form-group row'>
-                    <label
-                        htmlFor='inputEmail'
-                        className='col-sm-1 col-form-label'
-                    >
-                        收件者
-                    </label>
-                    <div className='col-sm-10'>
-                        <input
-                            type='text'
-                            className='emailform'
-                            id='inputEmail'
-                            placeholder='example@gmail.com'
-                        />
-                    </div>
-                </div>
-                <div className='form-group row'>
+                <div className='form-group flex-row'>
                     <label
                         htmlFor='inputSubject'
                         className='col-sm-1 col-form-label'
                     >
-                        主旨
+                        Subject:
                     </label>
                     <div className='col-sm-10'>
                         <input
@@ -94,6 +80,24 @@ const Editor = (props) => {
                             id='inputSubject'
                         />
                     </div>
+                    <button
+                        className='col btn btn-light btn-sm'
+                        onClick={handleClick}
+                    >
+                        Test
+                    </button>
+                    <Link
+                        to={{
+                            pathname: '/excel',
+                            state: {
+                                html: html,
+                            },
+                        }}
+                    >
+                        <button className='col btn btn-light btn-sm'>
+                            Next
+                        </button>
+                    </Link>
                 </div>
             </form>
             <ReactSummernote
@@ -102,18 +106,6 @@ const Editor = (props) => {
                 onChange={handleEditorChange}
                 className='summernote'
             ></ReactSummernote>
-            <button onClick={handleClick}>Test</button>
-
-            <Link
-                to={{
-                    pathname: '/excel',
-                    state: {
-                        html: html,
-                    },
-                }}
-            >
-                <button> Next</button>
-            </Link>
         </>
     )
 }

@@ -1,3 +1,4 @@
+import bold from '../images/bold.svg'
 const HelloButton = function (context) {
     var ui = $.summernote.ui
 
@@ -30,6 +31,7 @@ const editorConfig = {
         ['view', ['undo', 'redo']],
         ['mybutton', ['hello']],
     ],
+    backColor: '#ffffff',
     buttons: {
         hello: HelloButton,
     },

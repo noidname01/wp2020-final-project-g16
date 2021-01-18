@@ -14,16 +14,16 @@ const Routes = () => {
     return (
         <>
             {/* <Route path='/new' component={New}></Route> */}
-            <Route path='/draft' component={Draft}></Route>
-            <Route path='/template' component={Template}></Route>
-            <Route path='/sent' component={Sent}></Route>
-            <Route path='/settings' component={Settings}></Route>
-            <Route path='/editor/:state'>
+            <Route path='/ee/draft' component={Draft}></Route>
+            <Route path='/ee/template' component={Template}></Route>
+            <Route path='/ee/sent' component={Sent}></Route>
+            <Route path='/ee/settings' component={Settings}></Route>
+            <Route path='/ee/editor/:state'>
                 <Editor />
             </Route>
-            <Route path='/excel' component={Excel}></Route>
-            <Route path='/preview' component={Preview}></Route>
-            <Route path='/send' component={Send}></Route>
+            <Route path='/ee/excel' component={Excel}></Route>
+            <Route path='/ee/preview' component={Preview}></Route>
+            <Route path='/ee/send' component={Send}></Route>
         </>
     )
 }

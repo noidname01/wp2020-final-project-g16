@@ -153,6 +153,7 @@ ul ul a {
 
 .summernote {
     width: 100%;
+    margin-top: 40px;
 }
 
 .edit {
@@ -164,9 +165,26 @@ ul ul a {
     border: none;
     border-bottom: 2px solid grey;
     background-color: transparent;
-    width: 100%;
+    width: 30%;
 }
 
 .emailform:focus {
     outline: none;
+}
+
+.note-icon-magic,
+.note-icon-style,
+.note-icon-bold,
+.note-icon-underline,
+.note-icon-eraser,
+.note-icon-font.note-recent-color,
+.note-icon-caret,
+.note-current-fontname,
+.note-icon-unorderedlist,
+.note-icon-orderedlist,
+.note-icon-align-left,
+.note-icon-undo,
+.note-icon-redo,
+.fa.fa-child {
+    color: white;
 }
