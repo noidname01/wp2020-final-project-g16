@@ -3,9 +3,9 @@ const path = require('path')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const flash = require('connect-flash')
-const session = require('express-session')
-const passport = require('passport')
+// const flash = require('connect-flash')
+// const session = require('express-session')
+// const passport = require('passport')
 
 // ========= Apollo(GraphQL) ======
 const { ApolloServer } = require('apollo-server-express')
@@ -52,7 +52,7 @@ app.get('*', (req, res, next) => {
 
 // //===========================Login DB==================================
 // Passport Config
-require('./server/config/passport')(passport)
+// require('./server/config/passport')(passport)
 
 // DB Config
 const db = require('./server/config/keys').MongoURI
@@ -64,20 +64,20 @@ mongoose
     .catch((err) => console.log(err))
 
 // Express Session
-app.use(
-    session({
-        secret: 'keyboard cat',
-        resave: true,
-        saveUninitialized: true,
-    })
-)
+// app.use(
+//     session({
+//         secret: 'keyboard cat',
+//         resave: true,
+//         saveUninitialized: true,
+//     })
+// )
 
 // Passport Middleware
-app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.initialize())
+// app.use(passport.session())
 
-// Connect Flash
-app.use(flash())
+// // Connect Flash
+// app.use(flash())
 
 // Global Vars
 app.use((req, res, next) => {

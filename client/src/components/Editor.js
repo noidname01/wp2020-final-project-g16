@@ -13,8 +13,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { editorConfig } from '../config/editorConfig'
 // ===== import config ====
 
-$ = require('jquery')
-
 const Editor = (props) => {
     // const { state } = useParams()
     //const location = useLocation()
@@ -85,18 +83,6 @@ const Editor = (props) => {
                     >
                         Test
                     </button>
-                    <Link
-                        to={{
-                            pathname: '/excel',
-                            state: {
-                                html: html,
-                            },
-                        }}
-                    >
-                        <button className='col btn btn-light btn-sm'>
-                            Next
-                        </button>
-                    </Link>
                 </div>
             </form>
             <ReactSummernote

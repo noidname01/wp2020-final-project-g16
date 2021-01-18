@@ -19,10 +19,12 @@ const client = new ApolloClient({
 })
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Switch>
-            <Outapp></Outapp>
-        </Switch>
-    </BrowserRouter>,
+    <ApolloProvider client={client}>
+        <BrowserRouter>
+            <Switch>
+                <Route path='/' component={App}></Route>
+            </Switch>
+        </BrowserRouter>
+    </ApolloProvider>,
     document.getElementById('app')
 )

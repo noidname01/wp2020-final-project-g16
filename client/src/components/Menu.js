@@ -30,7 +30,7 @@ export default function Menu({ menuOpen }) {
                             <Link
                                 className='nav-link'
                                 to={{
-                                    pathname: '/editor/new',
+                                    pathname: '/new',
                                     state: {
                                         defaultValue: 'Start Writing!',
                                     },
