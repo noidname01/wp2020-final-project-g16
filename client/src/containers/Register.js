@@ -67,7 +67,7 @@ const Register = () => {
                         </button>
                     </form>
                     <p className='mt-4 loginP'>
-                        Have An Account? <a href='/users/login'>Login</a>
+                        Have An Account? <a href='/login'>Login</a>
                     </p>
                 </div>
             </div>
