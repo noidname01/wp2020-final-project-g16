@@ -63,10 +63,44 @@ const Editor = (props) => {
 
     return (
         <>
+            <form className='mx-2'>
+                <div className='form-group row'>
+                    <label
+                        htmlFor='inputEmail'
+                        className='col-sm-1 col-form-label'
+                    >
+                        收件者
+                    </label>
+                    <div className='col-sm-10'>
+                        <input
+                            type='text'
+                            className='emailform'
+                            id='inputEmail'
+                            placeholder='example@gmail.com'
+                        />
+                    </div>
+                </div>
+                <div className='form-group row'>
+                    <label
+                        htmlFor='inputSubject'
+                        className='col-sm-1 col-form-label'
+                    >
+                        主旨
+                    </label>
+                    <div className='col-sm-10'>
+                        <input
+                            type='text'
+                            className='emailform'
+                            id='inputSubject'
+                        />
+                    </div>
+                </div>
+            </form>
             <ReactSummernote
                 value={location.state.defaultValue}
                 options={editorConfig}
                 onChange={handleEditorChange}
+                className='summernote'
             ></ReactSummernote>
             <button onClick={handleClick}>Test</button>
 

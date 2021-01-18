@@ -16,8 +16,8 @@ function App() {
             <div className='flex'>
                 <Menu menuOpen={menuOpen} />
             </div>
-            <div className='flex'>
-                <div className='main'>
+            <div className='flex w100'>
+                <div className='main w100'>
                     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
                     <div className='editArea'>
                         <Routes />
