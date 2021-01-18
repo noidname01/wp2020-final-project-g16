@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useParams, useLocation } from 'react-router-dom'
 import ReactSummernote from 'react-summernote'
 import 'react-summernote/dist/react-summernote.css' // import styles
 import 'react-summernote/lang/summernote-zh-TW' // you can import any other locale
@@ -12,7 +13,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { editorConfig } from '../config/editorConfig'
 // ===== import config ====
 
-const Editor = () => {
+const Editor = (props) => {
+    const { state } = useParams()
+    const location = useLocation()
+    console.log(location)
+
     let idCounter = 0
     /* format
     {
@@ -64,7 +69,7 @@ const Editor = () => {
     return (
         <>
             <ReactSummernote
-                value='Default value'
+                value={location.state.defaultValue}
                 options={editorConfig}
                 onChange={handleEditorChange}
             ></ReactSummernote>
