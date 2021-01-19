@@ -27,6 +27,7 @@ const Editor = (props) => {
     // graphQL
     const [createTemplate] = useMutation(CREATE_TEMPLATE)
     const [saveName, setSaveName] = useState('')
+    const [saveDescription, setSaveDescription] = useState('')
 
     let { html, idCounter, subject } = props
     const { setHtml, setIdCounter, setSubject } = props
@@ -120,20 +121,23 @@ const Editor = (props) => {
     const handleTemplate = async () => {
         console.log('handleTemplate')
         if (saveName === '') {
-            alert('Please fill in all the fields.')
+            alert('Please name yout template')
             return
+        } else if (html === '') {
+            alert('The editor is empty!')
         }
 
-        try {
-            await createTemplate({
-                variables: {
-                    id: uuid_v4(),
-                    name: saveName,
-                    userId: props.userInfo.id,
-                    content: html,
-                },
-            })
-        } catch {}
+        //try {
+        await createTemplate({
+            variables: {
+                id: uuid_v4(),
+                name: saveName,
+                description: saveDescription,
+                userId: props.userInfo.id,
+                content: html,
+            },
+        })
+        //} catch {}
     }
 
     useEffect(() => {
@@ -162,13 +166,14 @@ const Editor = (props) => {
                     <div className='modal-content'>
                         <div className='modal-header'>
                             <h5 className='modal-title' id='exampleModalLabel'>
-                                Create Template
+                                Create a Template
                             </h5>
                             <button
                                 type='button'
                                 className='close'
                                 data-dismiss='modal'
                                 aria-label='Close'
+                                style={{ outline: 'none' }}
                             >
                                 <span aria-hidden='true'>&times;</span>
                             </button>
@@ -177,8 +182,22 @@ const Editor = (props) => {
                             <p className='text-dark'>Name: </p>
                             <input
                                 className='input-group-text'
-                                placeholder='Name your new template'
+                                placeholder='Name your new template...'
+                                style={{
+                                    width: '80%',
+                                    outline: 'none',
+                                }}
                                 onChange={(e) => setSaveName(e.target.value)}
+                            ></input>
+                            <p> </p>
+                            <p className='text-dark'>Description: </p>
+                            <input
+                                className='input-group-text'
+                                placeholder='Describe your template...'
+                                style={{ width: '80%', outline: 'none' }}
+                                onChange={(e) =>
+                                    setSaveDescription(e.target.value)
+                                }
                             ></input>
                         </div>
                         <div className='modal-footer'>

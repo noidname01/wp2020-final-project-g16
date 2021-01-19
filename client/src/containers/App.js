@@ -20,7 +20,7 @@ function App() {
     return (
         <div className='flex-container-main'>
             <div className='flex'>
-                <Menu menuOpen={menuOpen} />
+                <Menu menuOpen={menuOpen} userInfo={userinfo} />
             </div>
             <div className='flex w100'>
                 <div className='main w100'>

@@ -46,11 +46,18 @@ const CREATE_TEMPLATE = gql`
     mutation createTemplate(
         $id: String!
         $name: String!
+        $description: String
         $userId: String!
         $content: String!
     ) {
         createTemplate(
-            data: { id: $id, name: $name, userId: $userId, content: $content }
+            data: {
+                id: $id
+                name: $name
+                description: $description
+                userId: $userId
+                content: $content
+            }
         ) {
             id
             name
