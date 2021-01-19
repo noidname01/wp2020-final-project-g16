@@ -13,14 +13,32 @@ const New = () => {
     const [subject, setSubject] = useState('')
     const [varList, setVarList] = useState([])
     /*
-		grid = [
-			[{value: }, {value: }, {value: }],
-			[{value: }, {value: }, {value: }],
-			[{value: }, {value: }, {value: }],
-			[{value: }, {value: }, {value: }],
-			[{value: }, {value: }, {value: }],
-		]
-	*/
+        grid = [
+            [{value: }, {value: }, {value: }],
+            [{value: }, {value: }, {value: }],
+            [{value: }, {value: }, {value: }],
+            [{value: }, {value: }, {value: }],
+            [{value: }, {value: }, {value: }],
+        ]
+    */
+    const getGridValue = (rowNum, varname) => {
+        if (rowNum > 10 || rowNum < 1 || grid[0] === undefined) {
+            return undefined
+        }
+        let colNum = grid[0].length
+        let col = null
+        for (let i = 0; i < colNum; i++) {
+            if (grid[0][i].value === varname) {
+                col = i
+            }
+        }
+        if (col === null) {
+            return undefined
+        } else {
+            return grid[rowNum][col].value
+        }
+    }
+
     return (
         <React.Fragment>
             <Header setStep={(e) => setStep(e)} titleList={titleList}></Header>
@@ -42,6 +60,7 @@ const New = () => {
                     setGrid={setGrid}
                     grid={grid}
                     setVarList={setVarList}
+                    getGridValue={getGridValue}
                 ></Excel>
             ) : (
                 <div></div>
