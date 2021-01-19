@@ -28,7 +28,7 @@ const Editor = (props) => {
     const [createTemplate] = useMutation(CREATE_TEMPLATE)
     const [saveName, setSaveName] = useState('')
 
-    let { html, idCounter } = props
+    let { html, idCounter, subject } = props
     const { setHtml, setIdCounter, setSubject } = props
 
     const [nodes, setNodes] = useState([])
@@ -214,6 +214,7 @@ const Editor = (props) => {
                             type='text'
                             className='emailform'
                             id='inputSubject'
+                            defaultValue={subject}
                             onChange={handleSubjectChange}
                         />
                     </div>
