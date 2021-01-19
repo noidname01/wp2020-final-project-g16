@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import ReactDOM from 'react-dom'
 // import Routes from './routes/Routes'
 import App from './containers/App'
 import Outapp from './containers/Outapp'
-import Login from './containers/Login'
-import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom'
+import {
+    Route,
+    Switch,
+    BrowserRouter,
+    Redirect,
+    withRouter,
+} from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactDataSheet from 'react-datasheet'
 // Be sure to include styles at some point, probably during your bootstrapping
 import 'react-datasheet/lib/react-datasheet.css'
+import './sidebar.css'
+import Welcome from './containers/Welcome'
+import Login from './containers/Login'
+import Register from './containers/Register'
 
 // ======== Apollo Client (GrqphQL) ========
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'

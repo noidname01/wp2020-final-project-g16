@@ -3,7 +3,6 @@ import React, { useState, useRef } from 'react'
 import Menu from '../components/Menu'
 import Body from '../components/Body'
 import '../bootstrap.css'
-import '../sidebar.css'
 import Routes from '../routes/Routes'
 
 // https://codepen.io/maximakymenko/pen/aboWJpX/

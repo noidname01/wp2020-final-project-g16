@@ -121,7 +121,7 @@ const Editor = (props) => {
     }, [html]) */
 
     return (
-        <>
+        <div className='newAnimation'>
             <form className='mx-2'>
                 <div className='form-group flex-row'>
                     <label
@@ -163,7 +163,7 @@ const Editor = (props) => {
             >
                 {html ? parse(html) : null}
             </ReactSummernote>
-        </>
+        </div>
     )
 }
 

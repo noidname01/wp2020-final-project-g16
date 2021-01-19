@@ -158,7 +158,7 @@ function EditableTable(props) {
         getFile(ev.target.files[0])
     }
     return (
-        <React.Fragment>
+        <div className='newAnimation'>
             <div className='flex-row'>
                 <div className='custom-file excelfile flex'>
                     <input
@@ -196,7 +196,7 @@ function EditableTable(props) {
                     props.setGrid(temp)
                 }}
             />
-        </React.Fragment>
+        </div>
     )
 }
 
