@@ -1,3 +1,4 @@
 module.exports = {
-    MongoURI: 'mongodb+srv://ntueeslader:ntueeslader@cluster0.7dgwj.mongodb.net/sladerDB?retryWrites=true&w=majority'
+    MongoURI:
+        'mongodb+srv://EEmail:EEmail@cluster0.i0peh.mongodb.net/Cluster0?retryWrites=true&w=majority',
 }

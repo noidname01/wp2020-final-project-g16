@@ -16,10 +16,31 @@ import { editorConfig } from '../config/editorConfig'
 const Editor = (props) => {
     // const { state } = useParams()
     //const location = useLocation()
+
+    let { html } = props
+
     const [idCounter, setIdCounter] = useState(0)
 
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
+
+    const renderTemplate = (html) => {
+        //TODO
+        //========Test=========
+        // ReactSummernote.insertText(html) //failed
+
+        /* let template = document.createElement('template')
+        html = html.trim()
+        template.innerHTML = html
+
+        ReactSummernote.insertNode(template.content.childNodes) */
+
+        let parser = new DOMParser()
+        let doc = parser.parseFromString(html, 'text/html')
+        ReactSummernote.insertNode(doc.childNodes)
+
+        //========Test=========
+    }
 
     const handleEditorChange = (content) => {
         console.log('onChange', content)
@@ -59,6 +80,13 @@ const Editor = (props) => {
 
         setIdCounter((state) => state + 1)
     }
+
+    useEffect(() => {
+        if (html) {
+            console.log('html', html)
+            renderTemplate(html)
+        }
+    }, [])
 
     return (
         <>
