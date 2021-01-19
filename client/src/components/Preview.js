@@ -24,7 +24,7 @@ const Preview = (props) => {
 
             let regex = new RegExp(`<input class="btn" id="${id}" .+?>`, 'gm')
 
-            html = html.replace(regex, ` ${getGridValue(count, varname)} `)
+            html = html.replace(regex, `${getGridValue(count, varname)}`)
         })
 
         console.log('parser', html)

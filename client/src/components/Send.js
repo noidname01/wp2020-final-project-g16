@@ -7,7 +7,7 @@ const Send = (props) => {
     const { userInfo, presend, getGridValue, subject } = props
 
     const sendMail = (to, subject, html) => {
-        e.preventDefault()
+        // e.preventDefault()
         axios
             .post(rootPath + 'sendMails', {
                 userinfo: userInfo,
@@ -15,7 +15,9 @@ const Send = (props) => {
                 to: to,
                 html: html,
             })
-            .then()
+            .then((data) => {
+                console.log(data)
+            })
             .catch((err) => {
                 alert(err)
             })
@@ -24,7 +26,13 @@ const Send = (props) => {
     const handleSend = (e) => {
         e.preventDefault()
         for (let i = 1; i < 11; i++) {
-            sendMail(getGridValue(i, 'Email_Address'), subject, presend[i - 1])
+            if (getGridValue(i, 'Email_Address')) {
+                sendMail(
+                    getGridValue(i, 'Email_Address'),
+                    subject,
+                    presend[i - 1]
+                )
+            }
         }
     }
 
