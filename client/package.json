@@ -21,7 +21,9 @@
         "exceljs": "^4.2.0",
         "file-loader": "^6.2.0",
         "file-saver": "^2.0.5",
+
         "html-react-parser": "^1.2.1",
+
         "html-webpack-plugin": "^4.5.0",
         "install": "^0.13.0",
         "jquery": "^3.5.1",
@@ -37,6 +39,7 @@
         "react-script": "^2.0.5",
         "react-summernote": "^2.0.2",
         "style-loader": "^2.0.0",
+        "uuidv4": "^6.2.6",
         "webpack": "^5.10.1",
         "webpack-cli": "^4.2.0",
         "webpack-dev-server": "^3.11.0"

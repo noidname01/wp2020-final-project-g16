@@ -8,6 +8,17 @@ const Draft = require('../models/drafts')
 // Provide resolver functions for your schema fields
 const resolvers = {
 	Query: {
+		checkUsername: async (parent, args, context, info) => {
+			let result = await User.findOne({ username: args.username })
+			if (!args.username) {
+				return false
+			}
+			if (!result) {
+				return true
+			} else {
+				return false
+			}
+		},
 		getUser: async (parent, args, context, info) => {
 			let data = null
 			data = await User.find({

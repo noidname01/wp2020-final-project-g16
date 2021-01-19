@@ -15,7 +15,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 // ======== Apollo Client (GrqphQL) ========
 
 const client = new ApolloClient({
-    uri: 'http://localhost:5000', //temp
+    uri: 'http://localhost:5000/graphql', //temp
     cache: new InMemoryCache(),
 })
 
