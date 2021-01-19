@@ -48,6 +48,7 @@ const typeDefs = gql`
         draftId: String!
     }
     type Query {
+        checkUsername(username: String): Boolean
         getUser(username: String!, password: String!): [User]
         getTemplate(userId: String!): [Template]
         getDraft(userId: String!): [Draft]
