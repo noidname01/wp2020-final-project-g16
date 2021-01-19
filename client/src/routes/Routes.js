@@ -9,17 +9,29 @@ import Template from '../containers/Template'
 import Sent from '../containers/Sent'
 import Settings from '../containers/Settings'
 
-const Routes = () => {
+const routes = [
+    { path: '/ee/new', Component: New },
+    { path: '/ee/draft', Component: Draft },
+    { path: '/ee/template', Component: Template },
+    { path: '/ee/sent', Component: Sent },
+    { path: '/ee/settings', Component: Settings },
+]
+
+const Routes = (props) => {
     return (
         <>
-            <Route path='/ee/welcome' component={Welcome}></Route>
-            <Route path='/ee/register' component={Register}></Route>
-            <Route path='/ee/login' component={Login}></Route>
-            <Route path='/ee/new' component={New}></Route>
+            {/* <Route path='/ee/new' component={New}></Route>
             <Route path='/ee/draft' component={Draft}></Route>
             <Route path='/ee/template' component={Template}></Route>
             <Route path='/ee/sent' component={Sent}></Route>
-            <Route path='/ee/settings' component={Settings}></Route>
+            <Route path='/ee/settings' component={Settings}></Route> */}
+            {routes.map(({ path, Component }) => {
+                return (
+                    <Route exact path={path}>
+                        <Component userinfo={props.userinfo} />
+                    </Route>
+                )
+            })}
         </>
     )
 }

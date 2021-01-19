@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 //import Header from '../components/Header2'
 import Menu from '../components/Menu'
 import Body from '../components/Body'
@@ -11,6 +12,12 @@ import Routes from '../routes/Routes'
 function App() {
     const menuIcon = useRef()
     const [menuOpen, setMenuOpen] = useState(true)
+    const location = useLocation()
+    const [userinfo, setUserinfo] = useState('')
+
+    useEffect(() => {
+        setUserinfo(location.state.userinfo)
+    }, [])
     return (
         <div className='flex-container-main'>
             <div className='flex'>
@@ -20,7 +27,7 @@ function App() {
                 <div className='main w100'>
                     {/*<Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />*/}
                     <div className='editArea'>
-                        <Routes />
+                        <Routes userinfo={userinfo} />
                     </div>
                 </div>
             </div>

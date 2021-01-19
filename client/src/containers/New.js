@@ -3,8 +3,11 @@ import Editor from '../components/Editor'
 import Excel from '../components/Excel'
 import Preview from '../components/Preview'
 import Header from '../components/Header2'
+import Send from '../components/Send'
 
-const New = () => {
+const New = (props) => {
+    const { userInfo } = props
+
     const [step, setStep] = useState('Editor') // Editor, Excel, Preview, Send
     const titleList = ['Editor', 'Excel', 'Preview', 'Send']
     const [html, setHtml] = useState('')
@@ -70,7 +73,7 @@ const New = () => {
             ) : (
                 <div></div>
             )}
-            {step === 'Send' ? <div>fdsfds</div> : <div></div>}
+            {step === 'Send' ? <Send userinfo={userinfo}></Send> : <div></div>}
         </React.Fragment>
     )
 }

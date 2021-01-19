@@ -31,9 +31,6 @@ export default function Menu({ menuOpen }) {
                                 className='nav-link'
                                 to={{
                                     pathname: '/ee/new',
-                                    state: {
-                                        defaultValue: 'Start Writing!',
-                                    },
                                 }}
                             >
                                 New
