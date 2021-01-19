@@ -16,11 +16,19 @@ import { re } from '../config/parserConfig'
 
 import parse from 'html-react-parser'
 
+// GraphQL dependencies
+import { useQuery, useMutation } from '@apollo/client'
+import { CREATE_TEMPLATE } from '../graphql'
+import { v4 as uuid_v4 } from 'uuid'
+
 const Editor = (props) => {
     // const { state } = useParams()
     //const location = useLocation()
+    // graphQL
+    const [createTemplate] = useMutation(CREATE_TEMPLATE)
+    const [saveName, setSaveName] = useState('')
 
-    let { html, idCounter } = props
+    let { html, idCounter, subject } = props
     const { setHtml, setIdCounter, setSubject } = props
 
     const [nodes, setNodes] = useState([])
@@ -109,8 +117,23 @@ const Editor = (props) => {
         setSubject(e.target.value)
     }
 
-    const handleTemplate = () => {
+    const handleTemplate = async () => {
         console.log('handleTemplate')
+        if (saveName === '') {
+            alert('Please fill in all the fields.')
+            return
+        }
+
+        try {
+            await createTemplate({
+                variables: {
+                    id: uuid_v4(),
+                    name: saveName,
+                    userId: props.userInfo.id,
+                    content: html,
+                },
+            })
+        } catch {}
     }
 
     useEffect(() => {
@@ -155,6 +178,7 @@ const Editor = (props) => {
                             <input
                                 className='input-group-text'
                                 placeholder='Name your new template'
+                                onChange={(e) => setSaveName(e.target.value)}
                             ></input>
                         </div>
                         <div className='modal-footer'>
@@ -169,6 +193,7 @@ const Editor = (props) => {
                                 type='button'
                                 className='btn btn-info'
                                 onClick={handleTemplate}
+                                data-dismiss='modal'
                             >
                                 Save
                             </button>
@@ -190,6 +215,7 @@ const Editor = (props) => {
                                 type='text'
                                 className='emailform'
                                 id='inputSubject'
+                                 defaultValue={subject}
                                 onChange={handleSubjectChange}
                             />
                         </div>

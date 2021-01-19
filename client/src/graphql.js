@@ -42,8 +42,25 @@ const CREATE_USER = gql`
         }
     }
 `
+const CREATE_TEMPLATE = gql`
+    mutation createTemplate(
+        $id: String!
+        $name: String!
+        $userId: String!
+        $content: String!
+    ) {
+        createTemplate(
+            data: { id: $id, name: $name, userId: $userId, content: $content }
+        ) {
+            id
+            name
+            userId
+            content
+        }
+    }
+`
 
-export { CHECK_USERNAME, GET_USER, CREATE_USER }
+export { CHECK_USERNAME, GET_USER, CREATE_USER, CREATE_TEMPLATE }
 /*
 const GET_MESSAGES = gql`
     query messages($from: String!, $to: String!) {

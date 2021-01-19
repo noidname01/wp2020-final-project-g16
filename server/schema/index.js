@@ -17,11 +17,13 @@ const typeDefs = gql`
     }
     type Template {
         id: String!
+        name: String!
         userId: String!
         content: String!
     }
     input TemplateInput {
         id: String!
+        name: String!
         userId: String!
         content: String!
     }
@@ -33,6 +35,8 @@ const typeDefs = gql`
     }
     input DraftInput {
         id: String!
+        name: String!
+        sent: Boolean!
         userId: String!
         templateId: String!
         xlsxContent: String!

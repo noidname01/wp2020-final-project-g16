@@ -52,6 +52,7 @@ const New = (props) => {
     const [idCounter, setIdCounter] = useState(0)
     const [subject, setSubject] = useState('')
     const [varList, setVarList] = useState([])
+    const [presend, setPresend] = useState([])
     /*
         grid = [
             [{value: }, {value: }, {value: }],
@@ -94,7 +95,9 @@ const New = (props) => {
                     html={html}
                     idCounter={idCounter}
                     setIdCounter={setIdCounter}
+                    subject={subject}
                     setSubject={setSubject}
+                    userInfo={userInfo}
                 ></Editor>
             ) : (
                 <div></div>
@@ -106,16 +109,33 @@ const New = (props) => {
                     grid={grid}
                     setVarList={setVarList}
                     getGridValue={getGridValue}
+                    userInfo={userInfo}
                 ></Excel>
             ) : (
                 <div></div>
             )}
             {step === 'Preview' ? (
-                <Preview html={html} grid={grid} varList={varList}></Preview>
+                <Preview
+                    html={html}
+                    userInfo={userInfo}
+                    varList={varList}
+                    getGridValue={getGridValue}
+                    presend={presend}
+                    setPresend={setPresend}
+                ></Preview>
             ) : (
                 <div></div>
             )}
-            {step === 'Send' ? <Send userinfo={userinfo}></Send> : <div></div>}
+            {step === 'Send' ? (
+                <Send
+                    userInfo={userInfo}
+                    presend={presend}
+                    getGridValue={getGridValue}
+                    subject={subject}
+                ></Send>
+            ) : (
+                <div></div>
+            )}
         </React.Fragment>
     )
 }

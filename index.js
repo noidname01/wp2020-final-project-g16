@@ -14,8 +14,8 @@ const { resolvers } = require('./server/resolvers')
 // ========= Apollo(GraphQL) ======
 
 // =========require test ==========
-// const mailer = require('./server/test/mailer.js')
-//
+const mailer = require('./server/mailer/mailer.js')
+
 // =========require files =========
 const sendMails = require('./server/sendMails')
 // =========require files =========
@@ -45,7 +45,26 @@ app.use(express.static(path.join(__dirname, 'client/dist')))
  */
 //===========================Test Routes ==============================
 
-app.post('/sendMails', (req, res) => {})
+app.post('/sendMails', (req, res) => {
+    const { userinfo, subject, to, html } = req.body
+    const { emailAddress, emailPassword } = userinfo
+    const transporterConfig = {
+        host: 'smtp.gmail.com',
+        user: emailAddress,
+        pass: emailPassword,
+    }
+
+    const mailOption = {
+        from: emailPassword,
+        to: to,
+        subject: subject,
+        html: html,
+    }
+
+    let mailer1 = new mailer(transporterConfig, mailOption)
+
+    mailer1.sendMail(res)
+})
 
 app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname + '/client/dist/index.html'))
