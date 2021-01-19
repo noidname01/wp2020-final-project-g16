@@ -185,7 +185,8 @@ ul ul a {
 .note-icon-align-left,
 .note-icon-undo,
 .note-icon-redo,
-.fa.fa-child {
+.fa.fa-hello,
+.fa.fa-var {
     color: white;
 }
 
@@ -214,4 +215,8 @@ ul ul a {
 
 .loginF:focus {
     outline-color: #c4c4c4;
+}
+
+.center {
+    justify-content: center;
 }
