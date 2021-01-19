@@ -144,15 +144,6 @@ const Editor = (props) => {
                     >
                         Test
                     </button>
-                    <Link
-                        to={{
-                            pathname: '/excel',
-                        }}
-                    >
-                        <button className='col btn btn-light btn-sm'>
-                            Next
-                        </button>
-                    </Link>
                 </div>
             </form>
             <ReactSummernote
