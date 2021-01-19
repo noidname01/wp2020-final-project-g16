@@ -116,12 +116,15 @@ ul ul a {
 
 .main {
     margin: 50px;
+    justify-content: center;
+    align-items: center;
 }
 
 .editArea {
-    margin: 20px;
-    margin-top: 40px;
+    margin: 40px;
     color: white;
+    align-items: center;
+    justify-content: center;
 }
 
 .flex-container-main {
@@ -135,9 +138,25 @@ ul ul a {
 }
 
 .flex-row {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+}
+
+.dh {
+    justify-content: left;
+    color: white;
+    padding-left: 30px;
+}
+
+.yCen {
+    align-items: center;
+}
+
+.xCen {
+    justify-content: center;
 }
 
 .grid-col {
@@ -222,6 +241,10 @@ ul ul a {
 .newAnimation {
     animation: slideRight 0.6s ease-in-out forwards;
     transform: translateY(300px);
+}
+
+.modal-backdrop {
+    z-index: -1;
 }
 
 @media (max-width: 768px) {
