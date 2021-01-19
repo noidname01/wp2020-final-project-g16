@@ -42,6 +42,13 @@ a[data-toggle='collapse'] {
     height: 100%;
 }
 
+.welcome {
+    display: flex;
+    background-color: #2e2e2e;
+    width: 100vw;
+    height: 100vh;
+}
+
 .wrapper {
     display: flex;
     margin-left: 0;
@@ -219,4 +226,62 @@ ul ul a {
 
 .center {
     justify-content: center;
+}
+
+.text {
+    font-family: Josefin Sans;
+    font-size: 72px;
+    fill: white;
+    opacity: 0;
+}
+
+.letter1 {
+    font-family: Allura;
+    font-size: 18px;
+    fill: white;
+}
+.letter2 {
+    font-family: Bellefair;
+    font-size: 18px;
+    fill: white;
+}
+.letter3 {
+    font-family: Caveat;
+    font-size: 18px;
+    fill: white;
+}
+.letter4 {
+    font-family: Covered By Your Grace;
+    font-size: 18px;
+    fill: white;
+}
+.letter5 {
+    font-family: Lovers Quarrel;
+    font-size: 18px;
+    fill: white;
+}
+.letter6 {
+    font-family: Nanum Pen Script;
+    font-size: 18px;
+    fill: white;
+}
+.letter7 {
+    font-family: Parisienne;
+    font-size: 18px;
+    fill: white;
+}
+.letter8 {
+    font-family: Qwigley;
+    font-size: 18px;
+    fill: white;
+}
+.letter9 {
+    font-family: Reenie Beanie;
+    font-size: 18px;
+    fill: white;
+}
+.letter10 {
+    font-family: Zeyada;
+    font-size: 18px;
+    fill: white;
 }
