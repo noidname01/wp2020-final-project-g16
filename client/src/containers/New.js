@@ -52,6 +52,7 @@ const New = (props) => {
     const [idCounter, setIdCounter] = useState(0)
     const [subject, setSubject] = useState('')
     const [varList, setVarList] = useState([])
+    const [presend, setPresend] = useState([])
     /*
         grid = [
             [{value: }, {value: }, {value: }],
@@ -115,9 +116,11 @@ const New = (props) => {
             {step === 'Preview' ? (
                 <Preview
                     html={html}
-                    grid={grid}
-                    varList={varList}
                     userInfo={userInfo}
+                    varList={varList}
+                    getGridValue={getGridValue}
+                    presend={presend}
+                    setPresend={setPresend}
                 ></Preview>
             ) : (
                 <div></div>
