@@ -25,8 +25,9 @@ function arraysEqual(a, b) {
     return true
 }
 
-function createSht(sht) {
+function createSht(row0) {
     let result = []
+    let sht = [row0]
     const colNumber = sht[0].length
     //console.log('colNumber: ' + colNumber)
     let emptyRow = []
@@ -40,10 +41,37 @@ function createSht(sht) {
             result.push(emptyRow)
         }
     }
-    console.log(result)
+    //console.log(result)
     return result
 }
 
+function createSht2(row0, grid, getGridValue) {
+    let result = []
+    let sht = [row0]
+    const colNumber = sht[0].length
+    //console.log('colNumber: ' + colNumber)
+    const newTitles = row0.map((e) => e.value)
+
+    for (let i = 0; i < MAX_RECEIVERS; i++) {
+        let newRow = newTitles.map((e) => {
+            let cell = getGridValue(i, e)
+
+            if (cell === undefined) {
+                cell = ''
+            }
+
+            return { value: cell }
+        })
+
+        if (sht[i] !== undefined) {
+            result.push(sht[i])
+        } else {
+            result.push(newRow)
+        }
+    }
+    //console.log(result)
+    return result
+}
 async function saveAsExcel(filename, grid) {
     const wb = new ExcelJs.Workbook()
 
@@ -81,38 +109,69 @@ function EditableTable(props) {
                     : 'gray',
             }
         })
-        console.log(varList)
+        //console.log(varList)
         return varList
     }
-    useEffect(() => {
+    useEffect(async () => {
         if (props.html === undefined) {
             return
         }
-        console.log('excel html', props.html)
+
+        //console.log('excel html', props.html)
         const titles = parser(props.html)
         props.setVarList(titles)
 
-        let sht = titles.map((e) => {
-            return {
-                value: e.varname,
-                readOnly: true,
-                forceComponent: true,
-                component: createComponent(e),
-            }
-        })
-        sht = [
-            {
-                value: 'Email_Address',
-                readOnly: true,
-                forceComponent: true,
-                component: createComponent({
-                    varname: 'Email_Address',
-                    color: 'black',
-                }),
-            },
-            ...sht,
-        ]
-        props.setGrid(createSht([sht]))
+        const grid = props.grid
+        // the grid hasn't been created yet
+        if (grid.length === 0) {
+            let row0 = titles.map((e) => {
+                return {
+                    value: e.varname,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent(e),
+                }
+            })
+            row0 = [
+                {
+                    value: 'Email_Address',
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: 'Email_Address',
+                        color: 'black',
+                    }),
+                },
+                ...row0,
+            ]
+            props.setGrid(createSht(row0))
+        } else {
+            // The grid has been created
+
+            let row0 = titles.map((e) => {
+                return {
+                    value: e.varname,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent(e),
+                }
+            })
+            row0 = [
+                {
+                    value: 'Email_Address',
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: 'Email_Address',
+                        color: 'black',
+                    }),
+                },
+                ...row0,
+            ]
+            let sheet = createSht2(row0, grid, props.getGridValue)
+
+            props.setGrid(sheet)
+        }
     }, [])
 
     const getFile = (f) => {

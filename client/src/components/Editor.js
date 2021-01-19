@@ -32,31 +32,32 @@ const Editor = (props) => {
     const renderTemplate = (html) => {
         //TODO
 
-        let texts = html.split(re)
+        try {
+            let texts = html.split(re)
 
-        let inputs = html.match(re)
+            let inputs = html.match(re)
 
-        inputs = inputs.map((input) => {
-            let varname = input.match(/name="([\w]*)"/m)[1]
-            return input.replace(
-                /defaultvalue="[\w]*"/gm,
-                `defaultvalue="${varname}"`
-            )
-        })
+            inputs = inputs.map((input) => {
+                let varname = input.match(/name="([\w]*)"/m)[1]
+                return input.replace(
+                    /defaultvalue="[\w]*"/gm,
+                    `defaultvalue="${varname}"`
+                )
+            })
 
-        // console.log('inputs', inputs)
+            // console.log('inputs', inputs)
 
-        html = ''
+            html = ''
 
-        for (let i = 0; i < inputs.length; i++) {
-            html += texts[i]
-            html += inputs[i]
-        }
+            for (let i = 0; i < inputs.length; i++) {
+                html += texts[i]
+                html += inputs[i]
+            }
 
-        html += texts[texts.length - 1]
+            html += texts[texts.length - 1]
 
-        // console.log('combine', html)
-
+            // console.log('combine', html)
+        } catch {}
         let domparser = new DOMParser()
         let doc = domparser.parseFromString(html, 'text/html')
         let children = doc.body.children
