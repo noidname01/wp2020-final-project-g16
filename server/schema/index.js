@@ -33,6 +33,8 @@ const typeDefs = gql`
     }
     input DraftInput {
         id: String!
+        name: String!
+        sent: Boolean!
         userId: String!
         templateId: String!
         xlsxContent: String!

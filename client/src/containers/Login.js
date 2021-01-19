@@ -39,10 +39,7 @@ const Login = () => {
                     to={{
                         pathname: '/ee',
                         state: {
-                            userinfo: {
-                                username: usernameInput,
-                                password: passwordInput,
-                            },
+                            userinfo: data.getUser[0],
                         },
                     }}
                 ></Redirect>
