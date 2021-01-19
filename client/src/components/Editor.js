@@ -11,41 +11,61 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 // ===== import config ====
 import { editorConfig } from '../config/editorConfig'
+import { re } from '../config/parserConfig'
 // ===== import config ====
+
+import parse from 'html-react-parser'
 
 const Editor = (props) => {
     // const { state } = useParams()
     //const location = useLocation()
 
-    let { html } = props
+    let { html, idCounter } = props
+    const { setHtml, setIdCounter } = props
 
-    const [idCounter, setIdCounter] = useState(0)
+    const [nodes, setNodes] = useState([])
+    // const
 
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
 
     const renderTemplate = (html) => {
         //TODO
-        //========Test=========
-        // ReactSummernote.insertText(html) //failed
 
-        /* let template = document.createElement('template')
-        html = html.trim()
-        template.innerHTML = html
+        let texts = html.split(re)
 
-        ReactSummernote.insertNode(template.content.childNodes) */
+        let inputs = html.match(re)
 
-        let parser = new DOMParser()
-        let doc = parser.parseFromString(html, 'text/html')
-        ReactSummernote.insertNode(doc.childNodes)
+        inputs = inputs.map((input) => {
+            let varname = input.match(/name="([\w]*)"/m)[1]
+            return input.replace(
+                /defaultvalue="[\w]*"/gm,
+                `defaultvalue="${varname}"`
+            )
+        })
 
-        //========Test=========
+        console.log('inputs', inputs)
+
+        html = ''
+
+        for (let i = 0; i < inputs.length; i++) {
+            html += texts[i]
+            html += inputs[i]
+        }
+
+        html += texts[texts.length - 1]
+
+        console.log('combine', html)
+
+        let domparser = new DOMParser()
+        let doc = domparser.parseFromString(html, 'text/html')
+        let children = doc.body.children
+
+        setNodes(children)
     }
 
     const handleEditorChange = (content) => {
-        console.log('onChange', content)
-        // html = content
-        props.setHtml(content)
+        setHtml(content)
     }
 
     const handleVarChange = async (e) => {
@@ -55,18 +75,21 @@ const Editor = (props) => {
         let text = ctx.measureText(newVarName)
 
         e.target.name = newVarName
+        e.target.defaultValue = newVarName
 
         e.target.style.width = `calc( 4.5rem + 1.2 * ${text.width + 1 + 'px'})`
     }
     // =======Test Ugly method ==========
-    const createTag = (bgColor) => {
+    const createTag = (bgColor, varname, id) => {
         let newVar = document.createElement('input')
         newVar.setAttribute('class', 'btn')
-        newVar.setAttribute('id', idCounter)
+        newVar.setAttribute('id', id ? id : idCounter)
         newVar.style.backgroundColor = bgColor
         newVar.style.color = 'white'
         newVar.style.width = '6rem'
         newVar.setAttribute('placeholder', '$Var')
+        // newVar.setAttribute('defaultValue', varname ? varname : '')
+        newVar.setAttribute('name', varname ? varname : '')
 
         newVar.oninput = handleVarChange
 
@@ -83,10 +106,15 @@ const Editor = (props) => {
 
     useEffect(() => {
         if (html) {
-            console.log('html', html)
+            // props.setHtml(html)
+            console.log('html component did mount \n', html)
             renderTemplate(html)
         }
     }, [])
+
+    useEffect(() => {
+        console.log('html update \n', html)
+    }, [html])
 
     return (
         <>
@@ -127,7 +155,9 @@ const Editor = (props) => {
                 options={editorConfig}
                 onChange={handleEditorChange}
                 className='summernote'
-            ></ReactSummernote>
+            >
+                {html ? parse(html) : null}
+            </ReactSummernote>
         </>
     )
 }

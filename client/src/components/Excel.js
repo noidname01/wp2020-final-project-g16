@@ -76,7 +76,9 @@ function EditableTable(props) {
             return {
                 id: input.match(/id="([0-9]*)"/m)[1],
                 varname: input.match(/name="([\w]*)"/m)[1],
-                color: input.match(/background-color: (rgb\([0-9, ]*\))/m)[1],
+                color: input.match(/background-color: (rgb\([0-9, ]*\))/m)
+                    ? input.match(/background-color: (rgb\([0-9, ]*\))/m)[1]
+                    : 'gray',
             }
         })
         console.log(varList)
@@ -86,6 +88,7 @@ function EditableTable(props) {
         if (props.html === undefined) {
             return
         }
+        console.log('excel html', props.html)
         const titles = parser(props.html)
 
         let sht = titles.map((e) => {
