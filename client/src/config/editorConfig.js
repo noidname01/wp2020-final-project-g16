@@ -3,11 +3,27 @@ const HelloButton = function (context) {
 
     // create button
     var button = ui.button({
-        contents: '<i class="fa fa-child"/> Hello',
+        contents: '<i class="fa fa-hello"/> Hello',
         tooltip: 'hello',
         click: function () {
             // invoke insertText method with 'hello' on editor module.
             context.invoke('editor.insertText', 'hello')
+        },
+    })
+
+    return button.render() // return button as jquery object
+}
+
+const VarButton = function (context) {
+    var ui = $.summernote.ui
+
+    // create button
+    var button = ui.button({
+        contents: '<i class="fa fa-var"/> Var',
+        tooltip: 'var',
+        click: function () {
+            // invoke insertText method with 'hello' on editor module.
+            context.invoke('editor.insertNode', 'Var')
         },
     })
 
@@ -32,6 +48,7 @@ const editorConfig = {
     ],
     buttons: {
         hello: HelloButton,
+        var: VarButton,
     },
 }
 
