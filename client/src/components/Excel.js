@@ -216,6 +216,11 @@ function EditableTable(props) {
     const handleFileInput = (ev) => {
         getFile(ev.target.files[0])
     }
+
+    const handleDraft = () => {
+        console.log('handleDraft')
+    }
+
     return (
         <div className='newAnimation'>
             <div className='flex-row'>
@@ -235,12 +240,18 @@ function EditableTable(props) {
                     </label>
                 </div>
                 <button
-                    className='btn btn-light ml-5 flex'
+                    className='btn btn-light btn-sm ml-5 flex'
                     type='button'
                     id='inputGroupFileAddon04'
                     onClick={() => saveAsExcel('Temp', props.grid)}
                 >
                     Save
+                </button>
+                <button
+                    className='col btn btn-light btn-sm'
+                    onClick={handleDraft}
+                >
+                    Save as Draft
                 </button>
             </div>
 

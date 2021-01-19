@@ -109,6 +109,10 @@ const Editor = (props) => {
         setSubject(e.target.value)
     }
 
+    const handleTemplate = () => {
+        console.log('handleTemplate')
+    }
+
     useEffect(() => {
         if (html) {
             // props.setHtml(html)
@@ -123,6 +127,55 @@ const Editor = (props) => {
 
     return (
         <div className='newAnimation'>
+            <div
+                className='modal fade'
+                id='exampleModal'
+                tabindex='-1'
+                role='dialog'
+                aria-labelledby='exampleModalLabel'
+                aria-hidden='true'
+            >
+                <div className='modal-dialog' role='document'>
+                    <div className='modal-content'>
+                        <div className='modal-header'>
+                            <h5 className='modal-title' id='exampleModalLabel'>
+                                Create Template
+                            </h5>
+                            <button
+                                type='button'
+                                className='close'
+                                data-dismiss='modal'
+                                aria-label='Close'
+                            >
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                        <div className='modal-body'>
+                            <p className='text-dark'>Name: </p>
+                            <input
+                                className='input-group-text'
+                                placeholder='Name your new template'
+                            ></input>
+                        </div>
+                        <div className='modal-footer'>
+                            <button
+                                type='button'
+                                className='btn btn-secondary'
+                                data-dismiss='modal'
+                            >
+                                Close
+                            </button>
+                            <button
+                                type='button'
+                                className='btn btn-info'
+                                onClick={handleTemplate}
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <form className='mx-2'>
                 <div className='form-group flex-row'>
                     <label
@@ -131,7 +184,7 @@ const Editor = (props) => {
                     >
                         Subject:
                     </label>
-                    <div className='col-sm-10'>
+                    <div className='col'>
                         <input
                             type='text'
                             className='emailform'
@@ -140,20 +193,19 @@ const Editor = (props) => {
                         />
                     </div>
                     <button
-                        className='col btn btn-light btn-sm'
+                        className='col-sm-1 btn btn-light btn-sm'
                         onClick={handleClick}
                     >
                         Test
                     </button>
-                    <Link
-                        to={{
-                            pathname: '/excel',
-                        }}
+                    <button
+                        className='col-sm-2 btn btn-info btn-sm'
+                        type='button'
+                        data-toggle='modal'
+                        data-target='#exampleModal'
                     >
-                        <button className='col btn btn-light btn-sm'>
-                            Next
-                        </button>
-                    </Link>
+                        Save as Template
+                    </button>
                 </div>
             </form>
             <ReactSummernote
