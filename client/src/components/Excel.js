@@ -25,9 +25,9 @@ function arraysEqual(a, b) {
     return true
 }
 
-function createSht(row0) {
+function createSht(sht) {
     let result = []
-    let sht = [row0]
+
     const colNumber = sht[0].length
     //console.log('colNumber: ' + colNumber)
     let emptyRow = []
@@ -144,7 +144,7 @@ function EditableTable(props) {
                 },
                 ...row0,
             ]
-            props.setGrid(createSht(row0))
+            props.setGrid(createSht([row0]))
         } else {
             // The grid has been created
 
