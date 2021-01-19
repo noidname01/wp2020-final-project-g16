@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 // GraphQL dependencies
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_USER } from '../graphql'
+import { Link, Redirect } from 'react-router-dom'
 
 const Login = () => {
     const [usernameInput, setUsernameInput] = useState('')
@@ -86,7 +87,7 @@ const Login = () => {
                         </button>
                     </div>
                     <p className='loginP mt-4'>
-                        No Account? <a href='/register'>Register</a>
+                        No Account? <Link to='/register'>Register</Link>
                     </p>
                 </div>
             </div>
