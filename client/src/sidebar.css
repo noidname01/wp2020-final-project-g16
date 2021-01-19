@@ -114,6 +114,14 @@ ul ul a {
     width: 100%;
 }
 
+.h100 {
+    height: 100%;
+}
+
+.vh100 {
+    height: 100vh;
+}
+
 .main {
     margin: 50px;
     justify-content: center;
@@ -189,6 +197,10 @@ ul ul a {
     outline: none;
 }
 
+.cell {
+    height: 15px;
+}
+
 .note-icon-magic,
 .note-icon-style,
 .note-icon-bold,
@@ -245,6 +257,16 @@ ul ul a {
 
 .modal-backdrop {
     z-index: -1;
+}
+
+.trash {
+    height: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.trash:focus {
+    outline: none;
 }
 
 @media (max-width: 768px) {

@@ -153,7 +153,7 @@ const Editor = (props) => {
     }, [html]) */
 
     return (
-        <div className='newAnimation'>
+        <div className='vh100'>
             <div
                 className='modal fade'
                 id='exampleModal'
@@ -162,8 +162,8 @@ const Editor = (props) => {
                 aria-labelledby='exampleModalLabel'
                 aria-hidden='true'
             >
-                <div className='modal-dialog' role='document'>
-                    <div className='modal-content'>
+                <div className='flex modal-dialog vh100 yCen' role='document'>
+                    <div className='flex modal-content'>
                         <div className='modal-header'>
                             <h5 className='modal-title' id='exampleModalLabel'>
                                 Create a Template
@@ -220,47 +220,49 @@ const Editor = (props) => {
                     </div>
                 </div>
             </div>
-            <form className='mx-2'>
-                <div className='form-group flex-row'>
-                    <label
-                        htmlFor='inputSubject'
-                        className='col-sm-1 col-form-label'
-                    >
-                        Subject:
-                    </label>
-                    <div className='col'>
-                        <input
-                            type='text'
-                            className='emailform'
-                            id='inputSubject'
-                            defaultValue={subject}
-                            onChange={handleSubjectChange}
-                        />
+            <div className='newAnimation'>
+                <form className='mx-2'>
+                    <div className='form-group flex-row'>
+                        <label
+                            htmlFor='inputSubject'
+                            className='col-sm-1 col-form-label'
+                        >
+                            Subject:
+                        </label>
+                        <div className='col'>
+                            <input
+                                type='text'
+                                className='emailform'
+                                id='inputSubject'
+                                 defaultValue={subject}
+                                onChange={handleSubjectChange}
+                            />
+                        </div>
+                        <button
+                            className='col-sm-1 btn btn-light btn-sm'
+                            onClick={handleClick}
+                        >
+                            Test
+                        </button>
+                        <button
+                            className='col-sm-2 btn btn-info btn-sm'
+                            type='button'
+                            data-toggle='modal'
+                            data-target='#exampleModal'
+                        >
+                            Save as Template
+                        </button>
                     </div>
-                    <button
-                        className='col-sm-1 btn btn-light btn-sm'
-                        onClick={handleClick}
-                    >
-                        Test
-                    </button>
-                    <button
-                        className='col-sm-2 btn btn-info btn-sm'
-                        type='button'
-                        data-toggle='modal'
-                        data-target='#exampleModal'
-                    >
-                        Save as Template
-                    </button>
-                </div>
-            </form>
-            <ReactSummernote
-                //value={location.state.defaultValue}
-                options={editorConfig}
-                onChange={handleEditorChange}
-                className='summernote'
-            >
-                {html ? parse(html) : null}
-            </ReactSummernote>
+                </form>
+                <ReactSummernote
+                    //value={location.state.defaultValue}
+                    options={editorConfig}
+                    onChange={handleEditorChange}
+                    className='summernote'
+                >
+                    {html ? parse(html) : null}
+                </ReactSummernote>
+            </div>
         </div>
     )
 }
