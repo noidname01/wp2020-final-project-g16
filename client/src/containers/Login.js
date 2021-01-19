@@ -1,6 +1,7 @@
-
 import React, { useEffect, useState } from 'react'
-
+// GraphQL dependencies
+import { useQuery, useMutation } from '@apollo/client'
+import { GET_USER } from '../graphql'
 
 const Login = () => {
     const [usernameInput, setUsernameInput] = useState('')
@@ -8,7 +9,7 @@ const Login = () => {
     const [errors, setErrors] = useState('')
 
     const handleSubmit = () => {
-        console.log('login:', usernameInput, passwordInput)
+        console.log('login: ', usernameInput, passwordInput)
         validation()
     }
 
