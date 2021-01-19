@@ -82,13 +82,13 @@ mongoose
 // app.use(flash())
 
 // Global Vars
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg')
     res.locals.error_msg = req.flash('error_msg')
     res.locals.error = req.flash('error')
     next()
-})
+})*/
 
 //==============================routes=================================
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5001
 app.listen(port)

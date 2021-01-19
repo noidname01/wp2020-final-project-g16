@@ -8,29 +8,63 @@ const Draft = require('../models/drafts')
 // Provide resolver functions for your schema fields
 const resolvers = {
 	Query: {
-		getUser: async (username, password) => {
+		getUser: async (parent, args, context, info) => {
 			let data = null
-			data = await User.find({ username: username, password: password })
-			console.log(data)
+			data = await User.find({
+				username: args.username,
+				password: args.password,
+			})
 			return data
 		},
-		getTemplate: () => {},
-		getDraft: () => {},
-		getSent: () => {},
+		getTemplate: async (parent, args, context, info) => {
+			let data = null
+			data = await Template.find({
+				userId: args.userId,
+			})
+			return data
+		},
+		getDraft: async (parent, args, context, info) => {
+			let data = null
+			data = await Draft.find({
+				userId: args.userId,
+			})
+			return data
+		},
+		getSent: async (parent, args, context, info) => {
+			let data = null
+			data = await Sent.find({
+				userId: args.userId,
+			})
+			return data
+		},
 	},
 	Mutation: {
-		createUser: async (input) => {
-			User.create(input, function (err, msg) {
+		createUser: async (parent, args, context, info) => {
+			console.log(args.data)
+			User.create(args.data, function (err, msg) {
 				if (err) throw err
-				else {
-					console.log(msg)
-					console.log('User Created!')
-				}
 			})
-			return input
+			return args.data
 		},
-		createTemplate: () => {},
-		createDraft: () => {},
-		createSent: () => {},
+		createTemplate: async (parent, args, context, info) => {
+			Template.create(args.data, function (err, msg) {
+				if (err) throw err
+			})
+			return args.data
+		},
+		createDraft: async (parent, args, context, info) => {
+			Draft.create(args.data, function (err, msg) {
+				if (err) throw err
+			})
+			return args.data
+		},
+		createSent: async (parent, args, context, info) => {
+			Sent.create(args.data, function (err, msg) {
+				if (err) throw err
+			})
+			return args.data
+		},
 	},
 }
+
+module.exports = { resolvers }

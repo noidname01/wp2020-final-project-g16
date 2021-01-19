@@ -27,26 +27,28 @@ const typeDefs = gql`
     }
     type Draft {
         id: String!
-        draftId: String!
+        userId: String!
         templateId: String!
         xlsxContent: String!
     }
     input DraftInput {
         id: String!
-        draftId: String!
+        userId: String!
         templateId: String!
         xlsxContent: String!
     }
     type Sent {
         id: String!
+        userId: String!
         draftId: String!
     }
     input SentInput {
         id: String!
+        userId: String!
         draftId: String!
     }
     type Query {
-        getUser(username: String!, password: String!): User
+        getUser(username: String!, password: String!): [User]
         getTemplate(userId: String!): [Template]
         getDraft(userId: String!): [Draft]
         getSent(userId: String!): [Sent]

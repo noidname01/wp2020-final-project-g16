@@ -6,6 +6,10 @@ const SentSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	userId: {
+		type: String,
+		required: true,
+	},
 	draftId: {
 		type: String,
 		required: true,

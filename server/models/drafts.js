@@ -6,7 +6,7 @@ const DraftSchema = new Schema({
         type: String,
         required: true,
     },
-    draftId: {
+    userId: {
         type: String,
         required: true,
     },
