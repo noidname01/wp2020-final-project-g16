@@ -34,7 +34,19 @@ const Login = () => {
         } else {
             console.log(data.getUser[0])
             localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
-            setRedirect(<Redirect to='/ee/new'></Redirect>)
+            setRedirect(
+                <Redirect
+                    to={{
+                        pathname: '/ee',
+                        state: {
+                            userinfo: {
+                                username: usernameInput,
+                                password: passwordInput,
+                            },
+                        },
+                    }}
+                ></Redirect>
+            )
         }
     }
 
