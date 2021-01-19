@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import { CHECK_USERNAME, CREATE_USER } from '../graphql'
 import { v4 as uuid_v4 } from 'uuid'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 const Register = () => {
     const [name, setName] = useState('')
@@ -183,7 +183,7 @@ const Register = () => {
                                 </button>
                             </div>
                             <p className='mt-4 loginP'>
-                                Have An Account? <a href='/login'>Login</a>
+                                Have An Account? <Link to='/login'>Login</Link>
                             </p>
                         </div>
                     </div>
