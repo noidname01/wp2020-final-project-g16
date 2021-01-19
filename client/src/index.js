@@ -10,7 +10,6 @@ import {
     Redirect,
     withRouter,
 } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactDataSheet from 'react-datasheet'
 // Be sure to include styles at some point, probably during your bootstrapping
