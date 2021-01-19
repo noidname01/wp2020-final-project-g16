@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 const Preivew = (props) => {
-    const { html, grid, varList } = props
+    /*   const { html, grid, varList } = props
     const [peopleCount, setPeopleCount] = 1 //1~10
 
     const renderVar = (html, grid, varList) => {
@@ -19,7 +19,7 @@ const Preivew = (props) => {
         console.log('grid', grid)
     }, [])
 
-    useEffect(() => {}, [])
+    useEffect(() => {}, [])*/
     return <></>
 }
 
