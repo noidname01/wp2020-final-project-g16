@@ -95,6 +95,7 @@ const New = (props) => {
                     idCounter={idCounter}
                     setIdCounter={setIdCounter}
                     setSubject={setSubject}
+                    userInfo={userInfo}
                 ></Editor>
             ) : (
                 <div></div>
@@ -106,16 +107,22 @@ const New = (props) => {
                     grid={grid}
                     setVarList={setVarList}
                     getGridValue={getGridValue}
+                    userInfo={userInfo}
                 ></Excel>
             ) : (
                 <div></div>
             )}
             {step === 'Preview' ? (
-                <Preview html={html} grid={grid} varList={varList}></Preview>
+                <Preview
+                    html={html}
+                    grid={grid}
+                    varList={varList}
+                    userInfo={userInfo}
+                ></Preview>
             ) : (
                 <div></div>
             )}
-            {step === 'Send' ? <Send userinfo={userinfo}></Send> : <div></div>}
+            {step === 'Send' ? <Send userInfo={userInfo}></Send> : <div></div>}
         </React.Fragment>
     )
 }

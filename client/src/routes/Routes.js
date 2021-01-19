@@ -28,7 +28,7 @@ const Routes = (props) => {
             {routes.map(({ path, Component }) => {
                 return (
                     <Route exact path={path}>
-                        <Component userinfo={props.userinfo} />
+                        <Component userInfo={props.userinfo} />
                     </Route>
                 )
             })}
