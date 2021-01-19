@@ -16,19 +16,62 @@ export default function Header(props) {
             />
         )
     }
-    const createBtn = (title) => {
-        return (
-            <button
-                type='button'
-                className='header-button'
-                key={title}
-                onClick={() => {
-                    props.setStep(title)
-                }}
-            >
-                <span className='nav-link'>{title}</span>
-            </button>
-        )
+    const createBtn = (e) => {
+        if (e.status === 'current') {
+            return (
+                <button
+                    type='button'
+                    className='header-button'
+                    key={e.name}
+                    onClick={() => {
+                        props.setStep(e.name)
+                    }}
+                    disabled={true}
+                >
+                    <span
+                        className='nav-link'
+                        style={{
+                            color: 'rgb(240,240,240)',
+                        }}
+                    >
+                        {e.name}
+                    </span>
+                </button>
+            )
+        } else if (e.status === 'available') {
+            return (
+                <button
+                    type='button'
+                    className='header-button'
+                    key={e.name}
+                    onClick={() => {
+                        props.setStep(e.name)
+                    }}
+                    disabled={false}
+                >
+                    <span className='nav-link'>{e.name}</span>
+                </button>
+            )
+        } else if (e.status === 'unavailable') {
+            return (
+                <button
+                    type='button'
+                    className='header-button'
+                    key={e.name}
+                    onClick={() => {
+                        props.setStep(e.name)
+                    }}
+                    disabled={true}
+                >
+                    <span
+                        className='nav-link'
+                        style={{ color: 'rgb(80,80,80)' }}
+                    >
+                        {e.name}
+                    </span>
+                </button>
+            )
+        }
     }
 
     return (
@@ -40,12 +83,12 @@ export default function Header(props) {
                 >
                     <ul className='navbar-nav mr-auto'>
                         <li className='nav-item flex-row'>
-                            {props.titleList.map((title, id) => {
+                            {props.titleList.map((e, id) => {
                                 let result = []
                                 if (id !== 0) {
                                     result.push(getImage())
                                 }
-                                result.push(createBtn(title))
+                                result.push(createBtn(e))
                                 return result
                             })}
                         </li>
