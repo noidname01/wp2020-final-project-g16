@@ -10,6 +10,8 @@ const New = () => {
     const [html, setHtml] = useState('')
     const [grid, setGrid] = useState([])
     const [idCounter, setIdCounter] = useState(0)
+    const [subject, setSubject] = useState('')
+    const [varList, setVarList] = useState([])
     /*
 		grid = [
 			[{value: }, {value: }, {value: }],
@@ -29,16 +31,26 @@ const New = () => {
                     html={html}
                     idCounter={idCounter}
                     setIdCounter={setIdCounter}
+                    setSubject={setSubject}
                 ></Editor>
             ) : (
                 <div></div>
             )}
             {step === 'Excel' ? (
-                <Excel html={html} setGrid={setGrid} grid={grid}></Excel>
+                <Excel
+                    html={html}
+                    setGrid={setGrid}
+                    grid={grid}
+                    setVarList={setVarList}
+                ></Excel>
             ) : (
                 <div></div>
             )}
-            {step === 'Preview' ? <Preview></Preview> : <div></div>}
+            {step === 'Preview' ? (
+                <Preview html={html} grid={grid} varList={varList}></Preview>
+            ) : (
+                <div></div>
+            )}
             {step === 'Send' ? <div>fdsfds</div> : <div></div>}
         </React.Fragment>
     )
