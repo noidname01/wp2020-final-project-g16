@@ -243,6 +243,10 @@ ul ul a {
     transform: translateY(300px);
 }
 
+.modal-backdrop {
+    z-index: -1;
+}
+
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;
