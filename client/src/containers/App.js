@@ -24,7 +24,6 @@ function App() {
             </div>
             <div className='flex w100'>
                 <div className='main w100'>
-                    {/*<Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />*/}
                     <div className='editArea'>
                         <Routes userinfo={userinfo} />
                     </div>
