@@ -1,6 +1,5 @@
-import React from 'react'
-import { useQuery, useMutation } from '@apollo/client'
-import { CHECK_USERNAME } from '../graphql'
+import React, { useState } from 'react'
+
 const Login = () => {
     return (
         <div className='row mt-5'>

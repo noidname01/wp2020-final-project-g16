@@ -5,8 +5,21 @@ const CHECK_USERNAME = gql`
         checkUsername(username: $username)
     }
 `
+const GET_USER = gql`
+    query getUser($username: String!, $password: String!) {
+        getUser(username: $username, password: $password) {
+            username
+            password
+            id
+            emailAddress
+            emailPassword
+        }
+    }
+`
 
-export default { CHECK_USERNAME }
+const CREATE_USER = gql``
+
+export { CHECK_USERNAME, GET_USER }
 /*
 const GET_MESSAGES = gql`
     query messages($from: String!, $to: String!) {
