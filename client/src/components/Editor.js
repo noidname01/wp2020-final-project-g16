@@ -20,7 +20,7 @@ const Editor = (props) => {
     // const { state } = useParams()
     //const location = useLocation()
 
-    let { html, idCounter } = props
+    let { html, idCounter, subject } = props
     const { setHtml, setIdCounter, setSubject } = props
 
     const [nodes, setNodes] = useState([])
@@ -189,6 +189,7 @@ const Editor = (props) => {
                             type='text'
                             className='emailform'
                             id='inputSubject'
+                            defaultValue={subject}
                             onChange={handleSubjectChange}
                         />
                     </div>

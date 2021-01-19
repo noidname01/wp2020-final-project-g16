@@ -95,6 +95,7 @@ const New = (props) => {
                     html={html}
                     idCounter={idCounter}
                     setIdCounter={setIdCounter}
+                    subject={subject}
                     setSubject={setSubject}
                 ></Editor>
             ) : (
@@ -122,7 +123,16 @@ const New = (props) => {
             ) : (
                 <div></div>
             )}
-            {step === 'Send' ? <Send userinfo={userinfo}></Send> : <div></div>}
+            {step === 'Send' ? (
+                <Send
+                    userInfo={userInfo}
+                    presend={presend}
+                    getGridValue={getGridValue}
+                    subject={subject}
+                ></Send>
+            ) : (
+                <div></div>
+            )}
         </React.Fragment>
     )
 }
