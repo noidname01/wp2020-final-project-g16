@@ -123,20 +123,17 @@ const Editor = (props) => {
             alert('Please fill in all the fields.')
             return
         }
-        console.log('++++++++++++++++++++++++++++++++')
-        console.log(saveName)
-        console.log(props.userInfo.id)
-        console.log(html)
-        console.log('--------------------------------')
 
-        await createTemplate({
-            variables: {
-                id: uuid_v4(),
-                name: saveName,
-                userId: props.userInfo.id,
-                content: html,
-            },
-        })
+        try {
+            await createTemplate({
+                variables: {
+                    id: uuid_v4(),
+                    name: saveName,
+                    userId: props.userInfo.id,
+                    content: html,
+                },
+            })
+        } catch {}
     }
 
     useEffect(() => {
@@ -196,6 +193,7 @@ const Editor = (props) => {
                                 type='button'
                                 className='btn btn-info'
                                 onClick={handleTemplate}
+                                data-dismiss='modal'
                             >
                                 Save
                             </button>
