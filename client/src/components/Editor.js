@@ -109,6 +109,10 @@ const Editor = (props) => {
         setSubject(e.target.value)
     }
 
+    const handleTemplate = () => {
+        console.log('handleTemplate')
+    }
+
     useEffect(() => {
         if (html) {
             // props.setHtml(html)
@@ -131,7 +135,7 @@ const Editor = (props) => {
                     >
                         Subject:
                     </label>
-                    <div className='col-sm-10'>
+                    <div className='col-sm-6'>
                         <input
                             type='text'
                             className='emailform'
@@ -140,20 +144,17 @@ const Editor = (props) => {
                         />
                     </div>
                     <button
-                        className='col btn btn-light btn-sm'
+                        className='col-sm-1 btn btn-light btn-sm'
                         onClick={handleClick}
                     >
                         Test
                     </button>
-                    <Link
-                        to={{
-                            pathname: '/excel',
-                        }}
+                    <button
+                        className='col btn btn-light btn-sm'
+                        onClick={handleTemplate}
                     >
-                        <button className='col btn btn-light btn-sm'>
-                            Next
-                        </button>
-                    </Link>
+                        Save as Template
+                    </button>
                 </div>
             </form>
             <ReactSummernote
