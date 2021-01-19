@@ -21,7 +21,7 @@ const Editor = (props) => {
     //const location = useLocation()
 
     let { html, idCounter } = props
-    const { setHtml, setIdCounter } = props
+    const { setHtml, setIdCounter, setSubject } = props
 
     const [nodes, setNodes] = useState([])
     // const
@@ -44,7 +44,7 @@ const Editor = (props) => {
             )
         })
 
-        console.log('inputs', inputs)
+        // console.log('inputs', inputs)
 
         html = ''
 
@@ -55,7 +55,7 @@ const Editor = (props) => {
 
         html += texts[texts.length - 1]
 
-        console.log('combine', html)
+        // console.log('combine', html)
 
         let domparser = new DOMParser()
         let doc = domparser.parseFromString(html, 'text/html')
@@ -104,17 +104,21 @@ const Editor = (props) => {
         setIdCounter((state) => state + 1)
     }
 
+    const handleSubjectChange = (e) => {
+        setSubject(e.target.value)
+    }
+
     useEffect(() => {
         if (html) {
             // props.setHtml(html)
-            console.log('html component did mount \n', html)
+            // console.log('html component did mount \n', html)
             renderTemplate(html)
         }
     }, [])
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log('html update \n', html)
-    }, [html])
+    }, [html]) */
 
     return (
         <>
@@ -131,6 +135,7 @@ const Editor = (props) => {
                             type='text'
                             className='emailform'
                             id='inputSubject'
+                            onChange={handleSubjectChange}
                         />
                     </div>
                     <button

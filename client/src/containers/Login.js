@@ -1,14 +1,23 @@
-
 import React, { useEffect, useState } from 'react'
-
+// GraphQL dependencies
+import { useQuery, useMutation } from '@apollo/client'
+import { GET_USER } from '../graphql'
 
 const Login = () => {
     const [usernameInput, setUsernameInput] = useState('')
     const [passwordInput, setPasswordInput] = useState('')
     const [errors, setErrors] = useState('')
 
+    const { loading, error, data } = useQuery(GET_USER, {
+        variables: {
+            username: usernameInput,
+            password: passwordInput,
+        },
+    })
+
     const handleSubmit = () => {
-        console.log('login:', usernameInput, passwordInput)
+        console.log('login: ', usernameInput, passwordInput)
+
         validation()
     }
 
@@ -16,6 +25,12 @@ const Login = () => {
         // Check required fields
         if (!usernameInput || !passwordInput) {
             setErrors('Please fill in all fields')
+        }
+
+        if (data.getUser[0] === undefined) {
+            alert('Wrong username and password!!!')
+        } else {
+            console.log(data.getUser[0]) // data.getUser[0] contains the info of user
         }
     }
 

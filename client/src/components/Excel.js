@@ -90,6 +90,7 @@ function EditableTable(props) {
         }
         console.log('excel html', props.html)
         const titles = parser(props.html)
+        props.setVarList(titles)
 
         let sht = titles.map((e) => {
             return {
