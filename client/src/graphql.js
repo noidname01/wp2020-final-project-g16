@@ -17,9 +17,33 @@ const GET_USER = gql`
     }
 `
 
-const CREATE_USER = gql``
+const CREATE_USER = gql`
+    mutation createUser(
+        $username: String!
+        $password: String!
+        $id: String!
+        $emailAddress: String!
+        $emailPassword: String!
+    ) {
+        createUser(
+            data: {
+                username: $username
+                password: $password
+                id: $id
+                emailAddress: $emailAddress
+                emailPassword: $emailPassword
+            }
+        ) {
+            username
+            password
+            id
+            emailAddress
+            emailPassword
+        }
+    }
+`
 
-export { CHECK_USERNAME, GET_USER }
+export { CHECK_USERNAME, GET_USER, CREATE_USER }
 /*
 const GET_MESSAGES = gql`
     query messages($from: String!, $to: String!) {

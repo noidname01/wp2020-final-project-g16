@@ -37,6 +37,7 @@
         "react-script": "^2.0.5",
         "react-summernote": "^2.0.2",
         "style-loader": "^2.0.0",
+        "uuidv4": "^6.2.6",
         "webpack": "^5.10.1",
         "webpack-cli": "^4.2.0",
         "webpack-dev-server": "^3.11.0"

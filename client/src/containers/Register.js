@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 // GraphQL dependencies
 import { useQuery, useMutation } from '@apollo/client'
 import { CHECK_USERNAME, CREATE_USER } from '../graphql'
+import { v4 as uuid_v4 } from 'uuid'
 
 const Register = () => {
     const [name, setName] = useState('')
@@ -15,7 +16,10 @@ const Register = () => {
             username: name,
         },
     })
-    const handleSubmit = () => {
+
+    const [createUser] = useMutation(CREATE_USER)
+
+    const handleSubmit = async () => {
         // fill up every input
         if (name === '') {
             return
@@ -34,7 +38,26 @@ const Register = () => {
             return
         }
 
+        // check name availability
+        if (!data.checkUsername) {
+            alert('Username Unavailable')
+            return
+        }
+
+        console.log(
+            name + '  ' + password + '  ' + email + '  ' + emailPassword
+        )
+
         // create a user
+        await createUser({
+            variables: {
+                username: name,
+                password: password,
+                id: uuid_v4(),
+                emailAddress: email,
+                emailPassword: emailPassword,
+            },
+        })
     }
 
     return (
