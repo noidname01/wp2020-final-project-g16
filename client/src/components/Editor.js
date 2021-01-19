@@ -20,6 +20,7 @@ import parse from 'html-react-parser'
 import { useQuery, useMutation } from '@apollo/client'
 import { CREATE_TEMPLATE } from '../graphql'
 import { v4 as uuid_v4 } from 'uuid'
+import timestamp from '../containers/Timestamp'
 
 const Editor = (props) => {
     // const { state } = useParams()
@@ -133,6 +134,7 @@ const Editor = (props) => {
                 id: uuid_v4(),
                 name: saveName,
                 description: saveDescription,
+                timestamp: timestamp(),
                 userId: props.userInfo.id,
                 content: html,
             },
@@ -234,7 +236,7 @@ const Editor = (props) => {
                                 type='text'
                                 className='emailform'
                                 id='inputSubject'
-                                 defaultValue={subject}
+                                defaultValue={subject}
                                 onChange={handleSubjectChange}
                             />
                         </div>

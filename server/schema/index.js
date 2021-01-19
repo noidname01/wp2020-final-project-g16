@@ -18,6 +18,7 @@ const typeDefs = gql`
     type Template {
         id: String!
         name: String!
+        timestamp: String!
         description: String
         userId: String!
         content: String!
@@ -25,6 +26,7 @@ const typeDefs = gql`
     input TemplateInput {
         id: String!
         name: String!
+        timestamp: String!
         description: String
         userId: String!
         content: String!
