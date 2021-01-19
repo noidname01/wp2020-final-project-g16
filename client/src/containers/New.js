@@ -9,6 +9,7 @@ const New = () => {
     const titleList = ['Editor', 'Excel', 'Preview', 'Send']
     const [html, setHtml] = useState('')
     const [grid, setGrid] = useState([])
+    const [idCounter, setIdCounter] = useState(0)
     /*
 		grid = [
 			[{value: }, {value: }, {value: }],
@@ -23,7 +24,12 @@ const New = () => {
             <Header setStep={(e) => setStep(e)} titleList={titleList}></Header>
 
             {step === 'Editor' ? (
-                <Editor setHtml={setHtml} html={html}></Editor>
+                <Editor
+                    setHtml={setHtml}
+                    html={html}
+                    idCounter={idCounter}
+                    setIdCounter={setIdCounter}
+                ></Editor>
             ) : (
                 <div></div>
             )}
