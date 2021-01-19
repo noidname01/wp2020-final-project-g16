@@ -97,6 +97,7 @@ const New = (props) => {
                     setIdCounter={setIdCounter}
                     subject={subject}
                     setSubject={setSubject}
+                    userInfo={userInfo}
                 ></Editor>
             ) : (
                 <div></div>
@@ -108,6 +109,7 @@ const New = (props) => {
                     grid={grid}
                     setVarList={setVarList}
                     getGridValue={getGridValue}
+                    userInfo={userInfo}
                 ></Excel>
             ) : (
                 <div></div>
@@ -115,6 +117,7 @@ const New = (props) => {
             {step === 'Preview' ? (
                 <Preview
                     html={html}
+                    userInfo={userInfo}
                     varList={varList}
                     getGridValue={getGridValue}
                     presend={presend}

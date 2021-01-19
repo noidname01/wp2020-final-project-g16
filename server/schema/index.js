@@ -17,11 +17,13 @@ const typeDefs = gql`
     }
     type Template {
         id: String!
+        name: String!
         userId: String!
         content: String!
     }
     input TemplateInput {
         id: String!
+        name: String!
         userId: String!
         content: String!
     }
