@@ -7,7 +7,7 @@ const Card = ({ txt }) => {
             <div className='card-body'>
                 <h5 className='card-title'>Draft #</h5>
                 <p className='card-text'>{txt}</p>
-                <Link to='/ee/new'>Use this template</Link>
+                <Link to='/ee/new'>Edit this draft</Link>
             </div>
         </div>
     )
