@@ -20,7 +20,9 @@ const { resolvers } = require('./server/resolvers')
 const sendMails = require('./server/sendMails')
 // =========require files =========
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const playground = true
+
+const server = new ApolloServer({ typeDefs, resolvers, playground })
 
 const app = express()
 

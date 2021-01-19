@@ -52,7 +52,7 @@ const typeDefs = gql`
         getSent(userId: String!): [Sent]
     }
     type Mutation {
-        createUser(data: UserInput!): User!
+        createUser(data: UserInput!): User
         createTemplate(data: TemplateInput!): Template!
         createDraft(data: DraftInput!): Draft!
         createSent(data: SentInput!): Sent!
