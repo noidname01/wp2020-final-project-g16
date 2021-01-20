@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './Send.css'
 import { rootPath } from '../config/pathConfig'
 
 const Send = (props) => {
     const { userInfo, presend, getGridValue, subject } = props
+
+    const [sentCount, setSentCount] = useState(0)
+    const [peopleCounter, setPeopleCounter] = useState(0)
+    const [hasSent, setHasSent] = useState(false)
 
     const sendMail = (to, subject, html) => {
         // e.preventDefault()
@@ -16,7 +20,7 @@ const Send = (props) => {
                 html: html,
             })
             .then((data) => {
-                console.log(data)
+                setSentCount(sentCount + 1)
             })
             .catch((err) => {
                 alert(err)
@@ -32,8 +36,12 @@ const Send = (props) => {
                     subject,
                     presend[i - 1]
                 )
+
+                setPeopleCounter(peopleCounter + 1)
             }
         }
+
+        setHasSent(true)
     }
 
     useEffect(() => {
@@ -42,21 +50,26 @@ const Send = (props) => {
         console.log(subject)
     }, [])
     return (
-        <div>
-            {/* <button onClick={handleSend}>Send</button> */}
-            <div class='animation-container'>
-                <div class='box'>
-                    <div class='border one'></div>
-                    <div class='border two'></div>
-                    <div class='border three'></div>
-                    <div class='border four'></div>
+        <>
+            {!hasSent ? (
+                <button onClick={handleSend}>Send</button>
+            ) : sentCount !== peopleCounter ? (
+                <div className='animation-container container d-flex justify-content-center align-items-center'>
+                    <div className='box'>
+                        <div className='border one'></div>
+                        <div className='border two'></div>
+                        <div className='border three'></div>
+                        <div className='border four'></div>
 
-                    <div class='line one'></div>
-                    <div class='line two'></div>
-                    <div class='line three'></div>
+                        <div className='line one'></div>
+                        <div className='line two'></div>
+                        <div className='line three'></div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            ) : (
+                <div>Complete</div>
+            )}
+        </>
     )
 }
 
