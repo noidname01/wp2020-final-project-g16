@@ -19,7 +19,7 @@ const Card = () => {
 const Sent = () => {
     return (
         <>
-            <div className='frameUp'>Template</div>
+            <div className='frameUp'>Sent</div>
             <div className='frameDown'>
                 <div className='grid frameIn2'>
                     <div className='flex-row'>

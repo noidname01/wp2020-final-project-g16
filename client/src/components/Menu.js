@@ -6,7 +6,7 @@ import { images } from './Animals'
 export default function Menu(props) {
     let { userInfo } = props
     console.log(images[0])
-    
+
     return (
         <div className='navbar-light bg-light'>
             <ul className='navbar-nav'>
@@ -14,7 +14,7 @@ export default function Menu(props) {
                     <img
                         // src={images[Math.floor(Math.random() * 71)]}
                         src={images[0].default}
-                        height='30'
+                        height='50'
                         className='d-inline-block pr-4'
                         alt=''
                     />
@@ -52,6 +52,5 @@ export default function Menu(props) {
                 </li>
             </ul>
         </div>
-
     )
 }
