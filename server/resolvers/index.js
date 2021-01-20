@@ -56,6 +56,24 @@ const resolvers = {
 			console.log(data)
 			return data
 		},
+		deleteTemplate: async (parent, args, context, info) => {
+			let data = null
+			data = await Template.find({ id: args.id }, (err, res) => {
+				if (err) {
+					throw err
+				} else {
+					Template.remove({ id: args.id }, (err, res) => {
+						if (err) {
+							throw err
+						} else {
+							console.log('=====Template Deleted=====')
+						}
+					})
+				}
+			})
+			console.log(data)
+			return data
+		},
 
 		createUser: async (parent, args, context, info) => {
 			User.create(args.data, function (err, msg) {

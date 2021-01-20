@@ -4,7 +4,7 @@ import trash from '../images/delete.png'
 import { useLocation, Link } from 'react-router-dom'
 // GraphQL dependencies
 import { useQuery, useMutation } from '@apollo/client'
-import { GET_TEMPLATE, LOOKUP_TEMPLATE } from '../graphql'
+import { GET_TEMPLATE, LOOKUP_TEMPLATE, DELETE_TEMPLATE } from '../graphql'
 
 import Scrollbars from 'react-custom-scrollbars'
 import { Element } from 'react-summernote'
@@ -17,19 +17,19 @@ const renderThumb = ({ style, ...props }) => {
     return <div style={{ ...style, ...thumbStyle }} {...props} />
 }
 
-const card = (name, des, time) => {
+const card = (ele) => {
     return (
         <div className='grid-col'>
             <div className='card flex-card border-secondary mb-3'>
                 <div className='card-header' style={{ color: '#5e5e5e' }}>
-                    {time}
+                    {ele.timestamp}
                 </div>
                 <div className='card-body text-secondary'>
                     <h5 className='card-title' style={{ color: '#2e2e2e' }}>
-                        {name}
+                        {ele.name}
                     </h5>
                     <div className='flex-row'>
-                        <p className='card-text flex'>{des}</p>
+                        <p className='card-text flex'>{ele.description}</p>
                         <button className='trash ml-auto'>
                             <img className='w-40' src={trash} />
                         </button>
@@ -47,6 +47,7 @@ const Template = (props) => {
         },
     })*/
     const [lookupTemplate] = useMutation(LOOKUP_TEMPLATE)
+    //const [deleteTemplate] = useMutation(DELETE_TEMPLATE)
     /*
     useEffect(() => {
         console.log(data)
@@ -82,11 +83,7 @@ const Template = (props) => {
                             ) : (
                                 data.map((ele) => {
                                     console.log('ele:', ele)
-                                    return card(
-                                        ele.name,
-                                        ele.description,
-                                        ele.timestamp
-                                    )
+                                    return card(ele)
                                 })
                             )}
                         </div>

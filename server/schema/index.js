@@ -65,6 +65,7 @@ const typeDefs = gql`
     }
     type Mutation {
         lookupTemplate(userId: String!): [Template]
+        deleteTemplate(id: String!): Template
 
         createUser(data: UserInput!): User
         createTemplate(data: TemplateInput!): Template!
