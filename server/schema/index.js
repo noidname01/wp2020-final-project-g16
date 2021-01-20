@@ -36,6 +36,7 @@ const typeDefs = gql`
         id: String!
         userId: String!
         templateId: String!
+        timestamp: String!
         xlsxContent: String!
     }
     input DraftInput {
@@ -44,16 +45,19 @@ const typeDefs = gql`
         sent: Boolean!
         userId: String!
         templateId: String!
+        timestamp: String!
         xlsxContent: String!
     }
     type Sent {
         id: String!
         userId: String!
+        timestamp: String!
         draftId: String!
     }
     input SentInput {
         id: String!
         userId: String!
+        timestamp: String!
         draftId: String!
     }
     type Query {
@@ -66,6 +70,10 @@ const typeDefs = gql`
     type Mutation {
         lookupTemplate(userId: String!): [Template]
         deleteTemplate(id: String!): Template
+        lookupDraft(userId: String!): [Draft]
+        deleteDraft(id: String!): Draft
+        lookupSent(userId: String!): [Sent]
+        deleteSent(id: String!): Sent
 
         createUser(data: UserInput!): User
         createTemplate(data: TemplateInput!): Template!
