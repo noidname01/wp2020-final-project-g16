@@ -6,7 +6,6 @@ import { useLocation, Link } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_TEMPLATE, LOOKUP_TEMPLATE } from '../graphql'
 
-
 import Scrollbars from 'react-custom-scrollbars'
 
 const renderThumb = ({ style, ...props }) => {
@@ -28,7 +27,6 @@ const card = (name, des) => {
                     <h5 className='card-title'>{name}</h5>
                     <p className='card-text'>{des}</p>
                 </div>
-
             </div>
         </div>
     )
@@ -59,26 +57,26 @@ const Template = (props) => {
     }
 
     return (
-
+        <React.Fragment>
+            <button onClick={handleClick}>test</button>
             <div className='frameUp'>Template</div>
             <div className='frameDown'>
                 <div className='grid frameIn2'>
                     <Scrollbars renderThumbVertical={renderThumb}>
                         <div className='flex-row'>
-                      {!data ? (
-                    <></>
-                ) : (
-                    data.map((ele) => {
-                        //console.log(ele.name, ele.description)
-                        return card(ele.name, ele.description)
-                    })
-                )}
+                            {!data ? (
+                                <div></div>
+                            ) : (
+                                data.map((ele) => {
+                                    //console.log(ele.name, ele.description)
+                                    return card(ele.name, ele.description)
+                                })
+                            )}
                         </div>
                     </Scrollbars>
                 </div>
-
             </div>
-        </>
+        </React.Fragment>
     )
 }
 
