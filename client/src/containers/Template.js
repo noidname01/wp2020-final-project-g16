@@ -18,6 +18,11 @@ const renderThumb = ({ style, ...props }) => {
 }
 
 const card = (ele) => {
+    const [tempInfo, setTempInfo] = useState(ele)
+    const handleClick = () => {
+        console.log(tempInfo)
+    }
+
     return (
         <div className='grid-col'>
             <div className='card flex-card border-secondary mb-3'>
@@ -30,7 +35,7 @@ const card = (ele) => {
                     </h5>
                     <div className='flex-row'>
                         <p className='card-text flex'>{ele.description}</p>
-                        <button className='trash ml-auto'>
+                        <button className='trash ml-auto' onClick={handleClick}>
                             <img className='w-40' src={trash} />
                         </button>
                     </div>
