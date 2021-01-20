@@ -151,6 +151,7 @@ export {
     MODIFY_USER,
     DELETE_USER,
     LOOKUP_TEMPLATE,
+    DELETE_TEMPLATE,
 }
 /*
 const GET_MESSAGES = gql`

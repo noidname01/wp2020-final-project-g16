@@ -9,6 +9,8 @@ import { GET_TEMPLATE, LOOKUP_TEMPLATE, DELETE_TEMPLATE } from '../graphql'
 import Scrollbars from 'react-custom-scrollbars'
 import { Element } from 'react-summernote'
 
+import TempCard from './TempCard'
+
 const renderThumb = ({ style, ...props }) => {
     const thumbStyle = {
         borderRadius: 6,
@@ -16,8 +18,16 @@ const renderThumb = ({ style, ...props }) => {
     }
     return <div style={{ ...style, ...thumbStyle }} {...props} />
 }
-
+/*
 const card = (ele) => {
+    const [tempInfo, setTempInfo] = useState()
+    useEffect(() => {
+        setTempInfo(ele)
+    })
+
+    const handleClick = () => {
+        console.log(tempInfo)
+    }
     return (
         <div className='grid-col'>
             <div className='card flex-card border-secondary mb-3'>
@@ -39,8 +49,10 @@ const card = (ele) => {
         </div>
     )
 }
-
+*/
 const Template = (props) => {
+    useLocation()
+
     /*const { loading, error, data } = useQuery(GET_TEMPLATE, {
         variables: {
             userId: props.userInfo.id,
@@ -55,7 +67,7 @@ const Template = (props) => {
 
     const [data, setData] = useState(null)
 
-    const handleClick = async () => {
+    useEffect(async () => {
         const temp = await lookupTemplate({
             variables: {
                 userId: props.userInfo.id,
@@ -63,19 +75,13 @@ const Template = (props) => {
         })
         console.log(temp.data.lookupTemplate)
         setData(temp.data.lookupTemplate)
-    }
+    }, [])
 
     return (
-        <>
+        <React.Fragment>
             <div className='frameUp'>Template</div>
             <div className='frameDown'>
                 <div className='grid frameIn2'>
-                    <button
-                        className='btn btn-info mr-auto ml-3 mb-2'
-                        onClick={handleClick}
-                    >
-                        Render
-                    </button>
                     <Scrollbars renderThumbVertical={renderThumb}>
                         <div className='flex-row'>
                             {!data ? (
@@ -83,14 +89,14 @@ const Template = (props) => {
                             ) : (
                                 data.map((ele) => {
                                     console.log('ele:', ele)
-                                    return card(ele)
+                                    return <TempCard ele={ele}></TempCard>
                                 })
                             )}
                         </div>
                     </Scrollbars>
                 </div>
             </div>
-        </>
+        </React.Fragment>
     )
 }
 
