@@ -6,13 +6,98 @@
     --main-color1: #c7b6a0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=EB+Garamond:wght@400;500&family=Reenie+Beanie&display=swap');
 body {
     height: 100%;
     width: 100%;
 }
 
+
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: -50px -50px;
+    }
+}
+@-moz-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: -50px 50px;
+    }
+}
+@-o-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: -50px 50px;
+    }
+}
+@keyframes bg-scrolling-reverse {
+    100% {
+        background-position: -50px 50px;
+    }
+}
+
+@-webkit-keyframes bg-scrolling {
+    0% {
+        background-position: -50px 50px;
+    }
+}
+@-moz-keyframes bg-scrolling {
+    0% {
+        background-position: -50px 50px;
+    }
+}
+@-o-keyframes bg-scrolling {
+    0% {
+        background-position: -50px 50px;
+    }
+}
+@keyframes bg-scrolling {
+    0% {
+        background-position: -50px 50px;
+    }
+}
+
+/* Main styles */
+.welcomebg {
+    color: #999;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC')
+        repeat 0 0;
+
+    -webkit-animation: bg-scrolling-reverse 0.92s infinite; /* Safari 4+ */
+    -moz-animation: bg-scrolling-reverse 0.92s infinite; /* Fx 5+ */
+    -o-animation: bg-scrolling-reverse 0.92s infinite; /* Opera 12+ */
+    animation: bg-scrolling-reverse 0.92s infinite; /* IE 10+ */
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+.display-4 {
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+}
+
+.lead {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 28px;
+    line-height: 90%;
+}
+
+.start {
+    font-family: 'EB Garamond', serif;
+    font-weight: 400;
+    opacity: 0.8;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.start:hover {
+    opacity: 1;
+
 .ca {
     border: 0 !important;
+
 }
 
 .carousel-control-prev-icon,
@@ -46,6 +131,11 @@ body {
 
 .navbar-light .navbar-nav .nav-link {
     color: var(--navbar-fontcolor) !important;
+}
+
+.frameW {
+    width: 70%;
+    align-self: center;
 }
 
 .frame {
