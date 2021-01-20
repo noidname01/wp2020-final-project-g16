@@ -119,6 +119,17 @@ const DELETE_USER = gql`
         }
     }
 `
+const LOOKUP_TEMPLATE = gql`
+    mutation lookupTemplate($userId: String!) {
+        lookupTemplate(userId: $userId) {
+            id
+            name
+            timestamp
+            description
+            content
+        }
+    }
+`
 
 export {
     CHECK_USERNAME,
@@ -128,6 +139,7 @@ export {
     GET_TEMPLATE,
     MODIFY_USER,
     DELETE_USER,
+    LOOKUP_TEMPLATE,
 }
 /*
 const GET_MESSAGES = gql`

@@ -50,6 +50,13 @@ const resolvers = {
 		},
 	},
 	Mutation: {
+		lookupTemplate: async (parent, args, context, info) => {
+			let data = null
+			data = await Template.find({ userId: args.userId })
+			console.log(data)
+			return data
+		},
+
 		createUser: async (parent, args, context, info) => {
 			User.create(args.data, function (err, msg) {
 				if (err) throw err
