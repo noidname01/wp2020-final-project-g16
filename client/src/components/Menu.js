@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import user from '../images/user.png'
+import { images } from './Animals'
 
 export default function Menu(props) {
     let { menuOpen, userInfo } = props
+
+    console.log(images[0])
     return (
         <>
             <div className='wrapper'>
@@ -19,7 +22,8 @@ export default function Menu(props) {
                         <li className='nav-item'>
                             <div className=' profile' to='/ee/profile'>
                                 <img
-                                    src={user}
+                                    // src={images[Math.floor(Math.random() * 71)]}
+                                    src={images[0].default}
                                     height='30'
                                     className='d-inline-block pr-4'
                                     alt=''
