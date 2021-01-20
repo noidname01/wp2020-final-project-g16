@@ -346,7 +346,7 @@ ul ul a {
 }
 
 .emailform {
-    color: white;
+    /* color: white; */
     border: none;
     border-bottom: 2px solid grey;
     background-color: transparent;

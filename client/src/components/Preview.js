@@ -49,27 +49,29 @@ const Preview = (props) => {
 
     const renderCarousel = (presend) => {
         let newCarousel = presend.map((html, index) => {
-            return (
-                <Carousel.Item>
-                    <div
-                        className='container d-block justify-content-start col-10 carousel-content'
-                        style={{
-                            color: 'white',
-                            height: '20rem',
-                            // backgroundColor: 'white',
-                            // zIndex: -1,
-                            borderRadius: '10px',
-                        }}
-                    >
-                        {parse(html)}
-                    </div>
-                    <Carousel.Caption>
-                        <h3 style={{ color: 'white' }}>
-                            {getGridValue(index + 1, 'Email_Address')}
-                        </h3>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            )
+            if (getGridValue(index + 1, 'Email_Address') !== '') {
+                return (
+                    <Carousel.Item>
+                        <div
+                            className='container d-block justify-content-start col-10 carousel-content'
+                            style={{
+                                color: 'white',
+                                height: '20rem',
+                                // backgroundColor: 'white',
+                                // zIndex: -1,
+                                borderRadius: '10px',
+                            }}
+                        >
+                            {parse(html)}
+                        </div>
+                        <Carousel.Caption>
+                            <h3 style={{ color: 'white' }}>
+                                {getGridValue(index + 1, 'Email_Address')}
+                            </h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                )
+            }
         })
 
         setCarousel(newCarousel)
