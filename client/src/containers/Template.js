@@ -66,6 +66,11 @@ const Template = (props) => {
     }, [data])*/
 
     const [data, setData] = useState(null)
+    const [focus, setFocus] = useState({
+        name: '',
+        description: '',
+        content: '<p></p>',
+    })
 
     useEffect(async () => {
         const temp = await lookupTemplate({
@@ -89,11 +94,66 @@ const Template = (props) => {
                             ) : (
                                 data.map((ele) => {
                                     console.log('ele:', ele)
-                                    return <TempCard ele={ele}></TempCard>
+                                    return (
+                                        <TempCard
+                                            ele={ele}
+                                            setFocus={setFocus}
+                                        ></TempCard>
+                                    )
                                 })
                             )}
                         </div>
                     </Scrollbars>
+                </div>
+            </div>
+
+            <div
+                className='modal fade'
+                id='exampleModalLong'
+                tabindex='-1'
+                role='dialog'
+                aria-labelledby='exampleModalLongTitle'
+                aria-hidden='true'
+            >
+                <div className='modal-dialog' role='document'>
+                    <div className='modal-content'>
+                        <div className='modal-header'>
+                            <h5
+                                className='modal-title'
+                                id='exampleModalLongTitle'
+                            >
+                                {focus.name}
+                            </h5>
+                            <button
+                                type='button'
+                                className='close'
+                                data-dismiss='modal'
+                                aria-label='Close'
+                            >
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                        <div className='modal-body'>...</div>
+                        <div className='modal-footer'>
+                            <button
+                                type='button'
+                                className='btn btn-secondary'
+                                data-dismiss='modal'
+                            >
+                                Close
+                            </button>
+                            <button
+                                type='button'
+                                className='btn btn-danger'
+                                data-dismiss='modal'
+                            >
+                                Delete
+                            </button>
+                            <button type='button' className='btn btn-success'>
+                                Import
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </React.Fragment>
