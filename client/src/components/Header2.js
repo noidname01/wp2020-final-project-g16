@@ -30,9 +30,7 @@ export default function Header(props) {
                 >
                     <span
                         className='nav-link'
-                        style={{
-                            color: 'rgb(240,240,240)',
-                        }}
+                        style={{ color: 'var(--light)' }}
                     >
                         {e.name}
                     </span>
@@ -47,9 +45,15 @@ export default function Header(props) {
                     onClick={() => {
                         props.setStep(e.name)
                     }}
+                    style={{ color: 'var(--light)' }}
                     disabled={false}
                 >
-                    <span className='nav-link'>{e.name}</span>
+                    <span
+                        className='nav-link'
+                        style={{ color: 'var(--light)' }}
+                    >
+                        {e.name}
+                    </span>
                 </button>
             )
         } else if (e.status === 'unavailable') {
@@ -65,7 +69,7 @@ export default function Header(props) {
                 >
                     <span
                         className='nav-link'
-                        style={{ color: 'rgb(80,80,80)' }}
+                        style={{ color: 'var(--light)', opacity: '0.6' }}
                     >
                         {e.name}
                     </span>

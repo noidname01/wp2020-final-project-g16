@@ -2,6 +2,7 @@
 :root {
     --dark: #2e2e2e;
     --light: #f8f9fa;
+    --navbar-fontcolor: rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -12,6 +13,11 @@ body {
 .navbar-light {
     background-color: var(--light) !important;
     transition: all 0.5s;
+    border: 0 !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--navbar-fontcolor) !important;
 }
 
 .frame {
@@ -114,8 +120,8 @@ body {
 }
 
 .menu-item:hover {
-    color: #fff;
-    background: #b3b3b3;
+    /* color: #fff; */
+    background: #9c9b9b;
     opacity: 0.7;
 }
 
@@ -160,6 +166,11 @@ body {
     outline-color: #c7b6a0 !important;
     box-shadow: none !important;
     color: #2e2e2e;
+}
+
+.btn-light {
+    background-color: var(--light) !important;
+    color: var(--dark) !important;
 }
 
 /* old */
@@ -356,7 +367,7 @@ ul ul a {
 .note-icon-redo,
 .fa.fa-hello,
 .fa.fa-var {
-    color: white;
+    color: var(--light);
 }
 
 .loginP {

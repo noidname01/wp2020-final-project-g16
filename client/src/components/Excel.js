@@ -373,6 +373,7 @@ function EditableTable(props) {
                     </div>
                     <div className='col'></div>
                     <button
+                        // style={{ backgroundColor: 'var(--light) !important' }}
                         className='col-sm-1 btn btn-light btn-sm'
                         type='button'
                         id='inputGroupFileAddon04'

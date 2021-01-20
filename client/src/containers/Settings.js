@@ -49,10 +49,20 @@ const Settings = (props) => {
         if (theme === 'dark') {
             document.documentElement.style.setProperty('--dark', '#2e2e2e')
             document.documentElement.style.setProperty('--light', '#ffffff')
+            document.documentElement.style.setProperty(
+                '--navbar-fontcolor',
+                'rgba(46, 46, 46, 0.9)'
+            )
             // localStorage.setItem('mode', 'dark')
         } else {
             document.documentElement.style.setProperty('--dark', '#ffffff')
             document.documentElement.style.setProperty('--light', '#2e2e2e')
+
+            document.documentElement.style.setProperty(
+                '--navbar-fontcolor',
+                'rgba(255,255,255,0.9)'
+            )
+
             // localStorage.setItem('mode', 'light')
         }
     }, [theme])
