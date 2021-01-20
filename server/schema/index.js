@@ -15,6 +15,7 @@ const typeDefs = gql`
         emailAddress: String!
         emailPassword: String!
     }
+
     type Template {
         id: String!
         name: String!
@@ -67,6 +68,8 @@ const typeDefs = gql`
         createTemplate(data: TemplateInput!): Template!
         createDraft(data: DraftInput!): Draft!
         createSent(data: SentInput!): Sent!
+        modifyUser(data: UserInput!): User
+        deleteUser(id: String!): User
     }
 `
 module.exports = { typeDefs }
