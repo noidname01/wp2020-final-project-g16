@@ -7,6 +7,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import { GET_TEMPLATE, LOOKUP_TEMPLATE } from '../graphql'
 
 import Scrollbars from 'react-custom-scrollbars'
+import { Element } from 'react-summernote'
 
 const renderThumb = ({ style, ...props }) => {
     const thumbStyle = {
@@ -16,16 +17,23 @@ const renderThumb = ({ style, ...props }) => {
     return <div style={{ ...style, ...thumbStyle }} {...props} />
 }
 
-const card = (name, des) => {
+const card = (name, des, time) => {
     return (
         <div className='grid-col'>
             <div className='card flex-card border-secondary mb-3'>
-                <div className='card-header' style={{ color: 'black' }}>
-                    Header
+                <div className='card-header' style={{ color: '#5e5e5e' }}>
+                    {time}
                 </div>
                 <div className='card-body text-secondary'>
-                    <h5 className='card-title'>{name}</h5>
-                    <p className='card-text'>{des}</p>
+                    <h5 className='card-title' style={{ color: '#2e2e2e' }}>
+                        {name}
+                    </h5>
+                    <div className='flex-row'>
+                        <p className='card-text flex'>{des}</p>
+                        <button className='trash ml-auto'>
+                            <img className='w-40' src={trash} />
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,27 +65,35 @@ const Template = (props) => {
     }
 
     return (
-        <React.Fragment>
-            <button onClick={handleClick}>test</button>
-
+        <>
             <div className='frameUp'>Template</div>
             <div className='frameDown'>
                 <div className='grid frameIn2'>
+                    <button
+                        className='btn btn-info mr-auto ml-3 mb-2'
+                        onClick={handleClick}
+                    >
+                        Render
+                    </button>
                     <Scrollbars renderThumbVertical={renderThumb}>
                         <div className='flex-row'>
                             {!data ? (
                                 <div></div>
                             ) : (
                                 data.map((ele) => {
-                                    //console.log(ele.name, ele.description)
-                                    return card(ele.name, ele.description)
+                                    console.log('ele:', ele)
+                                    return card(
+                                        ele.name,
+                                        ele.description,
+                                        ele.timestamp
+                                    )
                                 })
                             )}
                         </div>
                     </Scrollbars>
                 </div>
             </div>
-        </React.Fragment>
+        </>
     )
 }
 
