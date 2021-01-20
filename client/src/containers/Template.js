@@ -78,13 +78,10 @@ const Template = (props) => {
     }, [])
 
     return (
-        <>
+        <React.Fragment>
             <div className='frameUp'>Template</div>
             <div className='frameDown'>
                 <div className='grid frameIn2'>
-                    <button className='btn btn-info mr-auto ml-3 mb-2'>
-                        Render
-                    </button>
                     <Scrollbars renderThumbVertical={renderThumb}>
                         <div className='flex-row'>
                             {!data ? (
@@ -92,20 +89,14 @@ const Template = (props) => {
                             ) : (
                                 data.map((ele) => {
                                     console.log('ele:', ele)
-                                    return (
-                                        <TempCard
-                                            ele={ele}
-                                            setData={setData}
-                                            data={data}
-                                        ></TempCard>
-                                    )
+                                    return <TempCard ele={ele}></TempCard>
                                 })
                             )}
                         </div>
                     </Scrollbars>
                 </div>
             </div>
-        </>
+        </React.Fragment>
     )
 }
 
