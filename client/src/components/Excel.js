@@ -1,17 +1,26 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import ReactDataSheet from 'react-datasheet'
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
-import { useLocation } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 import './Excel.css'
 
-import { re } from '../config/parserConfig'
+// import { re } from '../config/parserConfig'
 
 const MAX_RECEIVERS = 11
 
 function createComponent(e) {
     return (
-        <span style={{ color: e.color, fontWeight: 'bold' }}>{e.varname}</span>
+        <div
+            style={{
+                color: e.color,
+                fontWeight: 'bold',
+                height: '30px',
+                alignContent: 'center',
+            }}
+        >
+            {e.varname}
+        </div>
     )
 }
 
@@ -27,6 +36,7 @@ function arraysEqual(a, b) {
 
 function createSht(sht) {
     let result = []
+
     const colNumber = sht[0].length
     //console.log('colNumber: ' + colNumber)
     let emptyRow = []
@@ -40,10 +50,37 @@ function createSht(sht) {
             result.push(emptyRow)
         }
     }
-    console.log(result)
+    //console.log(result)
     return result
 }
 
+function createSht2(row0, grid, getGridValue) {
+    let result = []
+    let sht = [row0]
+    const colNumber = sht[0].length
+    //console.log('colNumber: ' + colNumber)
+    const newTitles = row0.map((e) => e.value)
+
+    for (let i = 0; i < MAX_RECEIVERS; i++) {
+        let newRow = newTitles.map((e) => {
+            let cell = getGridValue(i, e)
+
+            if (cell === undefined) {
+                cell = ''
+            }
+
+            return { value: cell }
+        })
+
+        if (sht[i] !== undefined) {
+            result.push(sht[i])
+        } else {
+            result.push(newRow)
+        }
+    }
+    //console.log(result)
+    return result
+}
 async function saveAsExcel(filename, grid) {
     const wb = new ExcelJs.Workbook()
 
@@ -63,56 +100,64 @@ async function saveAsExcel(filename, grid) {
 
 function EditableTable(props) {
     //const [grid, setGrid] = useState([])
-    const location = useLocation()
-    const parser = (html) => {
-        let matches_array = html.match(re)
-        console.log(matches_array)
+    // const location = useLocation()
 
-        if (!matches_array) {
-            return []
-        }
+    const { titles, grid } = props
 
-        let varList = matches_array.map((input) => {
-            return {
-                id: input.match(/id="([0-9]*)"/m)[1],
-                varname: input.match(/name="([\w]*)"/m)[1],
-                color: input.match(/background-color: (rgb\([0-9, ]*\))/m)
-                    ? input.match(/background-color: (rgb\([0-9, ]*\))/m)[1]
-                    : 'gray',
-            }
-        })
-        console.log(varList)
-        return varList
-    }
-    useEffect(() => {
+    useEffect(async () => {
         if (props.html === undefined) {
             return
         }
-        console.log('excel html', props.html)
-        const titles = parser(props.html)
-        props.setVarList(titles)
 
-        let sht = titles.map((e) => {
-            return {
-                value: e.varname,
-                readOnly: true,
-                forceComponent: true,
-                component: createComponent(e),
-            }
-        })
-        sht = [
-            {
-                value: 'Email_Address',
-                readOnly: true,
-                forceComponent: true,
-                component: createComponent({
-                    varname: 'Email_Address',
-                    color: 'black',
-                }),
-            },
-            ...sht,
-        ]
-        props.setGrid(createSht([sht]))
+        if (grid.length === 0) {
+            let row0 = titles.map((e) => {
+                return {
+                    value: e.varname,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent(e),
+                }
+            })
+            row0 = [
+                {
+                    value: 'Email_Address',
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: 'Email_Address',
+                        color: 'black',
+                    }),
+                },
+                ...row0,
+            ]
+            props.setGrid(createSht([row0]))
+        } else {
+            // The grid has been created
+
+            let row0 = titles.map((e) => {
+                return {
+                    value: e.varname,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent(e),
+                }
+            })
+            row0 = [
+                {
+                    value: 'Email_Address',
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: 'Email_Address',
+                        color: 'black',
+                    }),
+                },
+                ...row0,
+            ]
+            let sheet = createSht2(row0, grid, props.getGridValue)
+
+            props.setGrid(sheet)
+        }
     }, [])
 
     const getFile = (f) => {
@@ -157,46 +202,111 @@ function EditableTable(props) {
     const handleFileInput = (ev) => {
         getFile(ev.target.files[0])
     }
-    return (
-        <React.Fragment>
-            <div className='flex-row'>
-                <div className='custom-file excelfile flex'>
-                    <input
-                        type='file'
-                        className=''
-                        id='inputGroupFile01'
-                        aria-describedby='inputGroupFileAddon01'
-                        onChange={(ev) => handleFileInput(ev)}
-                    />
-                    <label
-                        className='custom-file-label'
-                        htmlFor='inputGroupFile01'
-                    >
-                        未選擇任何檔案
-                    </label>
-                </div>
-                <button
-                    className='btn btn-light ml-5 flex'
-                    type='button'
-                    id='inputGroupFileAddon04'
-                    onClick={() => saveAsExcel('Temp', props.grid)}
-                >
-                    Save
-                </button>
-            </div>
 
-            <ReactDataSheet
-                data={props.grid}
-                valueRenderer={(cell) => cell.value}
-                onCellsChanged={(changes) => {
-                    const temp = props.grid.map((row) => [...row])
-                    changes.forEach(({ cell, row, col, value }) => {
-                        temp[row][col] = { ...temp[row][col], value }
-                    })
-                    props.setGrid(temp)
-                }}
-            />
-        </React.Fragment>
+    const handleDraft = () => {
+        console.log('handleDraft')
+    }
+
+    return (
+        <div className='vh100'>
+            <div
+                className='modal fade'
+                id='exampleModal'
+                tabIndex='-1'
+                role='dialog'
+                aria-labelledby='exampleModalLabel'
+                aria-hidden='true'
+            >
+                <div className='flex modal-dialog vh100 yCen' role='document'>
+                    <div className='flex modal-content'>
+                        <div className='modal-header'>
+                            <h5 className='modal-title' id='exampleModalLabel'>
+                                Create Draft
+                            </h5>
+                            <button
+                                type='button'
+                                className='close'
+                                data-dismiss='modal'
+                                aria-label='Close'
+                            >
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                        <div className='modal-body'>
+                            <p className='text-dark'>Name: </p>
+                            <input
+                                className='input-group-text'
+                                placeholder='Name your new draft'
+                            ></input>
+                        </div>
+                        <div className='modal-footer'>
+                            <button
+                                type='button'
+                                className='btn btn-secondary'
+                                data-dismiss='modal'
+                            >
+                                Close
+                            </button>
+                            <button
+                                type='button'
+                                className='btn btn-info'
+                                onClick={handleDraft}
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='newAnimation'>
+                <div className='flex-row'>
+                    <div className='col-sm-3 custom-file excelfile flex'>
+                        <input
+                            type='file'
+                            className='custom-file-input input-sm'
+                            id='inputGroupFile01'
+                            aria-describedby='inputGroupFileAddon01'
+                            onChange={(ev) => handleFileInput(ev)}
+                        />
+                        <label
+                            className='custom-file-label'
+                            htmlFor='inputGroupFile01'
+                        >
+                            未選擇任何檔案
+                        </label>
+                    </div>
+                    <div className='col'></div>
+                    <button
+                        className='col-sm-1 btn btn-light btn-sm'
+                        type='button'
+                        id='inputGroupFileAddon04'
+                        onClick={() => saveAsExcel('Temp', props.grid)}
+                    >
+                        Save
+                    </button>
+                    <button
+                        className='col-sm-2 btn btn-info btn-sm'
+                        type='button'
+                        data-toggle='modal'
+                        data-target='#exampleModal'
+                    >
+                        Save as Draft
+                    </button>
+                </div>
+
+                <ReactDataSheet
+                    data={props.grid}
+                    valueRenderer={(cell) => cell.value}
+                    onCellsChanged={(changes) => {
+                        const temp = props.grid.map((row) => [...row])
+                        changes.forEach(({ cell, row, col, value }) => {
+                            temp[row][col] = { ...temp[row][col], value }
+                        })
+                        props.setGrid(temp)
+                    }}
+                />
+            </div>
+        </div>
     )
 }
 

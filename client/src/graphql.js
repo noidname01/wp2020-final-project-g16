@@ -42,8 +42,48 @@ const CREATE_USER = gql`
         }
     }
 `
+const CREATE_TEMPLATE = gql`
+    mutation createTemplate(
+        $id: String!
+        $name: String!
+        $description: String
+        $timestamp: String!
+        $userId: String!
+        $content: String!
+    ) {
+        createTemplate(
+            data: {
+                id: $id
+                name: $name
+                description: $description
+                timestamp: $timestamp
+                userId: $userId
+                content: $content
+            }
+        ) {
+            id
+            name
+            description
+            timestamp
+            userId
+            content
+        }
+    }
+`
+const GET_TEMPLATE = gql`
+    query getTemplate($userId: String!) {
+        getTemplate(userId: $userId) {
+            id
+            name
+            description
+            timestamp
+            userId
+            content
+        }
+    }
+`
 
-export { CHECK_USERNAME, GET_USER, CREATE_USER }
+export { CHECK_USERNAME, GET_USER, CREATE_USER, CREATE_TEMPLATE, GET_TEMPLATE }
 /*
 const GET_MESSAGES = gql`
     query messages($from: String!, $to: String!) {

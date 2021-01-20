@@ -34,9 +34,29 @@ const Login = () => {
         } else {
             console.log(data.getUser[0])
             localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
-            setRedirect(<Redirect to='/ee/new'></Redirect>)
+            userInfoToLocalStorage(data.getUser[0])
+            setRedirect(
+                <Redirect
+                    to={{
+                        pathname: '/ee',
+                        state: {
+                            userinfo: data.getUser[0],
+                        },
+                    }}
+                ></Redirect>
+            )
         }
     }
+
+    // ================ localStorage Test ===================
+    const userInfoToLocalStorage = (userInfo) => {
+        Object.keys(userInfo).forEach((input) => {
+            console.log(input)
+            console.log(userInfo[input])
+            localStorage.setItem(input, userInfo[input])
+        })
+    }
+    // ================ localStorage Test ===================
 
     useEffect(() => {
         localStorage.setItem('auth', 'false')

@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import user from '../images/user.png'
 
-export default function Menu({ menuOpen }) {
+export default function Menu(props) {
+    let { menuOpen, userInfo } = props
     return (
         <>
             <div className='wrapper'>
@@ -16,24 +17,21 @@ export default function Menu({ menuOpen }) {
                 >
                     <ul className='navbar-nav mr-auto'>
                         <li className='nav-item'>
-                            <Link className='nav-link profile' to='/ee/profile'>
+                            <div className=' profile' to='/ee/profile'>
                                 <img
                                     src={user}
                                     height='30'
                                     className='d-inline-block pr-4'
                                     alt=''
                                 />
-                                <span>Profile</span>
-                            </Link>
+                                <span>{userInfo.username}</span>
+                            </div>
                         </li>
                         <li className='nav-item'>
                             <Link
                                 className='nav-link'
                                 to={{
                                     pathname: '/ee/new',
-                                    state: {
-                                        defaultValue: 'Start Writing!',
-                                    },
                                 }}
                             >
                                 New

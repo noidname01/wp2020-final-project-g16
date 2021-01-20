@@ -6,6 +6,14 @@ const DraftSchema = new Schema({
         type: String,
         required: true,
     },
+    name: {
+        type: String,
+        required: true,
+    },
+    sent: {
+        type: Boolean,
+        required: true,
+    },
     userId: {
         type: String,
         required: true,

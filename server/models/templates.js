@@ -6,6 +6,18 @@ const TemplateSchema = new Schema({
         type: String,
         required: true,
     },
+    name: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: false,
+    },
+    timestamp: {
+        type: String,
+        required: true,
+    },
     userId: {
         type: String,
         required: true,

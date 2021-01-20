@@ -1,55 +1,56 @@
 import React from 'react'
+import { useLocation, Link } from 'react-router-dom'
 
-const Card = () => {
-	return (
-		<div className='card draftcard'>
-			<div className='card-body'>
-				<h5 className='card-title'>Draft #</h5>
-				<p className='card-text'>
-					Some quick example text to build on the card title and make
-					up the bulk of the card's content.
-				</p>
-				<a href='#' className='card-link'>
-					Go somewhere
-				</a>
-			</div>
-		</div>
-	)
+const Card = ({ txt }) => {
+    return (
+        <div className='card draftcard'>
+            <div className='card-body'>
+                <h5 className='card-title'>Draft #</h5>
+                <p className='card-text'>{txt}</p>
+                <Link to='/ee/new'>Edit this draft</Link>
+            </div>
+        </div>
+    )
 }
 
 const Draft = () => {
-	return (
-		<div className='grid'>
-			<div className='row'>
-				<div className='grid-col'>
-					<Card />
-				</div>
-				<div className='grid-col'>
-					<Card />
-				</div>
-				<div className='grid-col'>
-					<Card />
-				</div>
-				<div className='grid-col'>
-					<Card />
-				</div>
-			</div>
-			<div className='row'>
-				<div className='grid-col'>
-					<Card />
-				</div>
-				<div className='grid-col'>
-					<Card />
-				</div>
-				<div className='grid-col'>
-					<Card />
-				</div>
-				<div className='grid-col'>
-					<Card />
-				</div>
-			</div>
-		</div>
-	)
+    const location = useLocation()
+    const data = location.state
+    return (
+        <div className='grid'>
+            <div className='row'>
+                <h2 className='dh'>Drafts</h2>
+            </div>
+            <div className='row xCen yCen'>
+                <div className='grid-col'>
+                    <Card txt={data} />
+                </div>
+                <div className='grid-col'>
+                    <Card txt={data} />
+                </div>
+                <div className='grid-col'>
+                    <Card txt={data} />
+                </div>
+                <div className='grid-col'>
+                    <Card txt={data} />
+                </div>
+            </div>
+            <div className='row xCen yCen'>
+                <div className='grid-col'>
+                    <Card />
+                </div>
+                <div className='grid-col'>
+                    <Card />
+                </div>
+                <div className='grid-col'>
+                    <Card />
+                </div>
+                <div className='grid-col'>
+                    <Card />
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default Draft

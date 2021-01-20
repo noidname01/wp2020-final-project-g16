@@ -16,11 +16,21 @@ import { re } from '../config/parserConfig'
 
 import parse from 'html-react-parser'
 
+// GraphQL dependencies
+import { useQuery, useMutation } from '@apollo/client'
+import { CREATE_TEMPLATE } from '../graphql'
+import { v4 as uuid_v4 } from 'uuid'
+import timestamp from '../containers/Timestamp'
+
 const Editor = (props) => {
     // const { state } = useParams()
     //const location = useLocation()
+    // graphQL
+    const [createTemplate] = useMutation(CREATE_TEMPLATE)
+    const [saveName, setSaveName] = useState('')
+    const [saveDescription, setSaveDescription] = useState('')
 
-    let { html, idCounter } = props
+    let { html, idCounter, subject } = props
     const { setHtml, setIdCounter, setSubject } = props
 
     const [nodes, setNodes] = useState([])
@@ -32,31 +42,32 @@ const Editor = (props) => {
     const renderTemplate = (html) => {
         //TODO
 
-        let texts = html.split(re)
+        try {
+            let texts = html.split(re)
 
-        let inputs = html.match(re)
+            let inputs = html.match(re)
 
-        inputs = inputs.map((input) => {
-            let varname = input.match(/name="([\w]*)"/m)[1]
-            return input.replace(
-                /defaultvalue="[\w]*"/gm,
-                `defaultvalue="${varname}"`
-            )
-        })
+            inputs = inputs.map((input) => {
+                let varname = input.match(/name="([\w]*)"/m)[1]
+                return input.replace(
+                    /defaultvalue="[\w]*"/gm,
+                    `defaultvalue="${varname}"`
+                )
+            })
 
-        // console.log('inputs', inputs)
+            // console.log('inputs', inputs)
 
-        html = ''
+            html = ''
 
-        for (let i = 0; i < inputs.length; i++) {
-            html += texts[i]
-            html += inputs[i]
-        }
+            for (let i = 0; i < inputs.length; i++) {
+                html += texts[i]
+                html += inputs[i]
+            }
 
-        html += texts[texts.length - 1]
+            html += texts[texts.length - 1]
 
-        // console.log('combine', html)
-
+            // console.log('combine', html)
+        } catch {}
         let domparser = new DOMParser()
         let doc = domparser.parseFromString(html, 'text/html')
         let children = doc.body.children
@@ -108,6 +119,29 @@ const Editor = (props) => {
         setSubject(e.target.value)
     }
 
+    const handleTemplate = async () => {
+        console.log('handleTemplate')
+        if (saveName === '') {
+            alert('Please name yout template')
+            return
+        } else if (html === '') {
+            alert('The editor is empty!')
+        }
+
+        //try {
+        await createTemplate({
+            variables: {
+                id: uuid_v4(),
+                name: saveName,
+                description: saveDescription,
+                timestamp: timestamp(),
+                userId: props.userInfo.id,
+                content: html,
+            },
+        })
+        //} catch {}
+    }
+
     useEffect(() => {
         if (html) {
             // props.setHtml(html)
@@ -121,40 +155,117 @@ const Editor = (props) => {
     }, [html]) */
 
     return (
-        <>
-            <form className='mx-2'>
-                <div className='form-group flex-row'>
-                    <label
-                        htmlFor='inputSubject'
-                        className='col-sm-1 col-form-label'
-                    >
-                        Subject:
-                    </label>
-                    <div className='col-sm-10'>
-                        <input
-                            type='text'
-                            className='emailform'
-                            id='inputSubject'
-                            onChange={handleSubjectChange}
-                        />
-                    </div>
-                    <button
-                        className='col btn btn-light btn-sm'
-                        onClick={handleClick}
-                    >
-                        Test
-                    </button>
-                </div>
-            </form>
-            <ReactSummernote
-                //value={location.state.defaultValue}
-                options={editorConfig}
-                onChange={handleEditorChange}
-                className='summernote'
+        <div className='vh100'>
+            <div
+                className='modal fade'
+                id='exampleModal'
+                tabIndex='-1'
+                role='dialog'
+                aria-labelledby='exampleModalLabel'
+                aria-hidden='true'
             >
-                {html ? parse(html) : null}
-            </ReactSummernote>
-        </>
+                <div className='flex modal-dialog vh100 yCen' role='document'>
+                    <div className='flex modal-content'>
+                        <div className='modal-header'>
+                            <h5 className='modal-title' id='exampleModalLabel'>
+                                Create a Template
+                            </h5>
+                            <button
+                                type='button'
+                                className='close'
+                                data-dismiss='modal'
+                                aria-label='Close'
+                                style={{ outline: 'none' }}
+                            >
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                        <div className='modal-body'>
+                            <p className='text-dark'>Name: </p>
+                            <input
+                                className='input-group-text'
+                                placeholder='Name your new template...'
+                                style={{
+                                    width: '80%',
+                                    outline: 'none',
+                                }}
+                                onChange={(e) => setSaveName(e.target.value)}
+                            ></input>
+                            <p> </p>
+                            <p className='text-dark'>Description: </p>
+                            <input
+                                className='input-group-text'
+                                placeholder='Describe your template...'
+                                style={{ width: '80%', outline: 'none' }}
+                                onChange={(e) =>
+                                    setSaveDescription(e.target.value)
+                                }
+                            ></input>
+                        </div>
+                        <div className='modal-footer'>
+                            <button
+                                type='button'
+                                className='btn btn-secondary'
+                                data-dismiss='modal'
+                            >
+                                Close
+                            </button>
+                            <button
+                                type='button'
+                                className='btn btn-info'
+                                onClick={handleTemplate}
+                                data-dismiss='modal'
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='newAnimation'>
+                <form className='mx-2'>
+                    <div className='form-group flex-row'>
+                        <label
+                            htmlFor='inputSubject'
+                            className='col-sm-1 col-form-label'
+                        >
+                            Subject:
+                        </label>
+                        <div className='col'>
+                            <input
+                                type='text'
+                                className='emailform'
+                                id='inputSubject'
+                                defaultValue={subject}
+                                onChange={handleSubjectChange}
+                            />
+                        </div>
+                        <button
+                            className='col-sm-1 btn btn-light btn-sm'
+                            onClick={handleClick}
+                        >
+                            Test
+                        </button>
+                        <button
+                            className='col-sm-2 btn btn-info btn-sm'
+                            type='button'
+                            data-toggle='modal'
+                            data-target='#exampleModal'
+                        >
+                            Save as Template
+                        </button>
+                    </div>
+                </form>
+                <ReactSummernote
+                    //value={location.state.defaultValue}
+                    options={editorConfig}
+                    onChange={handleEditorChange}
+                    className='summernote'
+                >
+                    {html ? parse(html) : null}
+                </ReactSummernote>
+            </div>
+        </div>
     )
 }
 

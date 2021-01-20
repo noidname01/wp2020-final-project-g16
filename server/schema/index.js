@@ -15,13 +15,20 @@ const typeDefs = gql`
         emailAddress: String!
         emailPassword: String!
     }
+
     type Template {
         id: String!
+        name: String!
+        timestamp: String!
+        description: String
         userId: String!
         content: String!
     }
     input TemplateInput {
         id: String!
+        name: String!
+        timestamp: String!
+        description: String
         userId: String!
         content: String!
     }
@@ -33,6 +40,8 @@ const typeDefs = gql`
     }
     input DraftInput {
         id: String!
+        name: String!
+        sent: Boolean!
         userId: String!
         templateId: String!
         xlsxContent: String!
@@ -59,6 +68,8 @@ const typeDefs = gql`
         createTemplate(data: TemplateInput!): Template!
         createDraft(data: DraftInput!): Draft!
         createSent(data: SentInput!): Sent!
+        modifyUser(data: UserInput!): User
+        deleteUser(id: String!): User
     }
 `
 module.exports = { typeDefs }

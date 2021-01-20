@@ -15,15 +15,6 @@ a[data-toggle='collapse'] {
     transform: translateY(-50%);
 }
 
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}
-
 .background-dark {
     background: #2e2e2e;
 }
@@ -123,14 +114,25 @@ ul ul a {
     width: 100%;
 }
 
+.h100 {
+    height: 100%;
+}
+
+.vh100 {
+    height: 100vh;
+}
+
 .main {
     margin: 50px;
+    justify-content: center;
+    align-items: center;
 }
 
 .editArea {
-    margin: 20px;
-    margin-top: 40px;
+    margin: 40px;
     color: white;
+    align-items: center;
+    justify-content: center;
 }
 
 .flex-container-main {
@@ -144,9 +146,25 @@ ul ul a {
 }
 
 .flex-row {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+}
+
+.dh {
+    justify-content: left;
+    color: white;
+    padding-left: 30px;
+}
+
+.yCen {
+    align-items: center;
+}
+
+.xCen {
+    justify-content: center;
 }
 
 .grid-col {
@@ -177,6 +195,10 @@ ul ul a {
 
 .emailform:focus {
     outline: none;
+}
+
+.cell {
+    height: 15px;
 }
 
 .note-icon-magic,
@@ -228,60 +250,57 @@ ul ul a {
     justify-content: center;
 }
 
-.text {
-    font-family: Josefin Sans;
-    font-size: 72px;
-    fill: white;
-    opacity: 0;
+.newAnimation {
+    animation: slideRight 0.6s ease-in-out forwards;
+    transform: translateY(300px);
 }
 
-.letter1 {
-    font-family: Allura;
-    font-size: 18px;
-    fill: white;
+.modal-backdrop {
+    z-index: -1;
 }
-.letter2 {
-    font-family: Bellefair;
-    font-size: 18px;
-    fill: white;
+
+.trash {
+    height: 20px;
+    background-color: transparent;
+    border: none;
 }
-.letter3 {
-    font-family: Caveat;
-    font-size: 18px;
-    fill: white;
+
+.trash:focus {
+    outline: none;
 }
-.letter4 {
-    font-family: Covered By Your Grace;
-    font-size: 18px;
-    fill: white;
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
 }
-.letter5 {
-    font-family: Lovers Quarrel;
-    font-size: 18px;
-    fill: white;
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(500px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
 }
-.letter6 {
-    font-family: Nanum Pen Script;
-    font-size: 18px;
-    fill: white;
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(300px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
-.letter7 {
-    font-family: Parisienne;
-    font-size: 18px;
-    fill: white;
-}
-.letter8 {
-    font-family: Qwigley;
-    font-size: 18px;
-    fill: white;
-}
-.letter9 {
-    font-family: Reenie Beanie;
-    font-size: 18px;
-    fill: white;
-}
-.letter10 {
-    font-family: Zeyada;
-    font-size: 18px;
-    fill: white;
+
+@keyframes expand {
+    0% {
+        transform: translateX(1400px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
 }
