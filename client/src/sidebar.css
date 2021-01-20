@@ -10,6 +10,29 @@ body {
     width: 100%;
 }
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 100px;
+    width: 100px;
+    /* outline: black; */
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    /* border: 1px solid black; */
+    background-image: none;
+}
+
+.carousel-control-next-icon:after {
+    content: '〉';
+    font-size: 40px;
+    color: var(--light) !important;
+}
+
+.carousel-control-prev-icon:after {
+    content: '〈';
+    font-size: 40px;
+    color: var(--light) !important;
+}
+
 .navbar-light {
     background-color: var(--light) !important;
     transition: all 0.5s;

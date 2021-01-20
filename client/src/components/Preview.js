@@ -55,7 +55,7 @@ const Preview = (props) => {
                         <div
                             className='container d-block justify-content-start col-10 carousel-content'
                             style={{
-                                color: 'white',
+                                color: 'var(--light)',
                                 height: '20rem',
                                 // backgroundColor: 'white',
                                 // zIndex: -1,
@@ -65,7 +65,7 @@ const Preview = (props) => {
                             {parse(html)}
                         </div>
                         <Carousel.Caption>
-                            <h3 style={{ color: 'white' }}>
+                            <h3 style={{ color: 'var(--light)' }}>
                                 {getGridValue(index + 1, 'Email_Address')}
                             </h3>
                         </Carousel.Caption>
@@ -93,10 +93,18 @@ const Preview = (props) => {
     }, [presend])
 
     return (
-        <div className='w100'>
-            <p>Subject: {subject}</p>
-            <Carousel>{carousel}</Carousel>
-        </div>
+        <>
+            {!presend.every((i) => {
+                return i === ''
+            }) ? (
+                <div className='w100'>
+                    <p>Subject: {subject}</p>
+                    <Carousel>{carousel}</Carousel>
+                </div>
+            ) : (
+                <div></div>
+            )}
+        </>
     )
 }
 
