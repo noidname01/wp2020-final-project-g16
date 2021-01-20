@@ -82,8 +82,53 @@ const GET_TEMPLATE = gql`
         }
     }
 `
+const MODIFY_USER = gql`
+    mutation modifyUser(
+        $username: String!
+        $password: String!
+        $id: String!
+        $emailAddress: String!
+        $emailPassword: String!
+    ) {
+        modifyUser(
+            data: {
+                username: $username
+                password: $password
+                id: $id
+                emailAddress: $emailAddress
+                emailPassword: $emailPassword
+            }
+        ) {
+            username
+            password
+            id
+            emailAddress
+            emailPassword
+        }
+    }
+`
 
-export { CHECK_USERNAME, GET_USER, CREATE_USER, CREATE_TEMPLATE, GET_TEMPLATE }
+const DELETE_USER = gql`
+    mutation deleteUser($id: String!) {
+        deleteUser(id: $id) {
+            username
+            password
+            id
+            emailAddress
+            emailPassword
+        }
+    }
+`
+
+export {
+    CHECK_USERNAME,
+    GET_USER,
+    CREATE_USER,
+    CREATE_TEMPLATE,
+    GET_TEMPLATE,
+    MODIFY_USER,
+    DELETE_USER,
+}
 /*
 const GET_MESSAGES = gql`
     query messages($from: String!, $to: String!) {
