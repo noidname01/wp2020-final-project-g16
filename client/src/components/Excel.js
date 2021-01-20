@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import ReactDataSheet from 'react-datasheet'
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
-import { useLocation } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 import './Excel.css'
 
-import { re } from '../config/parserConfig'
+// import { re } from '../config/parserConfig'
 
 const MAX_RECEIVERS = 11
 
@@ -100,38 +100,15 @@ async function saveAsExcel(filename, grid) {
 
 function EditableTable(props) {
     //const [grid, setGrid] = useState([])
-    const location = useLocation()
-    const parser = (html) => {
-        let matches_array = html.match(re)
-        console.log(matches_array)
+    // const location = useLocation()
 
-        if (!matches_array) {
-            return []
-        }
+    const { titles, grid } = props
 
-        let varList = matches_array.map((input) => {
-            return {
-                id: input.match(/id="([0-9]*)"/m)[1],
-                varname: input.match(/name="([\w]*)"/m)[1],
-                color: input.match(/background-color: (rgb\([0-9, ]*\))/m)
-                    ? input.match(/background-color: (rgb\([0-9, ]*\))/m)[1]
-                    : 'gray',
-            }
-        })
-        //console.log(varList)
-        return varList
-    }
     useEffect(async () => {
         if (props.html === undefined) {
             return
         }
 
-        //console.log('excel html', props.html)
-        const titles = parser(props.html)
-        props.setVarList(titles)
-
-        const grid = props.grid
-        // the grid hasn't been created yet
         if (grid.length === 0) {
             let row0 = titles.map((e) => {
                 return {

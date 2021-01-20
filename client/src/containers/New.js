@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Editor from '../components/Editor'
 import Excel from '../components/Excel'
 import Preview from '../components/Preview'
 import Header from '../components/Header2'
 import Send from '../components/Send'
+
+import { re } from '../config/parserConfig'
 
 const createHeaderList = (step) => {
     if (step === 'Editor') {
@@ -62,6 +64,27 @@ const New = (props) => {
             [{value: }, {value: }, {value: }],
         ]
     */
+    const parser = (html) => {
+        let matches_array = html.match(re)
+        console.log(matches_array)
+
+        if (!matches_array) {
+            return []
+        }
+
+        let varList = matches_array.map((input) => {
+            return {
+                id: input.match(/id="([0-9]*)"/m)[1],
+                varname: input.match(/name="([\w]*)"/m)[1],
+                color: input.match(/background-color: (rgb\([0-9, ]*\))/m)
+                    ? input.match(/background-color: (rgb\([0-9, ]*\))/m)[1]
+                    : 'gray',
+            }
+        })
+        //console.log(varList)
+        return varList
+    }
+
     const getGridValue = (rowNum, varname) => {
         if (rowNum > 10 || rowNum < 1 || grid[0] === undefined) {
             return undefined
@@ -81,9 +104,42 @@ const New = (props) => {
     }
 
     const headerSetStep = (step) => {
-        setStep(step)
-        setTitleList(createHeaderList(step))
+        const [check, nonEmpty, nonSame] = checkVarList()
+
+        if (check) {
+            setStep(step)
+            setTitleList(createHeaderList(step))
+        } else {
+            if (!nonEmpty) {
+                alert("The variable can't not be empty!!")
+            }
+            if (!nonSame) {
+                alert("You can't have same variable!!")
+            }
+        }
     }
+
+    const checkVarList = () => {
+        // console.log(varList)
+
+        const nonEmpty = varList.every((vari) => {
+            return vari.varname !== ''
+        })
+
+        const set1 = new Set(varList.map((vari) => vari.varname))
+
+        // console.log(set1)
+
+        const nonSame = varList.length === set1.size
+
+        // console.log('nonEmpty, nonSame', nonEmpty, nonSame)
+
+        return [nonEmpty && nonSame, nonEmpty, nonSame]
+    }
+
+    useEffect(() => {
+        setVarList(parser(html))
+    }, [html])
 
     return (
         <React.Fragment>
@@ -107,7 +163,8 @@ const New = (props) => {
                     html={html}
                     setGrid={setGrid}
                     grid={grid}
-                    setVarList={setVarList}
+                    // setVarList={setVarList}
+                    titles={varList}
                     getGridValue={getGridValue}
                     userInfo={userInfo}
                 ></Excel>
