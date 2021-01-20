@@ -6,18 +6,29 @@ import { useLocation, Link } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_TEMPLATE, LOOKUP_TEMPLATE } from '../graphql'
 
-const card = (name, des, timestamp) => {
+
+import Scrollbars from 'react-custom-scrollbars'
+
+const renderThumb = ({ style, ...props }) => {
+    const thumbStyle = {
+        borderRadius: 6,
+        backgroundColor: 'rgba(192,192,200, 0.5)',
+    }
+    return <div style={{ ...style, ...thumbStyle }} {...props} />
+}
+
+const card = (name, des) => {
     return (
-        <div
-            className='card border-secondary mb-3'
-            style={{ maxWidth: '18rem' }}
-        >
-            <div className='card-header' style={{ color: 'black' }}>
-                {timestamp}
-            </div>
-            <div className='card-body text-secondary'>
-                <h5 className='card-title'>{name}</h5>
-                <p className='card-text'>{des}</p>
+        <div className='grid-col'>
+            <div className='card flex-card border-secondary mb-3'>
+                <div className='card-header' style={{ color: 'black' }}>
+                    Header
+                </div>
+                <div className='card-body text-secondary'>
+                    <h5 className='card-title'>{name}</h5>
+                    <p className='card-text'>{des}</p>
+                </div>
+
             </div>
         </div>
     )
@@ -48,22 +59,26 @@ const Template = (props) => {
     }
 
     return (
-        <div className='grid'>
-            <button onClick={handleClick}>test</button>
-            <div className='row'>
-                <h2 className='dh'>Templates</h2>
-            </div>
-            <div className='row xCen yCen'>
-                {!data ? (
+
+            <div className='frameUp'>Template</div>
+            <div className='frameDown'>
+                <div className='grid frameIn2'>
+                    <Scrollbars renderThumbVertical={renderThumb}>
+                        <div className='flex-row'>
+                      {!data ? (
                     <></>
                 ) : (
                     data.map((ele) => {
                         //console.log(ele.name, ele.description)
-                        return card(ele.name, ele.description, ele.timestamp)
+                        return card(ele.name, ele.description)
                     })
                 )}
+                        </div>
+                    </Scrollbars>
+                </div>
+
             </div>
-        </div>
+        </>
     )
 }
 

@@ -142,58 +142,68 @@ const New = (props) => {
     }, [html])
 
     return (
-        <React.Fragment>
-            <Header setStep={headerSetStep} titleList={titleList}></Header>
+        <>
+            <div className='frameUp'>New</div>
+            <div className='frameDown'>
+                <div className='frameIn'>
+                    <Header
+                        setStep={headerSetStep}
+                        titleList={titleList}
+                    ></Header>
 
-            {step === 'Editor' ? (
-                <Editor
-                    setHtml={setHtml}
-                    html={html}
-                    idCounter={idCounter}
-                    setIdCounter={setIdCounter}
-                    subject={subject}
-                    setSubject={setSubject}
-                    userInfo={userInfo}
-                ></Editor>
-            ) : (
-                <div></div>
-            )}
-            {step === 'Excel' ? (
-                <Excel
-                    html={html}
-                    setGrid={setGrid}
-                    grid={grid}
-                    // setVarList={setVarList}
-                    titles={varList}
-                    getGridValue={getGridValue}
-                    userInfo={userInfo}
-                ></Excel>
-            ) : (
-                <div></div>
-            )}
-            {step === 'Preview' ? (
-                <Preview
-                    html={html}
-                    userInfo={userInfo}
-                    varList={varList}
-                    getGridValue={getGridValue}
-                    presend={presend}
-                    setPresend={setPresend}
-                ></Preview>
-            ) : (
-                <div></div>
-            )}
-            {step === 'Send' ? (
-                <Send
-                    userInfo={userInfo}
-                    presend={presend}
-                    getGridValue={getGridValue}
-                    subject={subject}
-                ></Send>
-            ) : (
-                <div></div>
-            )}
-        </React.Fragment>
+                    {step === 'Editor' ? (
+                        <Editor
+                            setHtml={setHtml}
+                            html={html}
+                            idCounter={idCounter}
+                            setIdCounter={setIdCounter}
+                            subject={subject}
+                            setSubject={setSubject}
+                            userInfo={userInfo}
+                        ></Editor>
+                    ) : (
+                        <div></div>
+                    )}
+                    {step === 'Excel' ? (
+                        <Excel
+                            html={html}
+                            setGrid={setGrid}
+                            grid={grid}
+                            // setVarList={setVarList}
+                            titles={varList}
+                            getGridValue={getGridValue}
+                            userInfo={userInfo}
+                        ></Excel>
+                    ) : (
+                        <div></div>
+                    )}
+                    {step === 'Preview' ? (
+                        <Preview
+                            subject={subject}
+                            html={html}
+                            userInfo={userInfo}
+                            varList={varList}
+                            getGridValue={getGridValue}
+                            presend={presend}
+                            setPresend={setPresend}
+                        ></Preview>
+                    ) : (
+                        <div></div>
+                    )}
+                    {step === 'Send' ? (
+                        <Send
+                            userInfo={userInfo}
+                            presend={presend}
+                            getGridValue={getGridValue}
+                            subject={subject}
+                        ></Send>
+                    ) : (
+                        <div></div>
+                    )}
+                </div>
+            </div>
+        </>
+
     )
 }
 

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import Welcome from '../containers/Welcome'
-import Login from '../containers/Login'
-import Register from '../containers/Register'
-import App from '../containers/App'
+import Welcome from './Welcome'
+import Login from './Login'
+import Register from './Register'
+import App from './App'
+import Test from './Test'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
