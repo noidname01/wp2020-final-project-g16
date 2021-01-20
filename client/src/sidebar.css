@@ -162,6 +162,16 @@ body {
     color: #2e2e2e;
 }
 
+.trash {
+    outline: none;
+    background-color: transparent;
+    opacity: 0.8;
+}
+
+.w-40 {
+    width: 40%;
+}
+
 /* old */
 
 .carousel-content p {
