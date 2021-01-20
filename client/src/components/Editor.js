@@ -155,7 +155,7 @@ const Editor = (props) => {
     }, [html]) */
 
     return (
-        <div className='vh100'>
+        <div className='w100'>
             <div
                 className='modal fade'
                 id='exampleModal'

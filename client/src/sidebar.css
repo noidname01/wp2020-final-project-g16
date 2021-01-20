@@ -1,7 +1,136 @@
-/*
-    ADDITIONAL DEMO STYLE, NOT IMPORTANT TO MAKE THINGS WORK BUT TO MAKE IT A BIT NICER :)
-*/
-@import 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700';
+/* test */
+
+.frame {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.frameL {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.frameR {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #2e2e2e;
+    color: #ffffff;
+}
+
+.frameUp {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    padding: 30px;
+    font-size: 36px;
+}
+
+.frameDown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.frameIn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    justify-content: start;
+    align-items: start;
+}
+
+.frameIn2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    justify-content: start;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+}
+
+.profile {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    padding: 10px;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+    -moz-transition: opacity 0.5s ease-out;
+    -webkit-transition: opacity 0.5s ease-out;
+    -o-transition: opacity 0.5s ease-out;
+}
+
+.menu-item:hover {
+    color: #fff;
+    background: #b3b3b3;
+    opacity: 0.7;
+}
+
+.menu-item.active {
+    color: #1a1a1a;
+    background: #fff;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+    flex-wrap: wrap;
+}
+
+.grid-col {
+    display: flex;
+    padding: 15px;
+    align-items: stretch;
+}
+
+.flex-card {
+    float: left;
+    width: 250px;
+}
+
+/* old */
 
 .carousel-content p {
     display: block !important;
@@ -101,14 +230,6 @@ ul ul a {
     background: #fff;
 }
 
-.profile {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
-    font-size: 1.5em;
-    display: block;
-}
-
 .draftcard {
     width: 15rem;
     height: 15rem;
@@ -145,18 +266,6 @@ ul ul a {
     background-color: #2e2e2e;
 }
 
-.flex {
-    display: flex;
-}
-
-.flex-row {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
 .dh {
     justify-content: left;
     color: white;
@@ -169,11 +278,6 @@ ul ul a {
 
 .xCen {
     justify-content: center;
-}
-
-.grid-col {
-    display: flex;
-    padding: 15px;
 }
 
 .excelfile {
