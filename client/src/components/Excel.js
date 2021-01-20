@@ -13,7 +13,7 @@ function createComponent(e) {
     return (
         <div
             style={{
-                color: e.color,
+                color: '#2e2e2e',
                 fontWeight: 'bold',
                 height: '30px',
                 alignContent: 'center',
