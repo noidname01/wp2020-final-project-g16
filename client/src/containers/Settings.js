@@ -1,18 +1,40 @@
 import React, { useState } from 'react'
-import { useQuery, useMutation } from '@apollo/client'
+
+// GraphQL dependencies
+import { useMutation } from '@apollo/client'
+import { MODIFY_USER } from '../graphql'
 
 const Settings = (props) => {
     const { userInfo } = props
     const { username, password, emailAddress, emailPassword } = userInfo
-    const [name, setName] = useState('')
-    const [pass, setPassword] = useState('')
+    const [name, setName] = useState(username)
+    const [pass, setPassword] = useState(password)
     const [pass2, setPassword2] = useState('')
-    const [email, setEmail] = useState('')
-    const [emailPass, setEmailPassword] = useState('')
+    const [email, setEmail] = useState(emailAddress)
+    const [emailPass, setEmailPassword] = useState(emailPassword)
     const [theme, setTheme] = useState('black')
+
+    // GraphQL
+    const [modifyUser] = useMutation(MODIFY_USER)
 
     const handleChangeTheme = () => {
         setTheme(theme === 'black' ? 'white' : 'black')
+    }
+
+    const handleSave = async () => {
+        if (pass !== pass2) {
+            alert('Passwords are not the same')
+        }
+
+        await modifyUser({
+            variables: {
+                username: name,
+                password: pass,
+                id: userInfo.id,
+                emailAddress: email,
+                emailPassword: emailPass,
+            },
+        })
     }
 
     return (
