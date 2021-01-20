@@ -128,7 +128,7 @@ const Login = () => {
                                 </div>
                                 <button
                                     type='submit'
-                                    className='btn btn-success btn-block'
+                                    className='btn btn-info btn-block'
                                     onClick={handleSubmit}
                                 >
                                     Login
