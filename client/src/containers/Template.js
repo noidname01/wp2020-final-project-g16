@@ -6,14 +6,14 @@ import { useLocation, Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { GET_TEMPLATE } from '../graphql'
 
-const card = (name, des) => {
+const card = (name, des, timestamp) => {
     return (
         <div
             className='card border-secondary mb-3'
             style={{ maxWidth: '18rem' }}
         >
             <div className='card-header' style={{ color: 'black' }}>
-                Header
+                {timestamp}
             </div>
             <div className='card-body text-secondary'>
                 <h5 className='card-title'>{name}</h5>
@@ -36,9 +36,6 @@ const Template = (props) => {
 
     return (
         <div className='grid'>
-            <button onClick={() => console.log('data: ', data.getTemplate)}>
-                TEST
-            </button>
             <div className='row'>
                 <h2 className='dh'>Templates</h2>
             </div>
@@ -47,8 +44,8 @@ const Template = (props) => {
                     <></>
                 ) : (
                     data.getTemplate.map((ele) => {
-                        console.log(ele.name, ele.description)
-                        return card(ele.name, ele.description)
+                        //console.log(ele.name, ele.description)
+                        return card(ele.name, ele.description, ele.timestamp)
                     })
                 )}
             </div>
