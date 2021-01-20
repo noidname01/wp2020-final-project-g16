@@ -7,6 +7,8 @@ import Send from '../components/Send'
 
 import { re } from '../config/parserConfig'
 
+import { useLocation } from 'react-router-dom'
+
 const createHeaderList = (step) => {
     if (step === 'Editor') {
         return [
@@ -42,6 +44,8 @@ const createHeaderList = (step) => {
 const New = (props) => {
     const { userInfo } = props
 
+    const location = useLocation()
+
     const [step, setStep] = useState('Editor') // Editor, Excel, Preview, Send
     const [titleList, setTitleList] = useState([
         { name: 'Editor', status: 'current' },
@@ -49,7 +53,7 @@ const New = (props) => {
         { name: 'Preview', status: 'unavailable' },
         { name: 'Send', status: 'unavailable' },
     ])
-    const [html, setHtml] = useState('')
+    const [html, setHtml] = useState(location.state ? location.state.html : '')
     const [grid, setGrid] = useState([])
     const [idCounter, setIdCounter] = useState(0)
     const [subject, setSubject] = useState('')
