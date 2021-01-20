@@ -119,6 +119,17 @@ const DELETE_USER = gql`
         }
     }
 `
+const DELETE_TEMPLATE = gql`
+    mutation deleteTemplate($id: String!) {
+        deleteTemplate(id: $id) {
+            id
+            name
+            timestamp
+            description
+            content
+        }
+    }
+`
 const LOOKUP_TEMPLATE = gql`
     mutation lookupTemplate($userId: String!) {
         lookupTemplate(userId: $userId) {
