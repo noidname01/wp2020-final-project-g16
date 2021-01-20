@@ -235,7 +235,7 @@ function EditableTable(props) {
             <div
                 className='modal fade'
                 id='exampleModal'
-                tabindex='-1'
+                tabIndex='-1'
                 role='dialog'
                 aria-labelledby='exampleModalLabel'
                 aria-hidden='true'
