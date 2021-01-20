@@ -59,6 +59,7 @@ const Template = (props) => {
     return (
         <React.Fragment>
             <button onClick={handleClick}>test</button>
+
             <div className='frameUp'>Template</div>
             <div className='frameDown'>
                 <div className='grid frameIn2'>

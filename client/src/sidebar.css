@@ -1,7 +1,12 @@
 /* test */
 :root {
     --dark: #2e2e2e;
-    --light: #ffffff;
+    --light: #f8f9fa;
+}
+
+body {
+    height: 100%;
+    width: 100%;
 }
 
 .navbar-light {
@@ -14,6 +19,7 @@
     height: 100vh;
     display: flex;
     flex-direction: row;
+    overflow: scroll;
 }
 
 .frameL {
@@ -140,6 +146,20 @@
 .flex-card {
     float: left;
     width: 250px;
+}
+
+.btn-info,
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info:active:focus,
+.btn-info:active:hover,
+.btn-info:visited {
+    background-color: #c7b6a0 !important;
+    border-color: #c7b6a0 !important;
+    outline-color: #c7b6a0 !important;
+    box-shadow: none !important;
+    color: #2e2e2e;
 }
 
 /* old */
