@@ -22,6 +22,8 @@ import { CREATE_TEMPLATE } from '../graphql'
 import { v4 as uuid_v4 } from 'uuid'
 import timestamp from '../containers/Timestamp'
 
+import { TwitterPicker } from 'react-color'
+
 const Editor = (props) => {
     // const { state } = useParams()
     //const location = useLocation()
@@ -34,10 +36,21 @@ const Editor = (props) => {
     const { setHtml, setIdCounter, setSubject } = props
 
     const [nodes, setNodes] = useState([])
+    const [displayColorPicker, setDisplayColorPicker] = useState(false)
     // const
 
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
+
+    const popover = {
+        position: 'absolute',
+        zIndex: '2',
+    }
+    const cover = {
+        position: 'fixed',
+        right: '0px',
+        top: '5rem',
+    }
 
     const renderTemplate = (html) => {
         //TODO
@@ -110,7 +123,7 @@ const Editor = (props) => {
     }
     // =======Test Ugly method ==========
 
-    const handleClick = async (e) => {
+    /*  const handleClick = async (e) => {
         e.preventDefault()
         console.log(
             getComputedStyle(document.documentElement).getPropertyValue(
@@ -125,6 +138,12 @@ const Editor = (props) => {
             )
         )
 
+        setIdCounter((state) => state + 1)
+    } */
+
+    const handleCreateColorVar = (color, event) => {
+        event.preventDefault()
+        ReactSummernote.insertNode(createTag(color.hex))
         setIdCounter((state) => state + 1)
     }
 
@@ -253,12 +272,37 @@ const Editor = (props) => {
                                 onChange={handleSubjectChange}
                             />
                         </div>
-                        <button
+                        {/* <button
                             className='col-sm-1 btn btn-light btn-sm'
                             onClick={handleClick}
                         >
                             Test
+                        </button> */}
+                        <button
+                            className='col-sm-1 btn btn-light btn-sm'
+                            onClick={(e) => {
+                                e.preventDefault()
+                                setDisplayColorPicker(!displayColorPicker)
+                            }}
+                        >
+                            Pick Color
                         </button>
+                        {displayColorPicker ? (
+                            <div style={popover}>
+                                <div
+                                    style={cover}
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        setDisplayColorPicker(false)
+                                    }}
+                                >
+                                    <TwitterPicker
+                                        onChangeComplete={handleCreateColorVar}
+                                    ></TwitterPicker>
+                                </div>
+                            </div>
+                        ) : null}
+
                         <button
                             className='col-sm-2 btn btn-info btn-sm'
                             type='button'
@@ -269,6 +313,7 @@ const Editor = (props) => {
                         </button>
                     </div>
                 </form>
+
                 <ReactSummernote
                     //value={location.state.defaultValue}
                     options={editorConfig}
