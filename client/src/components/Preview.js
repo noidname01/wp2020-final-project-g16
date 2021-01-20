@@ -93,36 +93,10 @@ const Preview = (props) => {
     }, [presend])
 
     return (
-        <>
-            {/* <div>
-                {parse(
-                    presend[peopleCount - 1] ? presend[peopleCount - 1] : ''
-                )}
-            </div>
-            {/* {console.log(presend[peopleCount])} 
-            <button
-                onClick={(e) => {
-                    e.preventDefault()
-                    if (!(peopleCount >= 10)) {
-                        setPeopleCount(peopleCount + 1)
-                    }
-                }}
-            >
-                +
-            </button>
-            <button
-                onClick={(e) => {
-                    e.preventDefault()
-                    if (!(peopleCount <= 1)) {
-                        setPeopleCount((peopleCount) => peopleCount - 1)
-                    }
-                }}
-            >
-                -
-            </button> */}
+        <div className='w100'>
             <p>Subject: {subject}</p>
             <Carousel>{carousel}</Carousel>
-        </>
+        </div>
     )
 }
 
