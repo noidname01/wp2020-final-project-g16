@@ -9,6 +9,11 @@ import { GET_TEMPLATE, LOOKUP_TEMPLATE, DELETE_TEMPLATE } from '../graphql'
 import Scrollbars from 'react-custom-scrollbars'
 import { Element } from 'react-summernote'
 
+import 'bootstrap/js/src/modal'
+import 'bootstrap/js/src/dropdown'
+import 'bootstrap/js/src/tooltip'
+import 'bootstrap/dist/css/bootstrap.css'
+
 const renderThumb = ({ style, ...props }) => {
     const thumbStyle = {
         borderRadius: 6,
@@ -71,7 +76,7 @@ const Template = (props) => {
     }
 
     return (
-        <>
+        <React.Fragment>
             <div className='frameUp'>Template</div>
             <div className='frameDown'>
                 <div className='grid frameIn2'>
@@ -95,7 +100,7 @@ const Template = (props) => {
                     </Scrollbars>
                 </div>
             </div>
-        </>
+        </React.Fragment>
     )
 }
 
