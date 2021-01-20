@@ -34,6 +34,7 @@ const Login = () => {
         } else {
             console.log(data.getUser[0])
             localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
+            userInfoToLocalStorage(data.getUser[0])
             setRedirect(
                 <Redirect
                     to={{
@@ -46,6 +47,16 @@ const Login = () => {
             )
         }
     }
+
+    // ================ localStorage Test ===================
+    const userInfoToLocalStorage = (userInfo) => {
+        Object.keys(userInfo).forEach((input) => {
+            console.log(input)
+            console.log(userInfo[input])
+            localStorage.setItem(input, userInfo[input])
+        })
+    }
+    // ================ localStorage Test ===================
 
     useEffect(() => {
         localStorage.setItem('auth', 'false')
