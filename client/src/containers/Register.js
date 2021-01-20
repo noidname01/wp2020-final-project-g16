@@ -68,7 +68,7 @@ const Register = () => {
             {!redirect ? (
                 <div className='row mt-5'>
                     <div className='col-md-4 m-auto'>
-                        <div className='card card-body'>
+                        <div className='card card-body ca'>
                             <h1 className='text-center mb-3'>Register</h1>
                             {errors.length > 0 ? (
                                 <div
@@ -176,7 +176,7 @@ const Register = () => {
 
                                 <button
                                     type='submit'
-                                    className='btn btn-success btn-block'
+                                    className='btn btn-info btn-block'
                                     onClick={() => handleSubmit()}
                                 >
                                     Register

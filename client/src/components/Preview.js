@@ -49,27 +49,29 @@ const Preview = (props) => {
 
     const renderCarousel = (presend) => {
         let newCarousel = presend.map((html, index) => {
-            return (
-                <Carousel.Item>
-                    <div
-                        className='container d-block justify-content-start col-10 carousel-content'
-                        style={{
-                            color: 'white',
-                            height: '20rem',
-                            // backgroundColor: 'white',
-                            // zIndex: -1,
-                            borderRadius: '10px',
-                        }}
-                    >
-                        {parse(html)}
-                    </div>
-                    <Carousel.Caption>
-                        <h3 style={{ color: 'white' }}>
-                            {getGridValue(index + 1, 'Email_Address')}
-                        </h3>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            )
+            if (getGridValue(index + 1, 'Email_Address') !== '') {
+                return (
+                    <Carousel.Item>
+                        <div
+                            className='container d-block justify-content-start col-10 carousel-content'
+                            style={{
+                                color: 'var(--light)',
+                                height: '20rem',
+                                // backgroundColor: 'white',
+                                // zIndex: -1,
+                                borderRadius: '10px',
+                            }}
+                        >
+                            {parse(html)}
+                        </div>
+                        <Carousel.Caption>
+                            <h3 style={{ color: 'var(--light)' }}>
+                                {getGridValue(index + 1, 'Email_Address')}
+                            </h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                )
+            }
         })
 
         setCarousel(newCarousel)
@@ -92,34 +94,16 @@ const Preview = (props) => {
 
     return (
         <>
-            {/* <div>
-                {parse(
-                    presend[peopleCount - 1] ? presend[peopleCount - 1] : ''
-                )}
-            </div>
-            {/* {console.log(presend[peopleCount])} 
-            <button
-                onClick={(e) => {
-                    e.preventDefault()
-                    if (!(peopleCount >= 10)) {
-                        setPeopleCount(peopleCount + 1)
-                    }
-                }}
-            >
-                +
-            </button>
-            <button
-                onClick={(e) => {
-                    e.preventDefault()
-                    if (!(peopleCount <= 1)) {
-                        setPeopleCount((peopleCount) => peopleCount - 1)
-                    }
-                }}
-            >
-                -
-            </button> */}
-            <p>Subject: {subject}</p>
-            <Carousel>{carousel}</Carousel>
+            {!presend.every((i) => {
+                return i === ''
+            }) ? (
+                <div className='w100'>
+                    <p>Subject: {subject}</p>
+                    <Carousel>{carousel}</Carousel>
+                </div>
+            ) : (
+                <div></div>
+            )}
         </>
     )
 }

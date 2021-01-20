@@ -24,7 +24,9 @@ export default function Menu(props) {
                         className='d-inline-block pr-4'
                         alt=''
                     />
-                    <span>{userInfo.username}</span>
+                    <span style={{ color: 'var(--dark)' }}>
+                        {userInfo.username}
+                    </span>
                 </li>
                 <li className='menu-item'>
                     <Link
