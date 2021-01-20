@@ -192,6 +192,19 @@ body {
     color: #2e2e2e;
 }
 
+.btn-outline-info:hover,
+.btn-outline-info:focus,
+.btn-outline-info:active,
+.btn-outline-info:active:focus,
+.btn-outline-info:active:hover,
+.btn-outline-info:visited {
+    background-color: transparent !important;
+    border-color: #c7b6a0 !important;
+    outline-color: #c7b6a0 !important;
+    box-shadow: none !important;
+    color: #2e2e2e;
+}
+
 .btn-light {
     background-color: var(--light) !important;
     color: var(--dark) !important;
@@ -204,6 +217,23 @@ body {
 
 .w-40 {
     width: 40%;
+}
+
+.setCard {
+    background-color: transparent;
+    border-color: var(--light);
+    color: var(--light) !important;
+}
+
+.setCard h1 {
+    color: var(--light);
+}
+
+.custom-control-input:focus ~ .custom-control-label::before,
+.custom-control-input:checked ~ .custom-control-label::before {
+    border-color: #c7b6a0 !important;
+    background-color: #c7b6a0 !important;
+    box-shadow: none !important;
 }
 
 /* old */
@@ -404,12 +434,16 @@ ul ul a {
 }
 
 .loginP {
-    color: #535353;
+    color: #6e6e6e;
     font-size: 14px;
 }
 
 .loginP a {
     color: black;
+}
+
+.loginS {
+    color: var(--light);
 }
 
 .loginF {

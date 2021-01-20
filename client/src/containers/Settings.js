@@ -79,25 +79,22 @@ const Settings = (props) => {
 
     return (
         <>
-            <div className='frameUp'>Sent</div>
+            <div className='frameUp'>Settings</div>
             <div className='frameDown'>
-                <div className='row mt-5'>
-                    <div className='col-md-4 m-auto'>
-                        <div className='card card-body'>
-                            <h1 className='text-center mb-3'>Settings</h1>
-
+                <div className='frameIn2'>
+                    <div className='card setCard col-md-6 m-auto'>
+                        <div className='card-body'>
                             <div>
-                                <div class='custom-control custom-switch'>
+                                <div className='custom-control custom-switch'>
                                     <input
                                         type='checkbox'
-                                        class='custom-control-input'
+                                        className='custom-control-input'
                                         id='customSwitch1'
                                         onChange={handleChangeTheme}
                                     />
                                     <label
-                                        class='custom-control-label'
-                                        style={{ color: 'black' }}
-                                        for='customSwitch1'
+                                        className='custom-control-label loginS'
+                                        htmlFor='customSwitch1'
                                     >
                                         {theme} Mode
                                     </label>
@@ -110,7 +107,7 @@ const Settings = (props) => {
                                         type='name'
                                         id='name'
                                         name='name'
-                                        className='loginF'
+                                        className='loginF loginS'
                                         placeholder='Enter Name'
                                         defaultValue={username}
                                         onChange={(e) =>
@@ -130,7 +127,7 @@ const Settings = (props) => {
                                         // type='password'
                                         id='password'
                                         name='password'
-                                        className='loginF'
+                                        className='loginF loginS'
                                         // placeholder='Create Password'
                                         defaultValue={password}
                                         onChange={(e) =>
@@ -149,7 +146,7 @@ const Settings = (props) => {
                                         type='password'
                                         id='password2'
                                         name='password2'
-                                        className='loginF'
+                                        className='loginF loginS'
                                         placeholder='Confirm Password'
                                         defaultValue=''
                                         onChange={(e) =>
@@ -166,7 +163,7 @@ const Settings = (props) => {
                                         type='email'
                                         id='email'
                                         name='email'
-                                        className='loginF'
+                                        className='loginF loginS'
                                         placeholder='Enter Email'
                                         defaultValue={emailAddress}
                                         onChange={(e) =>
@@ -186,7 +183,7 @@ const Settings = (props) => {
                                         // type='password'
                                         id='password3'
                                         name='email'
-                                        className='loginF'
+                                        className='loginF loginS'
                                         placeholder='Enter Email Password'
                                         defaultValue={emailPassword}
                                         onChange={(e) =>
@@ -197,7 +194,7 @@ const Settings = (props) => {
 
                                 <button
                                     type='submit'
-                                    className='btn btn-success btn-block'
+                                    className='btn btn-info btn-block'
                                     onClick={() => handleSave()}
                                 >
                                     Save
