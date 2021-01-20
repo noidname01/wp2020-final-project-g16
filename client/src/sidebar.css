@@ -172,6 +172,15 @@ body {
     background-color: var(--light) !important;
     color: var(--dark) !important;
 }
+.trash {
+    outline: none;
+    background-color: transparent;
+    opacity: 0.8;
+}
+
+.w-40 {
+    width: 40%;
+}
 
 /* old */
 
