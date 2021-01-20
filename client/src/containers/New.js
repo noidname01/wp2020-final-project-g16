@@ -179,6 +179,7 @@ const New = (props) => {
                     )}
                     {step === 'Preview' ? (
                         <Preview
+                            subject={subject}
                             html={html}
                             userInfo={userInfo}
                             varList={varList}
@@ -202,6 +203,7 @@ const New = (props) => {
                 </div>
             </div>
         </>
+
     )
 }
 

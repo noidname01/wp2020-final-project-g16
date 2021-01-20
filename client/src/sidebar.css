@@ -132,6 +132,10 @@
 
 /* old */
 
+.carousel-content p {
+    display: block !important;
+}
+
 a[data-toggle='collapse'] {
     position: relative;
 }

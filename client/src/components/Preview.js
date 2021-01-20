@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import parse from 'html-react-parser'
 
+import Carousel from 'react-bootstrap/Carousel'
+
 const Preview = (props) => {
     // console.log(typeof props)
 
-    const { html, presend, varList, setPresend, getGridValue } = props
+    const { html, subject, presend, varList, setPresend, getGridValue } = props
 
     /* const html = props.html
     const presend = props.presend
@@ -13,6 +15,7 @@ const Preview = (props) => {
     const getGridValue = props.getGridValue */
 
     const [peopleCount, setPeopleCount] = useState(1) //1~10
+    const [carousel, setCarousel] = useState(null)
 
     const renderVar = (count, html, varList) => {
         varList.forEach((vari) => {
@@ -44,6 +47,34 @@ const Preview = (props) => {
         setPresend(newPresend)
     }
 
+    const renderCarousel = (presend) => {
+        let newCarousel = presend.map((html, index) => {
+            return (
+                <Carousel.Item>
+                    <div
+                        className='container d-block justify-content-start col-10 carousel-content'
+                        style={{
+                            color: 'white',
+                            height: '20rem',
+                            // backgroundColor: 'white',
+                            // zIndex: -1,
+                            borderRadius: '10px',
+                        }}
+                    >
+                        {parse(html)}
+                    </div>
+                    <Carousel.Caption>
+                        <h3 style={{ color: 'white' }}>
+                            {getGridValue(index + 1, 'Email_Address')}
+                        </h3>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            )
+        })
+
+        setCarousel(newCarousel)
+    }
+
     useEffect(() => {
         console.log('html', html)
         // console.log('presend')
@@ -56,17 +87,17 @@ const Preview = (props) => {
     // }, [peopleCount])
 
     useEffect(() => {
-        console.log(presend)
+        renderCarousel(presend)
     }, [presend])
 
     return (
         <>
-            <div>
+            {/* <div>
                 {parse(
                     presend[peopleCount - 1] ? presend[peopleCount - 1] : ''
                 )}
             </div>
-            {/* {console.log(presend[peopleCount])} */}
+            {/* {console.log(presend[peopleCount])} 
             <button
                 onClick={(e) => {
                     e.preventDefault()
@@ -86,7 +117,9 @@ const Preview = (props) => {
                 }}
             >
                 -
-            </button>
+            </button> */}
+            <p>Subject: {subject}</p>
+            <Carousel>{carousel}</Carousel>
         </>
     )
 }

@@ -51,7 +51,6 @@ const resolvers = {
 	},
 	Mutation: {
 		createUser: async (parent, args, context, info) => {
-			console.log(args.data)
 			User.create(args.data, function (err, msg) {
 				if (err) throw err
 			})
@@ -71,6 +70,50 @@ const resolvers = {
 		},
 		createSent: async (parent, args, context, info) => {
 			Sent.create(args.data, function (err, msg) {
+				if (err) throw err
+			})
+			return args.data
+		},
+		deleteUser: async (parent, args, context, info) => {
+			let userInfo = await User.find(
+				{ id: args.id },
+				function (err, res) {
+					if (err) {
+						throw err
+					} else {
+						User.remove({ id: args.id }, function (err, result) {
+							if (err) {
+								throw err
+							} else {
+								console.log('===== USER REMOVED =====')
+							}
+						})
+					}
+				}
+			)
+			return userInfo
+		},
+		modifyUser: async (parent, args, context, info) => {
+			let userInfo = await User.find(
+				{ id: args.data.id },
+				function (err, res) {
+					if (err) {
+						throw err
+					} else {
+						User.remove(
+							{ id: args.data.id },
+							function (err, result) {
+								if (err) {
+									throw err
+								} else {
+									console.log('===== USER REMOVED =====')
+								}
+							}
+						)
+					}
+				}
+			)
+			User.create(args.data, function (err, msg) {
 				if (err) throw err
 			})
 			return args.data

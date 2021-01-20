@@ -34,6 +34,7 @@ const Login = () => {
         } else {
             console.log(data.getUser[0])
             localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
+            userInfoToLocalStorage(data.getUser[0])
             setRedirect(
                 <Redirect
                     to={{
@@ -44,6 +45,24 @@ const Login = () => {
                     }}
                 ></Redirect>
             )
+        }
+    }
+
+    // ================ localStorage Test ===================
+    const userInfoToLocalStorage = (userInfo) => {
+        Object.keys(userInfo).forEach((input) => {
+            console.log(input)
+            console.log(userInfo[input])
+            localStorage.setItem(input, userInfo[input])
+        })
+    }
+    // ================ localStorage Test ===================
+
+    const handleKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            console.log('login: ', usernameInput, passwordInput)
+
+            validation()
         }
     }
 
@@ -103,6 +122,7 @@ const Login = () => {
                                         onChange={(e) =>
                                             setPasswordInput(e.target.value)
                                         }
+                                        onKeyUp={handleKeyUp}
                                     />
                                 </div>
                                 <button
