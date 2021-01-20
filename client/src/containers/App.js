@@ -18,16 +18,12 @@ function App() {
         setUserinfo(location.state.userinfo)
     }, [])
     return (
-        <div className='flex-container-main'>
-            <div className='flex'>
+        <div className='frame'>
+            <div className='frameL'>
                 <Menu menuOpen={menuOpen} userInfo={userinfo} />
             </div>
-            <div className='flex w100'>
-                <div className='main w100'>
-                    <div className='editArea'>
-                        <Routes userinfo={userinfo} />
-                    </div>
-                </div>
+            <div className='frameR'>
+                <Routes userinfo={userinfo} />
             </div>
         </div>
     )

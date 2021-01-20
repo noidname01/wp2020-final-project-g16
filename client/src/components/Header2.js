@@ -75,27 +75,25 @@ export default function Header(props) {
     }
 
     return (
-        <>
-            <div className='navbar navbar-expand navbar-dark background-dark'>
-                <div
-                    className='collapse navbar-collapse container-fluid'
-                    id='navbarSupportedContent'
-                >
-                    <ul className='navbar-nav mr-auto'>
-                        <li className='nav-item flex-row'>
-                            {props.titleList.map((e, id) => {
-                                let result = []
-                                if (id !== 0) {
-                                    result.push(getImage())
-                                }
-                                result.push(createBtn(e))
-                                return result
-                            })}
-                        </li>
-                    </ul>
-                </div>
+        <div className='navbar navbar-expand navbar-dark'>
+            <div
+                className='collapse navbar-collapse container-fluid'
+                id='navbarSupportedContent'
+            >
+                <ul className='navbar-nav mr-auto'>
+                    <li className='nav-item flex-row'>
+                        {props.titleList.map((e, id) => {
+                            let result = []
+                            if (id !== 0) {
+                                result.push(getImage())
+                            }
+                            result.push(createBtn(e))
+                            return result
+                        })}
+                    </li>
+                </ul>
             </div>
-        </>
+        </div>
     )
 }
 //onClick={() => setMenuOpen(!menuOpen)}

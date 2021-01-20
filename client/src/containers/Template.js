@@ -8,16 +8,15 @@ import { GET_TEMPLATE } from '../graphql'
 
 const card = (name, des) => {
     return (
-        <div
-            className='card border-secondary mb-3'
-            style={{ maxWidth: '18rem' }}
-        >
-            <div className='card-header' style={{ color: 'black' }}>
-                Header
-            </div>
-            <div className='card-body text-secondary'>
-                <h5 className='card-title'>{name}</h5>
-                <p className='card-text'>{des}</p>
+        <div className='grid-col'>
+            <div className='card flex-card border-secondary mb-3'>
+                <div className='card-header' style={{ color: 'black' }}>
+                    Header
+                </div>
+                <div className='card-body text-secondary'>
+                    <h5 className='card-title'>{name}</h5>
+                    <p className='card-text'>{des}</p>
+                </div>
             </div>
         </div>
     )
@@ -35,24 +34,23 @@ const Template = (props) => {
     }, [data])
 
     return (
-        <div className='grid'>
-            <button onClick={() => console.log('data: ', data.getTemplate)}>
-                TEST
-            </button>
-            <div className='row'>
-                <h2 className='dh'>Templates</h2>
+        <>
+            <div className='frameUp'>Template</div>
+            <div className='frameDown'>
+                <div className='grid frameIn2'>
+                    <div className='flex-row'>
+                        {loading ? (
+                            <></>
+                        ) : (
+                            data.getTemplate.map((ele) => {
+                                console.log(ele.name, ele.description)
+                                return card(ele.name, ele.description)
+                            })
+                        )}
+                    </div>
+                </div>
             </div>
-            <div className='row xCen yCen'>
-                {loading ? (
-                    <></>
-                ) : (
-                    data.getTemplate.map((ele) => {
-                        console.log(ele.name, ele.description)
-                        return card(ele.name, ele.description)
-                    })
-                )}
-            </div>
-        </div>
+        </>
     )
 }
 

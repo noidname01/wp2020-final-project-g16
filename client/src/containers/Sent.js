@@ -2,16 +2,15 @@ import React from 'react'
 
 const Card = () => {
     return (
-        <div className='card draftcard'>
-            <div className='card-body'>
-                <h5 className='card-title'>Mail #</h5>
-                <p className='card-text'>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                </p>
-                <a href='#' className='card-link'>
-                    Go somewhere
-                </a>
+        <div className='grid-col'>
+            <div className='card flex-card border-secondary mb-3'>
+                <div className='card-header' style={{ color: 'black' }}>
+                    Header
+                </div>
+                <div className='card-body text-secondary'>
+                    <h5 className='card-title'>name</h5>
+                    <p className='card-text'>des</p>
+                </div>
             </div>
         </div>
     )
@@ -19,36 +18,16 @@ const Card = () => {
 
 const Sent = () => {
     return (
-        <div className='grid'>
-            <div className='row'>
-                <div className='grid-col'>
-                    <Card />
-                </div>
-                <div className='grid-col'>
-                    <Card />
-                </div>
-                <div className='grid-col'>
-                    <Card />
-                </div>
-                <div className='grid-col'>
-                    <Card />
+        <>
+            <div className='frameUp'>Template</div>
+            <div className='frameDown'>
+                <div className='grid frameIn2'>
+                    <div className='flex-row'>
+                        <Card />
+                    </div>
                 </div>
             </div>
-            <div className='row'>
-                <div className='grid-col'>
-                    <Card />
-                </div>
-                <div className='grid-col'>
-                    <Card />
-                </div>
-                <div className='grid-col'>
-                    <Card />
-                </div>
-                <div className='grid-col'>
-                    <Card />
-                </div>
-            </div>
-        </div>
+        </>
     )
 }
 
