@@ -11,6 +11,10 @@ body {
     width: 100%;
 }
 
+.ca {
+    border: 0 !important;
+}
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     height: 100px;
