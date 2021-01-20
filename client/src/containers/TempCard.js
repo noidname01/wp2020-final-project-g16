@@ -75,7 +75,7 @@ function TempCard(props) {
 			) : (
 				<div></div>
 			)}
-			<div
+			{/*<div
 				className='modal fade'
 				id='exampleModalLong'
 				tabindex='-1'
@@ -123,7 +123,7 @@ function TempCard(props) {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>*/}
 		</div>
 	)
 }
