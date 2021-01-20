@@ -96,7 +96,9 @@ const Editor = (props) => {
         newVar.setAttribute('class', 'btn')
         newVar.setAttribute('id', id ? id : idCounter)
         newVar.style.backgroundColor = bgColor
-        newVar.style.color = 'white'
+        newVar.style.color = getComputedStyle(
+            document.documentElement
+        ).getPropertyValue('--dark')
         newVar.style.width = '6rem'
         newVar.setAttribute('placeholder', '$Var')
         // newVar.setAttribute('defaultValue', varname ? varname : '')
@@ -110,7 +112,18 @@ const Editor = (props) => {
 
     const handleClick = async (e) => {
         e.preventDefault()
-        ReactSummernote.insertNode(createTag('#123456'))
+        console.log(
+            getComputedStyle(document.documentElement).getPropertyValue(
+                '--light'
+            )
+        )
+        ReactSummernote.insertNode(
+            createTag(
+                getComputedStyle(document.documentElement).getPropertyValue(
+                    '--light'
+                )
+            )
+        )
 
         setIdCounter((state) => state + 1)
     }

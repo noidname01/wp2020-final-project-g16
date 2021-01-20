@@ -6,6 +6,16 @@ import { useLocation, Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { GET_TEMPLATE } from '../graphql'
 
+import Scrollbars from 'react-custom-scrollbars'
+
+const renderThumb = ({ style, ...props }) => {
+    const thumbStyle = {
+        borderRadius: 6,
+        backgroundColor: 'rgba(192,192,200, 0.5)',
+    }
+    return <div style={{ ...style, ...thumbStyle }} {...props} />
+}
+
 const card = (name, des) => {
     return (
         <div className='grid-col'>
@@ -38,16 +48,18 @@ const Template = (props) => {
             <div className='frameUp'>Template</div>
             <div className='frameDown'>
                 <div className='grid frameIn2'>
-                    <div className='flex-row'>
-                        {loading ? (
-                            <></>
-                        ) : (
-                            data.getTemplate.map((ele) => {
-                                console.log(ele.name, ele.description)
-                                return card(ele.name, ele.description)
-                            })
-                        )}
-                    </div>
+                    <Scrollbars renderThumbVertical={renderThumb}>
+                        <div className='flex-row'>
+                            {loading ? (
+                                <></>
+                            ) : (
+                                data.getTemplate.map((ele) => {
+                                    console.log(ele.name, ele.description)
+                                    return card(ele.name, ele.description)
+                                })
+                            )}
+                        </div>
+                    </Scrollbars>
                 </div>
             </div>
         </>

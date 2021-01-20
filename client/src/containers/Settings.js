@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // GraphQL dependencies
 import { useMutation } from '@apollo/client'
@@ -36,6 +36,16 @@ const Settings = (props) => {
             },
         })
     }
+
+    useEffect(() => {
+        if (theme === 'black') {
+            document.documentElement.style.setProperty('--dark', '#2e2e2e')
+            document.documentElement.style.setProperty('--light', '#ffffff')
+        } else {
+            document.documentElement.style.setProperty('--dark', '#ffffff')
+            document.documentElement.style.setProperty('--light', '#2e2e2e')
+        }
+    }, [theme])
 
     return (
         <div className='row mt-5'>

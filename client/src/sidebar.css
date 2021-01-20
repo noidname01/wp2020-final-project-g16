@@ -4,6 +4,11 @@
     --light: #ffffff;
 }
 
+.navbar-light {
+    background-color: var(--light) !important;
+    transition: all 0.5s;
+}
+
 .frame {
     width: 100vw;
     height: 100vh;
@@ -19,6 +24,7 @@
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: var(--light);
+    transition: all 0.5s;
 }
 
 .frameR {
@@ -33,6 +39,7 @@
     padding-bottom: 15px;
     background-color: var(--dark);
     color: var(--light);
+    transition: all 0.5s;
 }
 
 .frameUp {
