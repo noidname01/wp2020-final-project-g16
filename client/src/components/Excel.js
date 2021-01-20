@@ -45,21 +45,93 @@ function createSht(sht) {
     }
     for (let i = 0; i < MAX_RECEIVERS; i++) {
         if (sht[i] !== undefined) {
-            result.push(sht[i])
+            result.push([
+                {
+                    value: i === 0 ? '' : i,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: i === 0 ? '' : i,
+                        color: 'rgb(100,100,100)',
+                    }),
+                    width: '10%',
+                },
+                ...sht[i],
+            ])
         } else {
-            result.push(emptyRow)
+            result.push([
+                {
+                    value: i === 0 ? '' : i,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: i === 0 ? '' : i,
+                        color: 'rgb(100,100,100)',
+                    }),
+                    width: '10%',
+                },
+                ...emptyRow,
+            ])
         }
     }
-    //console.log(result)
+    return result
+}
+
+function createSht3(sht, grid) {
+    let result = []
+
+    console.log(sht)
+
+    const colNumber = sht[0].length - 1
+    //console.log('colNumber: ' + colNumber)
+    let emptyRow = []
+    for (let i = 0; i < colNumber; i++) {
+        emptyRow.push({ value: '' })
+    }
+    result.push(grid[0])
+    for (let i = 1; i < MAX_RECEIVERS; i++) {
+        if (sht[i] !== undefined) {
+            sht[i].shift()
+            console.log(sht[i])
+            result.push([
+                {
+                    value: i === 0 ? '' : i,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: i === 0 ? '' : i,
+                        color: 'rgb(100,100,100)',
+                    }),
+                    width: '10%',
+                },
+                ...sht[i],
+            ])
+        } else {
+            result.push([
+                {
+                    value: i === 0 ? '' : i,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: i === 0 ? '' : i,
+                        color: 'rgb(100,100,100)',
+                    }),
+                    width: '10%',
+                },
+                ...emptyRow,
+            ])
+        }
+    }
     return result
 }
 
 function createSht2(row0, grid, getGridValue) {
     let result = []
     let sht = [row0]
-    const colNumber = sht[0].length
+    //const colNumber = sht[0].length
     //console.log('colNumber: ' + colNumber)
     const newTitles = row0.map((e) => e.value)
+    console.log(newTitles)
 
     for (let i = 0; i < MAX_RECEIVERS; i++) {
         let newRow = newTitles.map((e) => {
@@ -73,9 +145,33 @@ function createSht2(row0, grid, getGridValue) {
         })
 
         if (sht[i] !== undefined) {
-            result.push(sht[i])
+            result.push([
+                {
+                    value: i === 0 ? '' : i,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: i === 0 ? '' : i,
+                        color: 'rgb(100,100,100)',
+                    }),
+                    width: '10%',
+                },
+                ...sht[i],
+            ])
         } else {
-            result.push(newRow)
+            result.push([
+                {
+                    value: i === 0 ? '' : i,
+                    readOnly: true,
+                    forceComponent: true,
+                    component: createComponent({
+                        varname: i === 0 ? '' : i,
+                        color: 'rgb(100,100,100)',
+                    }),
+                    width: '10%',
+                },
+                ...newRow,
+            ])
         }
     }
     //console.log(result)
@@ -191,7 +287,7 @@ function EditableTable(props) {
                     })
                 })
                 if (arraysEqual(sht[0], props.grid[0])) {
-                    props.setGrid(createSht(sht))
+                    props.setGrid(createSht3(sht, props.grid))
                 } else {
                     alert('Not Matched')
                 }

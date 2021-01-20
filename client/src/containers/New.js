@@ -203,7 +203,6 @@ const New = (props) => {
                 </div>
             </div>
         </>
-
     )
 }
 
