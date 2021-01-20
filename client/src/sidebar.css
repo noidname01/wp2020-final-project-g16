@@ -3,6 +3,7 @@
     --dark: #2e2e2e;
     --light: #f8f9fa;
     --navbar-fontcolor: rgba(0, 0, 0, 0.5);
+    --main-color1: #c7b6a0;
 }
 
 body {
@@ -184,9 +185,9 @@ body {
 .btn-info:active:focus,
 .btn-info:active:hover,
 .btn-info:visited {
-    background-color: #c7b6a0 !important;
-    border-color: #c7b6a0 !important;
-    outline-color: #c7b6a0 !important;
+    background-color: var(--main-color1) !important;
+    border-color: var(--main-color1) !important;
+    outline-color: var(--main-color1) !important;
     box-shadow: none !important;
     color: #2e2e2e;
 }

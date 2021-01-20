@@ -2,7 +2,7 @@
 const re = /<(input .+?)>/gm
 
 const userInfoTemplate = {
-    usename: '',
+    username: '',
     password: '',
     id: '',
     emailAddress: '',

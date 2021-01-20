@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
-
+import './Send.css'
 import { rootPath } from '../config/pathConfig'
 
 const Send = (props) => {
@@ -43,7 +43,19 @@ const Send = (props) => {
     }, [])
     return (
         <div>
-            <button onClick={handleSend}>Send</button>
+            {/* <button onClick={handleSend}>Send</button> */}
+            <div class='animation-container'>
+                <div class='box'>
+                    <div class='border one'></div>
+                    <div class='border two'></div>
+                    <div class='border three'></div>
+                    <div class='border four'></div>
+
+                    <div class='line one'></div>
+                    <div class='line two'></div>
+                    <div class='line three'></div>
+                </div>
+            </div>
         </div>
     )
 }
