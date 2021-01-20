@@ -22,6 +22,10 @@ const DraftSchema = new Schema({
         type: String,
         required: true,
     },
+    timestamp: {
+        type: String,
+        required: true,
+    },
     xlsxContent: {
         type: String,
         required: true,
