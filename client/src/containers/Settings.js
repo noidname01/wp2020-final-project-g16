@@ -12,13 +12,21 @@ const Settings = (props) => {
     const [pass2, setPassword2] = useState('')
     const [email, setEmail] = useState(emailAddress)
     const [emailPass, setEmailPassword] = useState(emailPassword)
-    const [theme, setTheme] = useState('black')
+    const [theme, setTheme] = useState('dark')
 
     // GraphQL
     const [modifyUser] = useMutation(MODIFY_USER)
 
     const handleChangeTheme = () => {
-        setTheme(theme === 'black' ? 'white' : 'black')
+        // setTheme(theme === 'black' ? 'white' : 'black')
+        console.log(localStorage.getItem('mode'))
+        if (localStorage.getItem('mode') === 'dark') {
+            localStorage.setItem('mode', 'light')
+            setTheme('light')
+        } else {
+            localStorage.setItem('mode', 'dark')
+            setTheme('dark')
+        }
     }
 
     const handleSave = async () => {
@@ -38,14 +46,26 @@ const Settings = (props) => {
     }
 
     useEffect(() => {
-        if (theme === 'black') {
+        if (theme === 'dark') {
             document.documentElement.style.setProperty('--dark', '#2e2e2e')
             document.documentElement.style.setProperty('--light', '#ffffff')
+            // localStorage.setItem('mode', 'dark')
         } else {
             document.documentElement.style.setProperty('--dark', '#ffffff')
             document.documentElement.style.setProperty('--light', '#2e2e2e')
+            // localStorage.setItem('mode', 'light')
         }
     }, [theme])
+
+    useEffect(() => {
+        if (localStorage.getItem('mode') === 'dark') {
+            setTheme('dark')
+            // localStorage.setItem('mode', 'dark')
+        } else {
+            setTheme('light')
+            // localStorage.setItem('mode', 'light')
+        }
+    }, [])
 
     return (
         <>

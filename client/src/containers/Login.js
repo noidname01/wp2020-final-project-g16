@@ -35,6 +35,7 @@ const Login = () => {
             console.log(data.getUser[0])
             localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
             userInfoToLocalStorage(data.getUser[0])
+            localStorage.setItem('mode', 'dark')
             setRedirect(
                 <Redirect
                     to={{

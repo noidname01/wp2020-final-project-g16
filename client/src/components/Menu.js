@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import user from '../images/user.png'
-import { images } from './Animals'
+import { images_dark, images_light } from './Animals'
 
 export default function Menu(props) {
     let { userInfo } = props
-    console.log(images[0])
-
+    // console.log(images[0])
+    useEffect(() => {})
     return (
         <div className='navbar-light bg-light'>
             <ul className='navbar-nav'>
                 <li className='profile'>
                     <img
                         // src={images[Math.floor(Math.random() * 71)]}
-                        src={images[0].default}
+                        src={
+                            localStorage.getItem('mode') === 'dark'
+                                ? images_dark[Math.floor(Math.random() * 71)]
+                                      .default
+                                : images_light[Math.floor(Math.random() * 71)]
+                                      .default
+                        }
                         height='50'
                         className='d-inline-block pr-4'
                         alt=''
