@@ -3,6 +3,10 @@
 */
 @import 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700';
 
+.carousel-content p {
+    display: block !important;
+}
+
 a[data-toggle='collapse'] {
     position: relative;
 }

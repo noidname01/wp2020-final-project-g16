@@ -58,6 +58,14 @@ const Login = () => {
     }
     // ================ localStorage Test ===================
 
+    const handleKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            console.log('login: ', usernameInput, passwordInput)
+
+            validation()
+        }
+    }
+
     useEffect(() => {
         localStorage.setItem('auth', 'false')
     }, [])
@@ -114,6 +122,7 @@ const Login = () => {
                                         onChange={(e) =>
                                             setPasswordInput(e.target.value)
                                         }
+                                        onKeyUp={handleKeyUp}
                                     />
                                 </div>
                                 <button
