@@ -1,11 +1,11 @@
 :root {
-    --size-adjust: 10;
+    --size-adjust: 3.5;
 }
 
 .animation-container {
     height: calc(50px * var(--size-adjust));
     width: calc(40px * var(--size-adjust));
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     right: 0;
     top: 0;
@@ -16,9 +16,10 @@
     content: 'Sending';
     color: var(--main-color1);
     font-weight: 700;
-    position: absolute;
-    bottom: calc(-50px * var(--size-adjust));
-    left: calc(-10px * var(--size-adjust));
+    font-size: calc(5px * var(--size-adjust));
+    position: relative;
+    bottom: calc(-35px * var(--size-adjust));
+    left: calc(-30px * var(--size-adjust));
 }
 .box {
     position: relative;
@@ -230,30 +231,30 @@
     0% {
         opacity: 1;
         margin-left: 0px;
-        height: 50px;
-        width: 40px;
+        height: calc(50px * var(--size-adjust));
+        width: calc(40px * var(--size-adjust));
     }
     55% {
         margin-left: 0px;
-        height: 50px;
-        width: 40px;
+        height: calc(50px * var(--size-adjust));
+        width: calc(40px * var(--size-adjust));
     }
     60% {
         margin-left: 0px;
-        height: 35px;
-        width: 50px;
+        height: calc(35px * var(--size-adjust));
+        width: calc(50px * var(--size-adjust));
     }
     74% {
         msthin-left: 0;
     }
     80% {
-        margin-left: -50px;
+        margin-left: calc(-50px * var(--size-adjust));
         opacity: 1;
     }
     90% {
-        height: 35px;
-        width: 50px;
-        margin-left: 50px;
+        height: calc(35px * var(--size-adjust));
+        width: calc(50px * var(--size-adjust));
+        margin-left: calc(50px * var(--size-adjust));
         opacity: 0;
     }
     100% {

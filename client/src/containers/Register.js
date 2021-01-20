@@ -69,7 +69,7 @@ const Register = () => {
                 {!redirect ? (
                     <div className='row'>
                         <div className='col-md-5 m-auto'>
-                            <div className='card card-body'>
+                            <div className='card card-body ca'>
                                 <h1 className='text-center mb-3'>Register</h1>
                                 {errors.length > 0 ? (
                                     <div

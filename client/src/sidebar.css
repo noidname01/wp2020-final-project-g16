@@ -12,6 +12,7 @@ body {
     width: 100%;
 }
 
+
 /* Animations */
 @-webkit-keyframes bg-scrolling-reverse {
     100% {
@@ -93,6 +94,10 @@ body {
 
 .start:hover {
     opacity: 1;
+
+.ca {
+    border: 0 !important;
+
 }
 
 .carousel-control-prev-icon,
