@@ -12,8 +12,9 @@
  
 ### 王維芯
 * Front-end
-   * 
-* Demo video editing
+   * Layout Control
+   * Frontend Design
+* Demo video
 ### 徐有齊
 * Back-end
    * Schema
