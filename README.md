@@ -24,13 +24,14 @@
    * 實作和後端的連接
   
 ## Deploy
+https://wp2020-final-project-g16.herokuapp.com/
 
 ## 簡介
  有時候我們需要同時寄電子郵件給很多人。當遇到每封信內容都差不多，只有些許地方不同的情況時，寄信會變得非常棘手，因此我們架設了EEMAIL網站，提供**自訂變數**的電子郵件編輯器，並可**自動產生或讀取excel檔案**讓使用者輕鬆設定每一個收件者要收到的變數內容。此外我們也提供**儲存模板**的服務，當使用者下次要使用類似的信件內容，只需要再次設定或上傳excel檔即可。
  
 ## 使用說明
 
-您需要提供自己的**電子郵件**和**電子郵件信箱密碼**，並且可能需要**調低電子郵件的安全設定**(e.g. :gmail的安全設定連結：https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4POySDtiISNkTu8R0YVjXXGzgTxAQbLaBzALNiachw114x9CGCXViDQoIHfEeG554xgRoAJJGpN76Y7ZdfQaudZ3PrRHw)才能使用。
+您需要提供自己的**電子郵件**和**電子郵件信箱密碼**，並且可能需要**調低電子郵件的安全設定**(e.g. 若使用gmail，您要先由此連結設定信箱：https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4POySDtiISNkTu8R0YVjXXGzgTxAQbLaBzALNiachw114x9CGCXViDQoIHfEeG554xgRoAJJGpN76Y7ZdfQaudZ3PrRHw)才能使用。
  
 當帳號創建完畢並登入後，您會看到畫面左側的menu
 1. New (創建新郵件)
