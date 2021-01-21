@@ -8,18 +8,19 @@ import './Excel.css'
 // import { re } from '../config/parserConfig'
 
 const MAX_RECEIVERS = 11
+const FIRST_COLUMN_WIDTH = '8%'
 
 function createComponent(e) {
     return (
         <div
             style={{
-                color: '#2e2e2e',
+                color: e.color,
                 fontWeight: 'bold',
                 height: '30px',
                 alignContent: 'center',
             }}
         >
-            {e.varname}
+            {e.varname.toString().toUpperCase()}
         </div>
     )
 }
@@ -54,7 +55,7 @@ function createSht(sht) {
                         varname: i === 0 ? '' : i,
                         color: 'rgb(100,100,100)',
                     }),
-                    width: '10%',
+                    width: FIRST_COLUMN_WIDTH,
                 },
                 ...sht[i],
             ])
@@ -68,7 +69,7 @@ function createSht(sht) {
                         varname: i === 0 ? '' : i,
                         color: 'rgb(100,100,100)',
                     }),
-                    width: '10%',
+                    width: FIRST_COLUMN_WIDTH,
                 },
                 ...emptyRow,
             ])
@@ -102,7 +103,7 @@ function createSht3(sht, grid) {
                         varname: i === 0 ? '' : i,
                         color: 'rgb(100,100,100)',
                     }),
-                    width: '10%',
+                    width: FIRST_COLUMN_WIDTH,
                 },
                 ...sht[i],
             ])
@@ -116,7 +117,7 @@ function createSht3(sht, grid) {
                         varname: i === 0 ? '' : i,
                         color: 'rgb(100,100,100)',
                     }),
-                    width: '10%',
+                    width: FIRST_COLUMN_WIDTH,
                 },
                 ...emptyRow,
             ])
@@ -154,7 +155,7 @@ function createSht2(row0, grid, getGridValue) {
                         varname: i === 0 ? '' : i,
                         color: 'rgb(100,100,100)',
                     }),
-                    width: '10%',
+                    width: FIRST_COLUMN_WIDTH,
                 },
                 ...sht[i],
             ])
@@ -168,7 +169,7 @@ function createSht2(row0, grid, getGridValue) {
                         varname: i === 0 ? '' : i,
                         color: 'rgb(100,100,100)',
                     }),
-                    width: '10%',
+                    width: FIRST_COLUMN_WIDTH,
                 },
                 ...newRow,
             ])
@@ -356,40 +357,36 @@ function EditableTable(props) {
             </div>
             <div className='newAnimation'>
                 <div className='flex-row'>
-                    <div className='col-sm-3 custom-file excelfile flex'>
-                        <input
-                            type='file'
-                            className='custom-file-input input-sm'
-                            id='inputGroupFile01'
-                            aria-describedby='inputGroupFileAddon01'
-                            onChange={(ev) => handleFileInput(ev)}
-                        />
-                        <label
-                            className='custom-file-label'
-                            htmlFor='inputGroupFile01'
-                        >
-                            未選擇任何檔案
-                        </label>
-                    </div>
                     <div className='col'></div>
+                    <input
+                        type='file'
+                        className='custom-file-input input-sm'
+                        id='inputGroupFile01'
+                        aria-describedby='inputGroupFileAddon01'
+                        onChange={(ev) => handleFileInput(ev)}
+                        style={{ display: 'none' }}
+                    />
                     <button
                         // style={{ backgroundColor: 'var(--light) !important' }}
-                        className='col-sm-1 btn btn-light btn-sm'
+                        className='col-sm-2 btn btn-light btn-sm'
                         type='button'
                         id='inputGroupFileAddon04'
                         onClick={() => saveAsExcel('Temp', props.grid)}
                     >
-                        Save
+                        Download Excel
                     </button>
                     <button
                         className='col-sm-2 btn btn-info btn-sm'
                         type='button'
-                        data-toggle='modal'
-                        data-target='#exampleModal'
+                        onClick={() =>
+                            document.getElementById('inputGroupFile01').click()
+                        }
                     >
-                        Save as Draft
+                        Upload Excel
                     </button>
                 </div>
+
+                <div style={{ margin: '3%' }} s></div>
 
                 <ReactDataSheet
                     data={props.grid}
