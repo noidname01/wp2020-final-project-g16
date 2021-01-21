@@ -72,7 +72,7 @@ const Login = () => {
     }, [])
 
     return (
-        <div className='frame xCen yCen'>
+        <div className='frame xCen yCen welcomebg'>
             <div className='container'>
                 {!redirect ? (
                     <div className='row mb-5'>

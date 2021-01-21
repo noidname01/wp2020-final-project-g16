@@ -48,8 +48,8 @@ const Editor = (props) => {
     }
     const cover = {
         position: 'fixed',
-        right: '0px',
-        top: '5rem',
+        right: '5rem',
+        top: '14rem',
     }
 
     const renderTemplate = (html) => {
