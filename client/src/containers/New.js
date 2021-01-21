@@ -132,11 +132,7 @@ const New = (props) => {
 
         const set1 = new Set(varList.map((vari) => vari.varname))
 
-        // console.log(set1)
-
         const nonSame = varList.length === set1.size
-
-        // console.log('nonEmpty, nonSame', nonEmpty, nonSame)
 
         return [nonEmpty && nonSame, nonEmpty, nonSame]
     }

@@ -4,15 +4,7 @@ import parse from 'html-react-parser'
 import Carousel from 'react-bootstrap/Carousel'
 
 const Preview = (props) => {
-    // console.log(typeof props)
-
     const { html, subject, presend, varList, setPresend, getGridValue } = props
-
-    /* const html = props.html
-    const presend = props.presend
-    const varList = props.varList
-    const setPresend = props.setPresend
-    const getGridValue = props.getGridValue */
 
     const [peopleCount, setPeopleCount] = useState(1) //1~10
     const [carousel, setCarousel] = useState(null)
@@ -33,8 +25,6 @@ const Preview = (props) => {
         console.log('parser', html)
 
         return html
-
-        // setPresend(html)
     }
 
     const renderPresend = () => {
@@ -57,8 +47,6 @@ const Preview = (props) => {
                             style={{
                                 color: 'var(--light)',
                                 height: '100%',
-                                // backgroundColor: 'white',
-                                // zIndex: -1,
                                 borderRadius: '10px',
                             }}
                         >
@@ -79,14 +67,9 @@ const Preview = (props) => {
 
     useEffect(() => {
         console.log('html', html)
-        // console.log('presend')
-        // console.log('grid', grid)
+
         renderPresend()
     }, [])
-
-    // useEffect(() => {
-    //     // renderVar(peopleCount, html, varList)
-    // }, [peopleCount])
 
     useEffect(() => {
         renderCarousel(presend)

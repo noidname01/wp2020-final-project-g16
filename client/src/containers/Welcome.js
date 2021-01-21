@@ -1,12 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import mail from '../images/mail-send.png'
 
 const Welcome = () => {
     return (
         <div className='frame xCen yCen welcomebg'>
             <div className='frameW'>
-                <h1 className='display-4'>EEMAIL</h1>
+                <h1 className='display-4 display-welcome'>EEMAIL</h1>
                 <p className='lead'>
                     EEMail allows you to send mass emails to multiple recipients
                     at once. <br />

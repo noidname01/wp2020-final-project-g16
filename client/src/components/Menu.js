@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import user from '../images/user.png'
 import { images_dark, images_light } from './Animals'
 
 export default function Menu(props) {
     let { userInfo } = props
-    // console.log(images[0])
     useEffect(() => {})
     return (
         <div className='navbar-light bg-light'>
             <ul className='navbar-nav'>
                 <li className='profile'>
                     <img
-                        // src={images[Math.floor(Math.random() * 71)]}
                         src={
                             localStorage.getItem('mode') === 'dark'
                                 ? images_dark[Math.floor(Math.random() * 71)]

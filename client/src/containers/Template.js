@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import neon from '../images/neon.png'
-import trash from '../images/delete.png'
-import { useLocation, Link } from 'react-router-dom'
+
+import { useLocation } from 'react-router-dom'
 // GraphQL dependencies
-import { useQuery, useMutation } from '@apollo/client'
-import { GET_TEMPLATE, LOOKUP_TEMPLATE, DELETE_TEMPLATE } from '../graphql'
+import { useMutation } from '@apollo/client'
+import { LOOKUP_TEMPLATE } from '../graphql'
 
 import Scrollbars from 'react-custom-scrollbars'
-import { Element } from 'react-summernote'
 
 import 'bootstrap/js/src/modal'
 import 'bootstrap/js/src/dropdown'

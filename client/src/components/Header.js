@@ -92,4 +92,3 @@ export default function Header(props) {
         </div>
     )
 }
-//onClick={() => setMenuOpen(!menuOpen)}

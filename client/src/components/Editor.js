@@ -55,8 +55,6 @@ const Editor = (props) => {
     }
 
     const renderTemplate = (html) => {
-        //TODO
-
         try {
             let texts = html.split(re)
 
@@ -78,8 +76,6 @@ const Editor = (props) => {
             }
 
             html += texts[texts.length - 1]
-
-            // console.log('combine', html)
         } catch {}
         let domparser = new DOMParser()
         let doc = domparser.parseFromString(html, 'text/html')
