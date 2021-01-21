@@ -20,7 +20,11 @@ const Login = () => {
     const handleSubmit = () => {
         console.log('login: ', usernameInput, passwordInput)
 
-        validation()
+        if (!loading) {
+            validation()
+        } else {
+            handleSubmit()
+        }
     }
 
     const validation = () => {
