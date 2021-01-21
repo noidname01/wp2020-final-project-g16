@@ -22,7 +22,7 @@ function createComponent(e) {
                 alignContent: 'center',
             }}
         >
-            {e.varname.toString().toUpperCase()}
+            {e.varname}
         </div>
     )
 }
@@ -227,7 +227,7 @@ function EditableTable(props) {
         if (grid.length === 0) {
             let row0 = titles.map((e) => {
                 return {
-                    value: e.varname.toString().toUpperCase(),
+                    value: e.varname,
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent(e),
@@ -253,7 +253,7 @@ function EditableTable(props) {
 
             let row0 = titles.map((e) => {
                 return {
-                    value: e.varname.toString().toUpperCase(),
+                    value: e.varname,
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent(e),
