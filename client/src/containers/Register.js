@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import { CHECK_USERNAME, CREATE_USER } from '../graphql'
 import { v4 as uuid_v4 } from 'uuid'
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
 
 const Register = () => {
     const [name, setName] = useState('')
@@ -14,53 +15,81 @@ const Register = () => {
     const [errors, setErrors] = useState('')
     const [redirect, setRedirect] = useState(null)
 
-    const { loading, error, data } = useQuery(CHECK_USERNAME, {
-        variables: {
-            username: name,
-        },
-    })
+    // const { loading, error, data } = useQuery(CHECK_USERNAME, {
+    //     variables: {
+    //         username: name,
+    //     },
+    // })
 
     const [createUser] = useMutation(CREATE_USER)
 
     const validation = () => {
+        // // Check required fields
+        // if (!name || !password || !password2 || !email || !emailPassword) {
+        //     setErrors('Please fill in all fields')
+        //     return 0
+        // }
+        // // check name availability
+        // if (!data.checkUsername) {
+        //     setErrors('Username Unavailable')
+        //     return 0
+        // }
+        // // password === password2
+        // if (password !== password2) {
+        //     setErrors('Passwords do not match')
+        //     return 0
+        // } else return 1
+    }
+
+    const handleSubmit = async () => {
         // Check required fields
         if (!name || !password || !password2 || !email || !emailPassword) {
             setErrors('Please fill in all fields')
-            return 0
-        }
-        // check name availability
-        if (!data.checkUsername) {
-            setErrors('Username Unavailable')
-            return 0
+            return
         }
         // password === password2
         if (password !== password2) {
             setErrors('Passwords do not match')
-            return 0
-        } else return 1
-    }
-
-    const handleSubmit = async () => {
-        if (validation() === 1) {
-            console.log('success')
-            // create a user
-            await createUser({
-                variables: {
-                    username: name,
-                    password: password,
-                    id: uuid_v4(),
-                    emailAddress: email,
-                    emailPassword: emailPassword,
-                },
-            })
-            setRedirect(<Redirect to='/login'></Redirect>)
-        } else {
-            console.log('fail')
-            console.log('errors:', errors)
+            return
         }
-        console.log(
-            name + '  ' + password + '  ' + email + '  ' + emailPassword
-        )
+
+        axios
+            .post(rootPath + 'checkUser', {
+                username: usernameInput,
+            })
+            .then(() => {
+                // create a user
+                createUser({
+                    variables: {
+                        username: name,
+                        password: password,
+                        id: uuid_v4(),
+                        emailAddress: email,
+                        emailPassword: emailPassword,
+                    },
+                })
+                setRedirect(<Redirect to='/login'></Redirect>)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+        // if (validation() === 1) {
+        //     console.log('success')
+        //     // create a user
+        //     await createUser({
+        //         variables: {
+        //             username: name,
+        //             password: password,
+        //             id: uuid_v4(),
+        //             emailAddress: email,
+        //             emailPassword: emailPassword,
+        //         },
+        //     })
+        //     setRedirect(<Redirect to='/login'></Redirect>)
+        // } else {
+        //     console.log('errors:', errors)
+        // }
     }
 
     return (
