@@ -20,7 +20,7 @@ function createComponent(e) {
                 alignContent: 'center',
             }}
         >
-            {e.varname.toString().toUpperCase()}
+            {e.varname}
         </div>
     )
 }
@@ -219,7 +219,7 @@ function EditableTable(props) {
         if (grid.length === 0) {
             let row0 = titles.map((e) => {
                 return {
-                    value: e.varname.toString().toUpperCase(),
+                    value: e.varname,
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent(e),
@@ -228,11 +228,11 @@ function EditableTable(props) {
             })
             row0 = [
                 {
-                    value: 'Email_Address',
+                    value: 'EMAIL_ADDRESS',
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent({
-                        varname: 'Email_Address',
+                        varname: 'EMAIL_ADDRESS',
                         color: 'rgb(0,0,0)',
                     }),
                     color: 'rgb(0,0,0)',
@@ -245,7 +245,7 @@ function EditableTable(props) {
 
             let row0 = titles.map((e) => {
                 return {
-                    value: e.varname.toString().toUpperCase(),
+                    value: e.varname,
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent(e),
@@ -254,11 +254,11 @@ function EditableTable(props) {
             })
             row0 = [
                 {
-                    value: 'Email_Address',
+                    value: 'EMAIL_ADDRESS',
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent({
-                        varname: 'Email_Address',
+                        varname: 'EMAIL_ADDRESS',
                         color: 'rgb(0,0,0)',
                     }),
                     color: 'rgb(0,0,0)',

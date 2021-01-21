@@ -2,6 +2,15 @@ import React, { useState, useEffect } from 'react'
 import parse from 'html-react-parser'
 
 import Carousel from 'react-bootstrap/Carousel'
+// import Scrollbars from 'react-custom-scrollbars'
+
+const renderThumb = ({ style, ...props }) => {
+    const thumbStyle = {
+        borderRadius: 6,
+        backgroundColor: 'rgba(192,192,200, 0.5)',
+    }
+    return <div style={{ ...style, ...thumbStyle }} {...props} />
+}
 
 const Preview = (props) => {
     const { html, subject, presend, varList, setPresend, getGridValue } = props
@@ -39,14 +48,17 @@ const Preview = (props) => {
 
     const renderCarousel = (presend) => {
         let newCarousel = presend.map((html, index) => {
-            if (getGridValue(index + 1, 'Email_Address') !== '') {
+            if (getGridValue(index + 1, 'EMAIL_ADDRESS') !== '') {
                 return (
                     <Carousel.Item>
                         <div
                             className='container d-block justify-content-start col-10 carousel-content'
                             style={{
                                 color: 'var(--light)',
-                                height: '100%',
+
+                                height: '30rem',
+                                // backgroundColor: 'white',
+                                // zIndex: -1,
                                 borderRadius: '10px',
                             }}
                         >
@@ -54,7 +66,7 @@ const Preview = (props) => {
                         </div>
                         <Carousel.Caption>
                             <h3 style={{ color: 'var(--light)' }}>
-                                {getGridValue(index + 1, 'Email_Address')}
+                                {getGridValue(index + 1, 'EMAIL_ADDRESS')}
                             </h3>
                         </Carousel.Caption>
                     </Carousel.Item>
@@ -83,7 +95,11 @@ const Preview = (props) => {
                 }) ? (
                     <div className='w100 h100'>
                         <p>Subject: {subject}</p>
-                        <Carousel>{carousel}</Carousel>
+                        <Carousel>
+                            {/* <Scrollbars renderThumbVertical={renderThumb}> */}
+                            {carousel}
+                            {/* </Scrollbars> */}
+                        </Carousel>
                     </div>
                 ) : (
                     <div></div>
