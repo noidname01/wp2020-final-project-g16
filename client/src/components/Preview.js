@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react'
 import parse from 'html-react-parser'
 
 import Carousel from 'react-bootstrap/Carousel'
+// import Scrollbars from 'react-custom-scrollbars'
+
+const renderThumb = ({ style, ...props }) => {
+    const thumbStyle = {
+        borderRadius: 6,
+        backgroundColor: 'rgba(192,192,200, 0.5)',
+    }
+    return <div style={{ ...style, ...thumbStyle }} {...props} />
+}
 
 const Preview = (props) => {
     // console.log(typeof props)
 
     const { html, subject, presend, varList, setPresend, getGridValue } = props
-
-    /* const html = props.html
-    const presend = props.presend
-    const varList = props.varList
-    const setPresend = props.setPresend
-    const getGridValue = props.getGridValue */
 
     const [peopleCount, setPeopleCount] = useState(1) //1~10
     const [carousel, setCarousel] = useState(null)
@@ -56,7 +59,7 @@ const Preview = (props) => {
                             className='container d-block justify-content-start col-10 carousel-content'
                             style={{
                                 color: 'var(--light)',
-                                height: '100%',
+                                height: '30rem',
                                 // backgroundColor: 'white',
                                 // zIndex: -1,
                                 borderRadius: '10px',
@@ -100,7 +103,11 @@ const Preview = (props) => {
                 }) ? (
                     <div className='w100 h100'>
                         <p>Subject: {subject}</p>
-                        <Carousel>{carousel}</Carousel>
+                        <Carousel>
+                            {/* <Scrollbars renderThumbVertical={renderThumb}> */}
+                            {carousel}
+                            {/* </Scrollbars> */}
+                        </Carousel>
                     </div>
                 ) : (
                     <div></div>
