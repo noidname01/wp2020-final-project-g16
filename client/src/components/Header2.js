@@ -6,15 +6,7 @@ import './Header.css'
 
 export default function Header(props) {
     const getImage = () => {
-        return (
-            <img
-                src={next}
-                width='10'
-                height='10'
-                className='flex mx-1'
-                alt=''
-            />
-        )
+        return <div className='flex mx-1 next'>{'⟩'}</div>
     }
     const createBtn = (e) => {
         if (e.status === 'current') {

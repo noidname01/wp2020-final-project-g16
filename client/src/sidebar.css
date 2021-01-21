@@ -334,6 +334,12 @@ body {
     font-size: 20px;
 }
 
+.next {
+    font-size: 16px;
+    color: var(--light);
+    opacity: 0.5;
+}
+
 /* old */
 
 .carousel-content p {
