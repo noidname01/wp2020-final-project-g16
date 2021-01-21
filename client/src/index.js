@@ -9,12 +9,14 @@ import 'react-datasheet/lib/react-datasheet.css'
 import './css/main.css'
 // import './css/bootstrap.css'
 
+import { rootPath } from './config/pathConfig'
+
 // ======== Apollo Client (GrqphQL) ========
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 // ======== Apollo Client (GrqphQL) ========
 
 const client = new ApolloClient({
-    uri: 'http://localhost:5000/graphql', //temp
+    uri: rootPath + 'graphql', //temp
     cache: new InMemoryCache(),
 })
 

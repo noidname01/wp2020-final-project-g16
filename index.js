@@ -66,7 +66,7 @@ if (!process.env.MONGO_URL) {
 
 mongoose
     .connect(process.env.MONGO_URL, { useNewUrlParser: true })
-    .then(() => console.log('Mongo Connected!'))
+    .then(() => console.log('Mongo Connected! Path:', process.env.ROOTPATH))
     .catch((err) => console.log(err))
 
 const port = process.env.PORT || 5000
