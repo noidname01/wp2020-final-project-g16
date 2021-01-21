@@ -38,11 +38,7 @@ export default function Menu(props) {
                         New
                     </Link>
                 </li>
-                <li className='menu-item'>
-                    <Link className='nav-link' to='/ee/draft'>
-                        Draft
-                    </Link>
-                </li>
+
                 <li className='menu-item'>
                     <Link className='nav-link' to='/ee/template'>
                         Template
