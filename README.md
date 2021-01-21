@@ -25,6 +25,7 @@
   
 ## Deploy
 https://wp2020-final-project-g16.herokuapp.com/
+
 ### 帳密
 * name: demo-g16
 * password: demo-g16
@@ -61,6 +62,33 @@ https://wp2020-final-project-g16.herokuapp.com/
 4. Settings (設定)
   * 可以更改使用者名稱、密碼、電子郵件、電子郵件密碼
   * **可調整亮/暗模式**
+  
+## File Structures
+```
+├── client/
+│    ├── dist/
+│    └── src/
+│        ├── components/
+│        ├── config/
+│        ├── container/
+│        ├── css/
+│        ├── images/
+│        ├── routes/
+│        ├ index.html
+│        ├ index.js
+│        └ graphql.js
+├── server/
+│    ├── config/
+│    ├── mailer/
+│    ├── models/
+│    ├── resolvers/
+│    └── schema/        
+├ index.js
+├ packages.json
+├ yarn.lock
+├ .gitignore
+└ .prettierrc
+```
 
 ## Dependencies
 ### Client (前端)
