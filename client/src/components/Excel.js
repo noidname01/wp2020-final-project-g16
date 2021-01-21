@@ -3,7 +3,7 @@ import ReactDataSheet from 'react-datasheet'
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
 // import { useLocation } from 'react-router-dom'
-import './Excel.css'
+import '../css/Excel.css'
 
 // import { re } from '../config/parserConfig'
 import rgbToHex from './rgbToHex'

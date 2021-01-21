@@ -2,55 +2,94 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import menu from '../images/menu.png'
 import next from '../images/next.png'
+import '../css/Header.css'
 
-export default function Header({ menuOpen, setMenuOpen }) {
-    return (
-        <>
-            <div className='navbar navbar-expand navbar-dark background-dark'>
-                <div
-                    className='collapse navbar-collapse container-fluid'
-                    id='navbarSupportedContent'
+export default function Header(props) {
+    const getImage = () => {
+        return <div className='flex mx-1 next'>{'⟩'}</div>
+    }
+    const createBtn = (e) => {
+        if (e.status === 'current') {
+            return (
+                <button
+                    type='button'
+                    className='header-button'
+                    key={e.name}
+                    onClick={() => {
+                        props.setStep(e.name)
+                    }}
+                    disabled={true}
                 >
-                    <ul className='navbar-nav mr-auto'>
-                        <li className='nav-item flex-row'>
-                            <Link className='nav-link' to='/editor'>
-                                Editor
-                            </Link>
-                            <img
-                                src={next}
-                                width='10'
-                                height='10'
-                                className='flex mx-1'
-                                alt=''
-                            />
-                            <Link className='nav-link' to='/excel'>
-                                Table
-                            </Link>
-                            <img
-                                src={next}
-                                width='10'
-                                height='10'
-                                className='flex mx-1'
-                                alt=''
-                            />
-                            <Link className='nav-link ' to='/preview'>
-                                Preview
-                            </Link>
-                            <img
-                                src={next}
-                                width='10'
-                                height='10'
-                                className='flex mx-1'
-                                alt=''
-                            />
-                            <Link className='nav-link disabled' to='/send'>
-                                Send
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
+                    <span
+                        className='nav-link'
+                        style={{ color: 'var(--light)' }}
+                    >
+                        {e.name}
+                    </span>
+                </button>
+            )
+        } else if (e.status === 'available') {
+            return (
+                <button
+                    type='button'
+                    className='header-button'
+                    key={e.name}
+                    onClick={() => {
+                        props.setStep(e.name)
+                    }}
+                    style={{ color: 'var(--light)' }}
+                    disabled={false}
+                >
+                    <span
+                        className='nav-link'
+                        style={{ color: 'var(--light)' }}
+                    >
+                        {e.name}
+                    </span>
+                </button>
+            )
+        } else if (e.status === 'unavailable') {
+            return (
+                <button
+                    type='button'
+                    className='header-button'
+                    key={e.name}
+                    onClick={() => {
+                        props.setStep(e.name)
+                    }}
+                    disabled={true}
+                >
+                    <span
+                        className='nav-link'
+                        style={{ color: 'var(--light)', opacity: '0.6' }}
+                    >
+                        {e.name}
+                    </span>
+                </button>
+            )
+        }
+    }
+
+    return (
+        <div className='navbar navbar-expand navbar-dark'>
+            <div
+                className='collapse navbar-collapse container-fluid'
+                id='navbarSupportedContent'
+            >
+                <ul className='navbar-nav mr-auto'>
+                    <li className='nav-item flex-row'>
+                        {props.titleList.map((e, id) => {
+                            let result = []
+                            if (id !== 0) {
+                                result.push(getImage())
+                            }
+                            result.push(createBtn(e))
+                            return result
+                        })}
+                    </li>
+                </ul>
             </div>
-        </>
+        </div>
     )
 }
 //onClick={() => setMenuOpen(!menuOpen)}

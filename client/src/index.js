@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactDataSheet from 'react-datasheet'
 // Be sure to include styles at some point, probably during your bootstrapping
 import 'react-datasheet/lib/react-datasheet.css'
-import './sidebar.css'
+import './css/main.css'
 import Welcome from './containers/Welcome'
 import Login from './containers/Login'
 import Register from './containers/Register'

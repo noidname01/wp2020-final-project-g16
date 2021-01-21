@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Editor from '../components/Editor'
 import Excel from '../components/Excel'
 import Preview from '../components/Preview'
-import Header from '../components/Header2'
+import Header from '../components/Header'
 import Send from '../components/Send'
 
 import { re } from '../config/parserConfig'
