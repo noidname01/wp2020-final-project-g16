@@ -15,53 +15,53 @@ import 'bootstrap/js/src/tooltip'
 import 'bootstrap/dist/css/bootstrap.css'
 
 function TempCard(props) {
-    const [show, setShow] = useState(true)
-    const [tempInfo, setTempInfo] = useState(props.ele)
-    const [deleteTemplate] = useMutation(DELETE_TEMPLATE)
+	const [show, setShow] = useState(true)
+	const [tempInfo, setTempInfo] = useState(props.ele)
+	const [deleteTemplate] = useMutation(DELETE_TEMPLATE)
 
-    const handleDelete = async () => {
-        setShow(false)
+	const handleDelete = async () => {
+		setShow(false)
 
-        if (tempInfo.id) {
-            await deleteTemplate({
-                variables: {
-                    id: tempInfo.id,
-                },
-            })
-        }
-    }
+		if (tempInfo.id) {
+			await deleteTemplate({
+				variables: {
+					id: tempInfo.id,
+				},
+			})
+		}
+	}
 
-    return (
-        <div>
-            {show === true ? (
-                <div className='grid-col'>
-                    <div className='card flex-card border-secondary mb-3'>
-                        <div
-                            className='card-header'
-                            style={{ color: '#5e5e5e' }}
-                        >
-                            {props.ele.timestamp}
-                        </div>
-                        <div className='card-body text-secondary'>
-                            <h5
-                                className='card-title'
-                                style={{ color: '#2e2e2e' }}
-                            >
-                                {props.ele.name}
-                            </h5>
-                            <div className='flex-row'>
-                                <p className='card-text flex'>
-                                    {props.ele.description}
-                                </p>
-                                <button className='trash ml-auto'>
-                                    <img
-                                        className='w-40'
-                                        src={trash}
-                                        onClick={handleDelete}
-                                    />
-                                </button>
+	return (
+		<div>
+			{show === true ? (
+				<div className='grid-col'>
+					<div className='card flex-card border-secondary mb-3'>
+						<div
+							className='card-header'
+							style={{ color: '#5e5e5e' }}
+						>
+							{props.ele.timestamp}
+						</div>
+						<div className='card-body text-secondary'>
+							<h5
+								className='card-title'
+								style={{ color: '#2e2e2e' }}
+							>
+								{props.ele.name}
+							</h5>
+							<div className='flex-row'>
+								<p className='card-text flex'>
+									{props.ele.description}
+								</p>
+								<button className='trash ml-auto'>
+									<img
+										className='w-40'
+										src={trash}
+										onClick={handleDelete}
+									/>
+								</button>
 
-                                {/* <button
+								{/* <button
 									type='button'
 									className='btn btn-primary'
 									data-toggle='modal'
@@ -69,25 +69,25 @@ function TempCard(props) {
 								>
 									View
 								</button> */}
-                                <Link
-                                    className='btn btn-info'
-                                    to={{
-                                        pathname: '/ee/new',
-                                        state: {
-                                            html: tempInfo.content,
-                                        },
-                                    }}
-                                >
-                                    View
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            ) : (
-                <div></div>
-            )}
-            {/*<div
+								<Link
+									className='btn btn-info'
+									to={{
+										pathname: '/ee/new',
+										state: {
+											html: tempInfo.content,
+										},
+									}}
+								>
+									Import
+								</Link>
+							</div>
+						</div>
+					</div>
+				</div>
+			) : (
+				<div></div>
+			)}
+			{/*<div
 				className='modal fade'
 				id='exampleModalLong'
 				tabindex='-1'
@@ -136,8 +136,8 @@ function TempCard(props) {
 					</div>
 				</div>
 			</div>*/}
-        </div>
-    )
+		</div>
+	)
 }
 
 export default TempCard
