@@ -1,3 +1,4 @@
+require('dotenv-defaults').config()
 const express = require('express')
 const path = require('path')
 const cors = require('cors')
@@ -54,11 +55,17 @@ app.get('*', (req, res, next) => {
 // //===========================Login DB==================================
 
 // DB Config
-const db = require('./server/config/keys').MongoURI
+// const db = require('./server/config/keys').MongoURI
 
 // DB Connection
+
+if (!process.env.MONGO_URL) {
+    console.error('Missing MONGO_URL!!!')
+    process.exit(1)
+}
+
 mongoose
-    .connect(db, { useNewUrlParser: true })
+    .connect(process.env.MONGO_URL, { useNewUrlParser: true })
     .then(() => console.log('Mongo Connected!'))
     .catch((err) => console.log(err))
 
