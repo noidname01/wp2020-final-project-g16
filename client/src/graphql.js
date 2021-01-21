@@ -82,6 +82,144 @@ const GET_TEMPLATE = gql`
         }
     }
 `
+const DELETE_TEMPLATE = gql`
+    mutation deleteTemplate($id: String!) {
+        deleteTemplate(id: $id) {
+            id
+            name
+            timestamp
+            description
+            content
+        }
+    }
+`
+const LOOKUP_TEMPLATE = gql`
+    mutation lookupTemplate($userId: String!) {
+        lookupTemplate(userId: $userId) {
+            id
+            name
+            timestamp
+            description
+            content
+        }
+    }
+`
+const CREATE_DRAFT = gql`
+    mutation createDraft(
+        $id: String!
+        $name: String!
+        $sent: String!
+        $userId: String!
+        $templateId: String!
+        $timestamp: String!
+        $xlsxContent: String!
+    ) {
+        createDraft(
+            data: {
+                id: $id
+                name: $name
+                sent: $sent
+                userId: $userId
+                templateId: $templateId
+                timestamp: $timestamp
+                xlsxContent: $xlsxContent
+            }
+        ) {
+            id
+            name
+            sent
+            userId
+            templateId
+            timestamp
+            xlsxContent
+        }
+    }
+`
+const GET_DRAFT = gql`
+    query getDraft($userId: String!) {
+        getDraft(userId: $userId) {
+            id
+            userId
+            templateId
+            timestamp
+            xlsxContent
+        }
+    }
+`
+const DELETE_DRAFT = gql`
+    mutation deleteDraft($id: String!) {
+        deleteDraft(id: $id) {
+            id
+            userId
+            templateId
+            timestamp
+            xlsxContent
+        }
+    }
+`
+const LOOKUP_DRAFT = gql`
+    mutation lookupDraft($userId: String!) {
+        lookupDraft(userId: $userId) {
+            id
+            userId
+            templateId
+            timestamp
+            xlsxContent
+        }
+    }
+`
+const CREATE_SENT = gql`
+    mutation createSent(
+        $id: String!
+        $userId: String!
+        $timestamp: String!
+        $draftId: String!
+    ) {
+        createSent(
+            data: {
+                id: $id
+                userId: $userId
+                timestamp: $timestamp
+                draftId: $draftId
+            }
+        ) {
+            id
+            userId
+            timestamp
+            draftId
+        }
+    }
+`
+const GET_SENT = gql`
+    query getSent($userId: String!) {
+        getSent(userId: $userId) {
+            id
+            userId
+            timestamp
+            draftId
+        }
+    }
+`
+const DELETE_SENT = gql`
+    mutation deleteSent($id: String!) {
+        deleteSent(id: $id) {
+            id
+            userId
+            timestamp
+            draftId
+        }
+    }
+`
+const LOOKUP_SENT = gql`
+    mutation lookupSent($userId: String!) {
+        lookupSent(userId: $userId) {
+            id
+            userId
+            timestamp
+            draftId
+        }
+    }
+`
 const MODIFY_USER = gql`
     mutation modifyUser(
         $username: String!
@@ -119,28 +257,6 @@ const DELETE_USER = gql`
         }
     }
 `
-const DELETE_TEMPLATE = gql`
-    mutation deleteTemplate($id: String!) {
-        deleteTemplate(id: $id) {
-            id
-            name
-            timestamp
-            description
-            content
-        }
-    }
-`
-const LOOKUP_TEMPLATE = gql`
-    mutation lookupTemplate($userId: String!) {
-        lookupTemplate(userId: $userId) {
-            id
-            name
-            timestamp
-            description
-            content
-        }
-    }
-`
 
 export {
     CHECK_USERNAME,
@@ -148,9 +264,18 @@ export {
     CREATE_USER,
     CREATE_TEMPLATE,
     GET_TEMPLATE,
+    LOOKUP_TEMPLATE,
+    DELETE_TEMPLATE,
+    CREATE_DRAFT,
+    GET_DRAFT,
+    LOOKUP_DRAFT,
+    DELETE_DRAFT,
+    CREATE_SENT,
+    GET_SENT,
+    LOOKUP_SENT,
+    DELETE_SENT,
     MODIFY_USER,
     DELETE_USER,
-    LOOKUP_TEMPLATE,
 }
 /*
 const GET_MESSAGES = gql`
