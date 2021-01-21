@@ -88,6 +88,81 @@
     animation: line-three 5s infinite linear;
 }
 
+.static-animation-container {
+    height: calc(60px * var(--size-adjust));
+    width: calc(40px * var(--size-adjust));
+    /* position: absolute; */
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    flex-direction: column;
+}
+
+.static-box {
+    position: relative;
+    height: calc(50px * var(--size-adjust));
+    width: calc(40px * var(--size-adjust));
+}
+
+.static-border {
+    background: var(--light);
+    position: absolute;
+}
+
+.static-border.one {
+    height: 4px;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.static-border.two {
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 4px;
+}
+
+.static-border.three {
+    bottom: 0;
+    right: 0;
+    height: 4px;
+    width: 100%;
+}
+
+.static-border.four {
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 4px;
+}
+
+.static-line {
+    height: 4px;
+    background: var(--main-color1);
+    position: absolute;
+    width: 0%;
+    left: 25%;
+}
+
+.static-line.one {
+    top: 25%;
+    width: 50%;
+}
+
+.static-line.two {
+    top: 45%;
+    width: 50%;
+}
+
+.static-line.three {
+    top: 65%;
+    width: 50%;
+}
+
 @keyframes border-one {
     0% {
         width: 0;
