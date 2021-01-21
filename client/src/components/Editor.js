@@ -18,7 +18,7 @@ import { re } from '../config/parserConfig'
 import parse from 'html-react-parser'
 
 // GraphQL dependencies
-import { useQuery, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { CREATE_TEMPLATE } from '../graphql'
 import { v4 as uuid_v4 } from 'uuid'
 import timestamp from '../containers/Timestamp'
@@ -26,8 +26,6 @@ import timestamp from '../containers/Timestamp'
 import { TwitterPicker } from 'react-color'
 
 const Editor = (props) => {
-    // const { state } = useParams()
-    //const location = useLocation()
     // graphQL
     const [createTemplate] = useMutation(CREATE_TEMPLATE)
     const [saveName, setSaveName] = useState('')
@@ -42,7 +40,6 @@ const Editor = (props) => {
     const [currentColor, setCurrentColor] = useState(
         localStorage.getItem('mode') !== 'dark' ? 'black' : 'white'
     )
-    // const
 
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
@@ -73,8 +70,6 @@ const Editor = (props) => {
                 )
             })
 
-            // console.log('inputs', inputs)
-
             html = ''
 
             for (let i = 0; i < inputs.length; i++) {
@@ -100,7 +95,6 @@ const Editor = (props) => {
     const handleVarChange = async (e) => {
         let newVarName = e.target.value
 
-        // console.log(newVarName)
         let text = ctx.measureText(newVarName)
 
         e.target.name = newVarName
@@ -119,7 +113,6 @@ const Editor = (props) => {
         ).getPropertyValue('--dark')
         newVar.style.width = '6rem'
         newVar.setAttribute('placeholder', '$Var')
-        // newVar.setAttribute('defaultValue', varname ? varname : '')
         newVar.setAttribute('name', varname ? varname : '')
 
         newVar.oninput = handleVarChange

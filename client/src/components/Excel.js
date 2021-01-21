@@ -2,10 +2,8 @@ import React, { useEffect } from 'react'
 import ReactDataSheet from 'react-datasheet'
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
-// import { useLocation } from 'react-router-dom'
 import '../css/Excel.css'
 
-// import { re } from '../config/parserConfig'
 import rgbToHex from './rgbToHex'
 
 const MAX_RECEIVERS = 11
@@ -41,7 +39,6 @@ function createSht(sht) {
     let result = []
 
     const colNumber = sht[0].length
-    //console.log('colNumber: ' + colNumber)
     let emptyRow = []
     for (let i = 0; i < colNumber; i++) {
         emptyRow.push({ value: '' })
@@ -135,8 +132,7 @@ function createSht3(sht, grid) {
 function createSht2(row0, grid, getGridValue) {
     let result = []
     let sht = [row0]
-    //const colNumber = sht[0].length
-    //console.log('colNumber: ' + colNumber)
+
     const newTitles = row0.map((e) => e.value)
     console.log(newTitles)
 
@@ -183,7 +179,6 @@ function createSht2(row0, grid, getGridValue) {
             ])
         }
     }
-    //console.log(result)
     return result
 }
 async function saveAsExcel(filename, grid) {
@@ -214,9 +209,6 @@ async function saveAsExcel(filename, grid) {
 }
 
 function EditableTable(props) {
-    //const [grid, setGrid] = useState([])
-    // const location = useLocation()
-
     const { titles, grid } = props
 
     useEffect(async () => {
