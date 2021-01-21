@@ -35,7 +35,8 @@ https://wp2020-final-project-g16.herokuapp.com/
  
 ## 使用說明
 
-您需要提供自己的**電子郵件**和**電子郵件信箱密碼**，並且可能需要**調低電子郵件的安全設定**(e.g. 若使用gmail，您要先由此連結設定信箱：https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4POySDtiISNkTu8R0YVjXXGzgTxAQbLaBzALNiachw114x9CGCXViDQoIHfEeG554xgRoAJJGpN76Y7ZdfQaudZ3PrRHw)才能使用。
+您需要提供自己的**電子郵件**和**電子郵件信箱密碼**，並且可能需要**調低電子郵件的安全設定**(e.g. 若使用gmail，您要先由此連結設定信箱：https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4POySDtiISNkTu8R0YVjXXGzgTxAQbLaBzALNiachw114x9CGCXViDQoIHfEeG554xgRoAJJGpN76Y7ZdfQaudZ3PrRHw)
+才能使用。
  
 當帳號創建完畢並登入後，您會看到畫面左側的menu
 1. New (創建新郵件)
