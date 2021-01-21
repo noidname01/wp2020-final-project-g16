@@ -56,7 +56,7 @@ const Preview = (props) => {
                             className='container d-block justify-content-start col-10 carousel-content'
                             style={{
                                 color: 'var(--light)',
-                                height: '20rem',
+                                height: '100%',
                                 // backgroundColor: 'white',
                                 // zIndex: -1,
                                 borderRadius: '10px',
@@ -93,18 +93,20 @@ const Preview = (props) => {
     }, [presend])
 
     return (
-        <>
-            {!presend.every((i) => {
-                return i === ''
-            }) ? (
-                <div className='w100'>
-                    <p>Subject: {subject}</p>
-                    <Carousel>{carousel}</Carousel>
-                </div>
-            ) : (
-                <div></div>
-            )}
-        </>
+        <div className='w100 h100'>
+            <div className='newAnimation h100'>
+                {!presend.every((i) => {
+                    return i === ''
+                }) ? (
+                    <div className='w100 h100'>
+                        <p>Subject: {subject}</p>
+                        <Carousel>{carousel}</Carousel>
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+            </div>
+        </div>
     )
 }
 

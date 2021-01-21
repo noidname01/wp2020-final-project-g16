@@ -50,26 +50,45 @@ const Send = (props) => {
         console.log(subject)
     }, [])
     return (
-        <>
-            {!hasSent ? (
-                <button onClick={handleSend}>Send</button>
-            ) : sentCount !== peopleCounter ? (
-                <div className='animation-container container d-flex justify-content-center align-items-center'>
-                    <div className='box'>
-                        <div className='border one'></div>
-                        <div className='border two'></div>
-                        <div className='border three'></div>
-                        <div className='border four'></div>
+        <div className='w100 h100'>
+            <div className='newAnimation h100 xCen yCen'>
+                {!hasSent ? (
+                    <div
+                        className='static-animation-container container d-flex justify-content-center align-items-center h100'
+                        onClick={handleSend}
+                    >
+                        <div className='static-box'>
+                            <div className='static-border one'></div>
+                            <div className='static-border two'></div>
+                            <div className='static-border three'></div>
+                            <div className='static-border four'></div>
 
-                        <div className='line one'></div>
-                        <div className='line two'></div>
-                        <div className='line three'></div>
+                            <div className='static-line one'></div>
+                            <div className='static-line two'></div>
+                            <div className='static-line three'></div>
+                        </div>
+                        <div className='send flex'>Click me!</div>
                     </div>
-                </div>
-            ) : (
-                <div>Complete</div>
-            )}
-        </>
+                ) : sentCount !== peopleCounter ? (
+                    <div className='animation-container container d-flex justify-content-center align-items-center'>
+                        <div className='box'>
+                            <div className='border one'></div>
+                            <div className='border two'></div>
+                            <div className='border three'></div>
+                            <div className='border four'></div>
+
+                            <div className='line one'></div>
+                            <div className='line two'></div>
+                            <div className='line three'></div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className='container h100 xCen yCen flex'>
+                        <div className='send'>Email sent :)</div>
+                    </div>
+                )}
+            </div>
+        </div>
     )
 }
 
