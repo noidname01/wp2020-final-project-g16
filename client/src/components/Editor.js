@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useLocation, Link } from 'react-router-dom'
 import ReactSummernote from 'react-summernote'
+// import ReactSummernote from './ReactSummerNote'
 import 'react-summernote/dist/react-summernote.css' // import styles
 import 'react-summernote/lang/summernote-zh-TW' // you can import any other locale
 
@@ -37,6 +38,10 @@ const Editor = (props) => {
 
     const [nodes, setNodes] = useState([])
     const [displayColorPicker, setDisplayColorPicker] = useState(false)
+
+    const [currentColor, setCurrentColor] = useState(
+        localStorage.getItem('mode') === 'dark' ? 'white' : 'black'
+    )
     // const
 
     const canvas = document.createElement('canvas')
@@ -123,28 +128,10 @@ const Editor = (props) => {
     }
     // =======Test Ugly method ==========
 
-    /*  const handleClick = async (e) => {
-        e.preventDefault()
-        console.log(
-            getComputedStyle(document.documentElement).getPropertyValue(
-                '--light'
-            )
-        )
-        ReactSummernote.insertNode(
-            createTag(
-                getComputedStyle(document.documentElement).getPropertyValue(
-                    '--light'
-                )
-            )
-        )
-
-        setIdCounter((state) => state + 1)
-    } */
-
     const handleCreateColorVar = (color, event) => {
         event.preventDefault()
-        ReactSummernote.insertNode(createTag(color.hex))
-        setIdCounter((state) => state + 1)
+
+        setCurrentColor(color.hex)
     }
 
     const handleSubjectChange = (e) => {
@@ -160,7 +147,6 @@ const Editor = (props) => {
             alert('The editor is empty!')
         }
 
-        //try {
         await createTemplate({
             variables: {
                 id: uuid_v4(),
@@ -171,20 +157,18 @@ const Editor = (props) => {
                 content: html,
             },
         })
-        //} catch {}
+    }
+
+    const handleSetVar = () => {
+        ReactSummernote.insertNode(createTag(currentColor))
+        setIdCounter((state) => state + 1)
     }
 
     useEffect(() => {
         if (html) {
-            // props.setHtml(html)
-            // console.log('html component did mount \n', html)
             renderTemplate(html)
         }
     }, [])
-
-    /* useEffect(() => {
-        console.log('html update \n', html)
-    }, [html]) */
 
     return (
         <div className='w100'>
@@ -272,14 +256,16 @@ const Editor = (props) => {
                                 onChange={handleSubjectChange}
                             />
                         </div>
-                        {/* <button
-                            className='col-sm-1 btn btn-light btn-sm'
-                            onClick={handleClick}
-                        >
-                            Test
-                        </button> */}
+
                         <button
-                            className='col-sm-1 btn btn-light btn-sm'
+                            className='col-sm-1 btn btn-sm'
+                            style={{
+                                backgroundColor: `${currentColor}`,
+                                borderColor: `${currentColor}`,
+                                outlineColor: `${currentColor}`,
+                                boxShadow: 'none',
+                                color: 'var(--dark)',
+                            }}
                             onClick={(e) => {
                                 e.preventDefault()
                                 setDisplayColorPicker(!displayColorPicker)
@@ -302,7 +288,15 @@ const Editor = (props) => {
                                 </div>
                             </div>
                         ) : null}
-
+                        <button
+                            className='col-sm-1 btn btn-light btn-sm'
+                            onClick={(e) => {
+                                e.preventDefault()
+                                handleSetVar()
+                            }}
+                        >
+                            Set Var
+                        </button>
                         <button
                             className='col-sm-2 btn btn-info btn-sm'
                             type='button'
@@ -315,7 +309,6 @@ const Editor = (props) => {
                 </form>
 
                 <ReactSummernote
-                    //value={location.state.defaultValue}
                     options={editorConfig}
                     onChange={handleEditorChange}
                     className='summernote'
