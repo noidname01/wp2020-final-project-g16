@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Editor from '../components/Editor'
 import Excel from '../components/Excel'
 import Preview from '../components/Preview'
-import Header from '../components/Header2'
+import Header from '../components/Header'
 import Send from '../components/Send'
 
 import { re } from '../config/parserConfig'
@@ -138,11 +138,7 @@ const New = (props) => {
 
         const set1 = new Set(varList.map((vari) => vari.varname))
 
-        // console.log(set1)
-
         const nonSame = varList.length === set1.size
-
-        // console.log('nonEmpty, nonSame', nonEmpty, nonSame)
 
         return [nonEmpty && nonSame, nonEmpty, nonSame]
     }

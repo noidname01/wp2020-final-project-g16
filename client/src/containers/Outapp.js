@@ -4,7 +4,6 @@ import Welcome from './Welcome'
 import Login from './Login'
 import Register from './Register'
 import App from './App'
-import Test from './Test'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route

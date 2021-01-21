@@ -13,8 +13,6 @@ const renderThumb = ({ style, ...props }) => {
 }
 
 const Preview = (props) => {
-    // console.log(typeof props)
-
     const { html, subject, presend, varList, setPresend, getGridValue } = props
 
     const [peopleCount, setPeopleCount] = useState(1) //1~10
@@ -36,8 +34,6 @@ const Preview = (props) => {
         console.log('parser', html)
 
         return html
-
-        // setPresend(html)
     }
 
     const renderPresend = () => {
@@ -59,6 +55,7 @@ const Preview = (props) => {
                             className='container d-block justify-content-start col-10 carousel-content'
                             style={{
                                 color: 'var(--light)',
+
                                 height: '30rem',
                                 // backgroundColor: 'white',
                                 // zIndex: -1,
@@ -82,14 +79,9 @@ const Preview = (props) => {
 
     useEffect(() => {
         console.log('html', html)
-        // console.log('presend')
-        // console.log('grid', grid)
+
         renderPresend()
     }, [])
-
-    // useEffect(() => {
-    //     // renderVar(peopleCount, html, varList)
-    // }, [peopleCount])
 
     useEffect(() => {
         renderCarousel(presend)

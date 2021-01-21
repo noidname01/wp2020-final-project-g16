@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import './Send.css'
+import '../css/Send.css'
 import { rootPath } from '../config/pathConfig'
 import timeStamp from '../containers/Timestamp'
 import { useMutation } from '@apollo/client'
@@ -18,7 +18,6 @@ const Send = (props) => {
     const [createSent] = useMutation(CREATE_SENT)
 
     const sendMail = (to, subject, html) => {
-        // e.preventDefault()
         axios
             .post(rootPath + 'sendMails', {
                 userinfo: userInfo,
@@ -27,9 +26,6 @@ const Send = (props) => {
                 html: html,
             })
             .then((data) => {
-                /* console.log(data.accepted[0])
-                console.log(data.headers.date)
-                console.log(subject) */
                 createSent({
                     variables: {
                         id: uuid_v4(),

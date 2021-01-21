@@ -5,11 +5,19 @@
     --navbar-fontcolor: rgba(0, 0, 0, 0.5);
     --main-color1: #c7b6a0;
 }
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Allura&family=EB+Garamond:wght@400;500&family=Reenie+Beanie&display=swap');
 body {
     height: 100%;
     width: 100%;
+    margin: 0;
+    font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 /* Animations */
@@ -71,7 +79,7 @@ body {
     animation-timing-function: linear;
 }
 
-.display-4 {
+.display-welcome {
     font-family: 'EB Garamond', serif;
     font-weight: 500;
 }

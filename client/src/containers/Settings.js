@@ -30,7 +30,6 @@ const Settings = (props) => {
     const [modifyUser] = useMutation(MODIFY_USER)
 
     const handleChangeTheme = () => {
-        // setTheme(theme === 'black' ? 'white' : 'black')
         console.log(localStorage.getItem('mode'))
         if (localStorage.getItem('mode') === 'dark') {
             localStorage.setItem('mode', 'light')
@@ -96,7 +95,6 @@ const Settings = (props) => {
                 '--navbar-fontcolor',
                 'rgba(46, 46, 46, 0.9)'
             )
-            // localStorage.setItem('mode', 'dark')
         } else {
             document.documentElement.style.setProperty('--dark', '#ffffff')
             document.documentElement.style.setProperty('--light', '#2e2e2e')
@@ -105,18 +103,14 @@ const Settings = (props) => {
                 '--navbar-fontcolor',
                 'rgba(255,255,255,0.9)'
             )
-
-            // localStorage.setItem('mode', 'light')
         }
     }, [theme])
 
     useEffect(() => {
         if (localStorage.getItem('mode') === 'dark') {
             setTheme('dark')
-            // localStorage.setItem('mode', 'dark')
         } else {
             setTheme('light')
-            // localStorage.setItem('mode', 'light')
         }
     }, [])
 
