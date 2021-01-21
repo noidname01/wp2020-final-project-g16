@@ -10,12 +10,8 @@ const { typeDefs } = require('./server/schema')
 const { resolvers } = require('./server/resolvers')
 // ========= Apollo(GraphQL) ======
 
-// =========require test ==========
+// =========require mailer ==========
 const mailer = require('./server/mailer/mailer.js')
-
-// =========require files =========
-const sendMails = require('./server/sendMails')
-// =========require files =========
 
 const playground = true
 
