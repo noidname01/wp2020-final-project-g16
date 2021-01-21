@@ -6,6 +6,7 @@ import { saveAs } from 'file-saver'
 import './Excel.css'
 
 // import { re } from '../config/parserConfig'
+import rgbToHex from './rgbToHex'
 
 const MAX_RECEIVERS = 11
 const FIRST_COLUMN_WIDTH = '8%'
@@ -14,6 +15,7 @@ function createComponent(e) {
     return (
         <div
             style={{
+                marginTop: '0.8%',
                 color: e.color,
                 fontWeight: 'bold',
                 height: '30px',
@@ -56,6 +58,7 @@ function createSht(sht) {
                         color: 'rgb(100,100,100)',
                     }),
                     width: FIRST_COLUMN_WIDTH,
+                    color: 'rgb(100,100,100)',
                 },
                 ...sht[i],
             ])
@@ -70,6 +73,7 @@ function createSht(sht) {
                         color: 'rgb(100,100,100)',
                     }),
                     width: FIRST_COLUMN_WIDTH,
+                    color: 'rgb(100,100,100)',
                 },
                 ...emptyRow,
             ])
@@ -104,6 +108,7 @@ function createSht3(sht, grid) {
                         color: 'rgb(100,100,100)',
                     }),
                     width: FIRST_COLUMN_WIDTH,
+                    color: 'rgb(100,100,100)',
                 },
                 ...sht[i],
             ])
@@ -118,6 +123,7 @@ function createSht3(sht, grid) {
                         color: 'rgb(100,100,100)',
                     }),
                     width: FIRST_COLUMN_WIDTH,
+                    color: 'rgb(100,100,100)',
                 },
                 ...emptyRow,
             ])
@@ -156,6 +162,7 @@ function createSht2(row0, grid, getGridValue) {
                         color: 'rgb(100,100,100)',
                     }),
                     width: FIRST_COLUMN_WIDTH,
+                    color: 'rgb(100,100,100)',
                 },
                 ...sht[i],
             ])
@@ -170,6 +177,7 @@ function createSht2(row0, grid, getGridValue) {
                         color: 'rgb(100,100,100)',
                     }),
                     width: FIRST_COLUMN_WIDTH,
+                    color: 'rgb(100,100,100)',
                 },
                 ...newRow,
             ])
@@ -185,6 +193,16 @@ async function saveAsExcel(filename, grid) {
 
     const row = ws.addRow(grid[0].map((r) => r.value))
     row.font = { bold: true }
+    row.eachCell((cell, colNumber) => {
+        if (grid[0][colNumber] !== undefined) {
+            console.log('----------------------')
+            console.log(grid[0][colNumber])
+            console.log('----------------------')
+            row.getCell(colNumber + 1).font = {
+                color: { argb: 'FF' + rgbToHex(grid[0][colNumber].color) },
+            }
+        }
+    })
 
     for (let i = 1; i < grid.length; i++) {
         const row = ws.addRow(grid[i].map((r) => r.value))
@@ -209,10 +227,11 @@ function EditableTable(props) {
         if (grid.length === 0) {
             let row0 = titles.map((e) => {
                 return {
-                    value: e.varname,
+                    value: e.varname.toString().toUpperCase(),
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent(e),
+                    color: e.color,
                 }
             })
             row0 = [
@@ -222,8 +241,9 @@ function EditableTable(props) {
                     forceComponent: true,
                     component: createComponent({
                         varname: 'Email_Address',
-                        color: 'black',
+                        color: 'rgb(0,0,0)',
                     }),
+                    color: 'rgb(0,0,0)',
                 },
                 ...row0,
             ]
@@ -233,10 +253,11 @@ function EditableTable(props) {
 
             let row0 = titles.map((e) => {
                 return {
-                    value: e.varname,
+                    value: e.varname.toString().toUpperCase(),
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent(e),
+                    color: e.color,
                 }
             })
             row0 = [
@@ -246,8 +267,9 @@ function EditableTable(props) {
                     forceComponent: true,
                     component: createComponent({
                         varname: 'Email_Address',
-                        color: 'black',
+                        color: 'rgb(0,0,0)',
                     }),
+                    color: 'rgb(0,0,0)',
                 },
                 ...row0,
             ]

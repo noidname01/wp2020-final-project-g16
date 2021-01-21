@@ -47,6 +47,20 @@ const Settings = (props) => {
             return
         }
 
+        if (
+            pass === '' ||
+            name === '' ||
+            pass2 === '' ||
+            email === '' ||
+            emailPass === ''
+        ) {
+            setSaveFail({
+                state: true,
+                message: 'Please fill in all the fields',
+            })
+            return
+        }
+
         try {
             await modifyUser({
                 variables: {

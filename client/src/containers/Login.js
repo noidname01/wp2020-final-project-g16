@@ -30,7 +30,7 @@ const Login = () => {
         }
 
         if (data.getUser[0] === undefined) {
-            alert('Wrong username and password!!!')
+            setErrors('Wrong username and password!!!')
         } else {
             console.log(data.getUser[0])
             localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
