@@ -40,7 +40,7 @@ const Editor = (props) => {
     const [displayColorPicker, setDisplayColorPicker] = useState(false)
 
     const [currentColor, setCurrentColor] = useState(
-        localStorage.getItem('mode') === 'dark' ? 'white' : 'black'
+        localStorage.getItem('mode') !== 'dark' ? 'black' : 'white'
     )
     // const
 
@@ -53,7 +53,7 @@ const Editor = (props) => {
     }
     const cover = {
         position: 'fixed',
-        right: '5rem',
+        right: '10rem',
         top: '14rem',
     }
 
