@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_USER } from '../graphql'
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
+
+import { rootPath } from '../config/pathConfig'
 
 const Login = () => {
     const [usernameInput, setUsernameInput] = useState('')
@@ -10,33 +13,62 @@ const Login = () => {
     const [errors, setErrors] = useState('')
     const [redirect, setRedirect] = useState(null)
 
-    const { loading, error, data } = useQuery(GET_USER, {
+    /* const { loading, error, data } = useQuery(GET_USER, {
         variables: {
             username: usernameInput,
             password: passwordInput,
         },
-    })
+    }) */
 
     const handleSubmit = () => {
-        console.log('login: ', usernameInput, passwordInput)
+        // console.log('login: ', usernameInput, passwordInput)
 
-        if (!loading) {
+        /* if (!loading) {
             validation()
         } else {
             handleSubmit()
+
+        
+        } */
+        if (!usernameInput || !passwordInput) {
+            setErrors('Please fill in all fields')
+            return
         }
+
+        axios
+            .post(rootPath + 'loginUser', {
+                username: usernameInput,
+                password: passwordInput,
+            })
+            .then((data) => {
+                // console.log(data)
+                // if()
+                let userInfo = data.data[0]
+                localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
+                userInfoToLocalStorage(userInfo)
+                localStorage.setItem('mode', 'dark')
+                setRedirect(
+                    <Redirect
+                        to={{
+                            pathname: '/ee',
+                            state: {
+                                userinfo: userInfo,
+                            },
+                        }}
+                    ></Redirect>
+                )
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     const validation = () => {
         // Check required fields
-        if (!usernameInput || !passwordInput) {
-            setErrors('Please fill in all fields')
-        }
-
-        if (data.getUser[0] === undefined) {
+        /* if (data.getUser[0] === undefined) {
             setErrors('Wrong username and password!!!')
         } else {
-            console.log(data.getUser[0])
+            // console.log(data.getUser[0])
             localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
             userInfoToLocalStorage(data.getUser[0])
             localStorage.setItem('mode', 'dark')
@@ -51,13 +83,14 @@ const Login = () => {
                 ></Redirect>
             )
         }
+    } */
     }
 
     // ================ localStorage Test ===================
     const userInfoToLocalStorage = (userInfo) => {
         Object.keys(userInfo).forEach((input) => {
-            console.log(input)
-            console.log(userInfo[input])
+            // console.log(input)
+            // console.log(userInfo[input])
             localStorage.setItem(input, userInfo[input])
         })
     }
@@ -65,7 +98,7 @@ const Login = () => {
 
     const handleKeyUp = (e) => {
         if (e.keyCode === 13) {
-            console.log('login: ', usernameInput, passwordInput)
+            // console.log('login: ', usernameInput, passwordInput)
 
             validation()
         }

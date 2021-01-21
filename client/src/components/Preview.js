@@ -23,15 +23,15 @@ const Preview = (props) => {
             let id = vari.id
             let varname = vari.varname
 
-            console.log(id)
-            console.log(varname)
+            // console.log(id)
+            // console.log(varname)
 
             let regex = new RegExp(`<input class="btn" id="${id}" .+?>`, 'gm')
 
             html = html.replace(regex, `${getGridValue(count, varname)}`)
         })
 
-        console.log('parser', html)
+        // console.log('parser', html)
 
         return html
     }
@@ -78,7 +78,7 @@ const Preview = (props) => {
     }
 
     useEffect(() => {
-        console.log('html', html)
+        // console.log('html', html)
 
         renderPresend()
     }, [])

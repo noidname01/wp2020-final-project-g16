@@ -128,7 +128,7 @@ const Editor = (props) => {
     }
 
     const handleTemplate = async () => {
-        console.log('handleTemplate')
+        // console.log('handleTemplate')
         if (saveName === '') {
             alert('Please name yout template')
             return

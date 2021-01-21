@@ -61,9 +61,9 @@ const Send = (props) => {
     }
 
     useEffect(() => {
-        console.log(userInfo)
-        console.log(presend)
-        console.log(subject)
+        // console.log(userInfo)
+        // console.log(presend)
+        // console.log(subject)
     }, [])
     return (
         <div className='w100 h100'>

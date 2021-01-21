@@ -82,7 +82,7 @@ function createSht(sht) {
 function createSht3(sht, grid) {
     let result = []
 
-    console.log(sht)
+    // console.log(sht)
 
     const colNumber = sht[0].length - 1
     //console.log('colNumber: ' + colNumber)
@@ -94,7 +94,7 @@ function createSht3(sht, grid) {
     for (let i = 1; i < MAX_RECEIVERS; i++) {
         if (sht[i] !== undefined) {
             sht[i].shift()
-            console.log(sht[i])
+            // console.log(sht[i])
             result.push([
                 {
                     value: i === 0 ? '' : i,
@@ -134,7 +134,7 @@ function createSht2(row0, grid, getGridValue) {
     let sht = [row0]
 
     const newTitles = row0.map((e) => e.value)
-    console.log(newTitles)
+    // console.log(newTitles)
 
     for (let i = 0; i < MAX_RECEIVERS; i++) {
         let newRow = newTitles.map((e) => {
@@ -190,9 +190,9 @@ async function saveAsExcel(filename, grid) {
     row.font = { bold: true }
     row.eachCell((cell, colNumber) => {
         if (grid[0][colNumber] !== undefined) {
-            console.log('----------------------')
-            console.log(grid[0][colNumber])
-            console.log('----------------------')
+            // console.log('----------------------')
+            // console.log(grid[0][colNumber])
+            // console.log('----------------------')
             row.getCell(colNumber + 1).font = {
                 color: { argb: 'FF' + rgbToHex(grid[0][colNumber].color) },
             }
@@ -315,7 +315,7 @@ function EditableTable(props) {
     }
 
     const handleDraft = () => {
-        console.log('handleDraft')
+        // console.log('handleDraft')
     }
 
     return (

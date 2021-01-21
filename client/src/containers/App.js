@@ -17,7 +17,7 @@ function App() {
             newUserInfo[info] = localStorage.getItem(info)
         })
 
-        console.log(newUserInfo)
+        // console.log(newUserInfo)
 
         return newUserInfo
     }
