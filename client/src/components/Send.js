@@ -19,7 +19,7 @@ const Send = (props) => {
 
     const sendMail = (to, subject, html) => {
         axios
-            .post(rootPath + 'sendMails', {
+            .post('/sendMails', {
                 userinfo: userInfo,
                 subject: subject,
                 to: to,

@@ -36,7 +36,7 @@ const Login = () => {
         }
 
         axios
-            .post(rootPath + 'loginUser', {
+            .post('/loginUser', {
                 username: usernameInput,
                 password: passwordInput,
             })
@@ -59,7 +59,7 @@ const Login = () => {
                 )
             })
             .catch((err) => {
-                console.log(err)
+                // console.log(err)
             })
     }
 
