@@ -79,7 +79,9 @@ const New = (props) => {
         let varList = matches_array.map((input) => {
             return {
                 id: input.match(/id="([0-9]*)"/m)[1],
-                varname: input.match(/name="([\w]*)"/m)[1],
+                varname: input.match(
+                    /name="([\w\u4e00-\u9fa5\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]*)"/m
+                )[1],
                 color: input.match(/background-color: (rgb\([0-9, ]*\))/m)
                     ? input.match(/background-color: (rgb\([0-9, ]*\))/m)[1]
                     : 'gray',
