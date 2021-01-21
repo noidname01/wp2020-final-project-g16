@@ -96,7 +96,11 @@ const New = (props) => {
         let colNum = grid[0].length
         let col = null
         for (let i = 0; i < colNum; i++) {
-            if (grid[0][i].value === varname) {
+            if (
+                grid[0][i].value.toString().toUpperCase() ===
+                    varname.toString().toUpperCase() ||
+                grid[0][i].value === varname
+            ) {
                 col = i
             }
         }

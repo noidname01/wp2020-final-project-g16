@@ -49,7 +49,7 @@ const Preview = (props) => {
 
     const renderCarousel = (presend) => {
         let newCarousel = presend.map((html, index) => {
-            if (getGridValue(index + 1, 'Email_Address') !== '') {
+            if (getGridValue(index + 1, 'EMAIL_ADDRESS') !== '') {
                 return (
                     <Carousel.Item>
                         <div
@@ -66,7 +66,7 @@ const Preview = (props) => {
                         </div>
                         <Carousel.Caption>
                             <h3 style={{ color: 'var(--light)' }}>
-                                {getGridValue(index + 1, 'Email_Address')}
+                                {getGridValue(index + 1, 'EMAIL_ADDRESS')}
                             </h3>
                         </Carousel.Caption>
                     </Carousel.Item>

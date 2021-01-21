@@ -236,11 +236,11 @@ function EditableTable(props) {
             })
             row0 = [
                 {
-                    value: 'Email_Address',
+                    value: 'EMAIL_ADDRESS',
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent({
-                        varname: 'Email_Address',
+                        varname: 'EMAIL_ADDRESS',
                         color: 'rgb(0,0,0)',
                     }),
                     color: 'rgb(0,0,0)',
@@ -262,11 +262,11 @@ function EditableTable(props) {
             })
             row0 = [
                 {
-                    value: 'Email_Address',
+                    value: 'EMAIL_ADDRESS',
                     readOnly: true,
                     forceComponent: true,
                     component: createComponent({
-                        varname: 'Email_Address',
+                        varname: 'EMAIL_ADDRESS',
                         color: 'rgb(0,0,0)',
                     }),
                     color: 'rgb(0,0,0)',
