@@ -3,25 +3,25 @@
 ## Members
 ### 王友廷
 * All-end
- * Environment setup
+  * Environment setup
 * Front-end
- * Email Editor( Summernote )
- * Email Preview
+  * Email Editor( Summernote )
+  * Email Preview
 * Back-end
- * Send email
+  * Send email
  
 ### 王維芯
 * Front-end
-  * 
+   * 
 * Demo video editing
 ### 徐有齊
 * Back-end
-  * Schema
-  * Resolvers
+   * Schema
+   * Resolvers
 * Front-end
-  * Excel Editor
-  * graphql.js
-  * 實作和後端的連接
+   * Excel Editor
+   * graphql.js
+   * 實作和後端的連接
   
 ## Deploy
 
