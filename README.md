@@ -25,6 +25,9 @@
   
 ## Deploy
 https://wp2020-final-project-g16.herokuapp.com/
+### 帳密
+* name: demo-g16
+* password: demo-g16
 
 ## 簡介
  有時候我們需要同時寄電子郵件給很多人。當遇到每封信內容都差不多，只有些許地方不同的情況時，寄信會變得非常棘手，因此我們架設了EEMAIL網站，提供**自訂變數**的電子郵件編輯器，並可**自動產生或讀取excel檔案**讓使用者輕鬆設定每一個收件者要收到的變數內容。此外我們也提供**儲存模板**的服務，當使用者下次要使用類似的信件內容，只需要再次設定或上傳excel檔即可。
@@ -60,7 +63,7 @@ https://wp2020-final-project-g16.herokuapp.com/
   * **可調整亮/暗模式**
 
 ## Dependencies
-### Client (
+### Client (前端)
 * "@apollo/client": "^3.3.7",
 * "@babel/core": "^7.12.10",
 * "@babel/preset-env": "^7.12.10",
