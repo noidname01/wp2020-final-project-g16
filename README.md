@@ -1,8 +1,25 @@
 # wp2020-final-project
 
-## Member System
-
-* Ref: https://www.youtube.com/watch?v=6FOq4cUdH8k&feature=youtu.be
+## Members
+### 王友廷
+* All-end
+ * Environment setup
+* Front-end
+ * Email Editor( Summernote )
+ * Email Preview
+* Back-end
+ * Send email
+ 
+### 王維芯
+* Front-end
+ * 
+* Demo video editing
+### 徐有齊
+* Back-end
+ * Schema
+ * Resolvers
+* Front-end
+ * Excel Editor
 
 ## To start the service...
 ```bash
