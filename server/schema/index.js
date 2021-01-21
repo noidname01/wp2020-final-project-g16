@@ -52,13 +52,15 @@ const typeDefs = gql`
         id: String!
         userId: String!
         timestamp: String!
-        draftId: String!
+        draftId: String
+        subject: String!
     }
     input SentInput {
         id: String!
         userId: String!
         timestamp: String!
-        draftId: String!
+        draftId: String
+        subject: String!
     }
     type Query {
         checkUsername(username: String): Boolean

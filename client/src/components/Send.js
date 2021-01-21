@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './Send.css'
 import { rootPath } from '../config/pathConfig'
+import timeStamp from '../containers/Timestamp'
+import { useMutation } from '@apollo/client'
+import { CREATE_SENT } from '../graphql'
+
+import { v4 as uuid_v4 } from 'uuid'
 
 const Send = (props) => {
     const { userInfo, presend, getGridValue, subject } = props
@@ -9,6 +14,8 @@ const Send = (props) => {
     const [sentCount, setSentCount] = useState(0)
     const [peopleCounter, setPeopleCounter] = useState(0)
     const [hasSent, setHasSent] = useState(false)
+
+    const [createSent] = useMutation(CREATE_SENT)
 
     const sendMail = (to, subject, html) => {
         // e.preventDefault()
@@ -20,6 +27,19 @@ const Send = (props) => {
                 html: html,
             })
             .then((data) => {
+                /* console.log(data.accepted[0])
+                console.log(data.headers.date)
+                console.log(subject) */
+                createSent({
+                    variables: {
+                        id: uuid_v4(),
+                        draftId: '',
+                        userId: userInfo.id,
+                        timestamp: timeStamp(),
+                        subject: subject,
+                    },
+                })
+
                 setSentCount(sentCount + 1)
             })
             .catch((err) => {

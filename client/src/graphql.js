@@ -173,7 +173,8 @@ const CREATE_SENT = gql`
         $id: String!
         $userId: String!
         $timestamp: String!
-        $draftId: String!
+        $draftId: String
+        $subject: String!
     ) {
         createSent(
             data: {
@@ -181,12 +182,14 @@ const CREATE_SENT = gql`
                 userId: $userId
                 timestamp: $timestamp
                 draftId: $draftId
+                subject: $subject
             }
         ) {
             id
             userId
             timestamp
             draftId
+            subject
         }
     }
 `
@@ -197,6 +200,7 @@ const GET_SENT = gql`
             userId
             timestamp
             draftId
+            subject
         }
     }
 `
@@ -207,6 +211,7 @@ const DELETE_SENT = gql`
             userId
             timestamp
             draftId
+            subject
         }
     }
 `
@@ -217,6 +222,7 @@ const LOOKUP_SENT = gql`
             userId
             timestamp
             draftId
+            subject
         }
     }
 `

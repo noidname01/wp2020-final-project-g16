@@ -16,6 +16,10 @@ const SentSchema = new Schema({
     },
     draftId: {
         type: String,
+        required: false,
+    },
+    subject: {
+        type: String,
         required: true,
     },
 })
