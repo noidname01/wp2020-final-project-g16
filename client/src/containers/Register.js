@@ -64,7 +64,7 @@ const Register = () => {
     }
 
     return (
-        <div className='frame yCen'>
+        <div className='frame yCen welcomebg'>
             <div className='container'>
                 {!redirect ? (
                     <div className='row'>

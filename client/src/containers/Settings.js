@@ -4,6 +4,14 @@ import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
 import { MODIFY_USER } from '../graphql'
 
+// Snackbar dependencies
+import Snackbar from '@material-ui/core/Snackbar'
+import MuiAlert from '@material-ui/lab/Alert'
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant='filled' {...props} />
+}
+
 const Settings = (props) => {
     const { userInfo } = props
     const { username, password, emailAddress, emailPassword } = userInfo
@@ -13,6 +21,10 @@ const Settings = (props) => {
     const [email, setEmail] = useState(emailAddress)
     const [emailPass, setEmailPassword] = useState(emailPassword)
     const [theme, setTheme] = useState('dark')
+
+    // Snackbar States
+    const [saveSuccess, setSaveSuccess] = useState(false)
+    const [saveFail, setSaveFail] = useState({ state: false, message: 'error' })
 
     // GraphQL
     const [modifyUser] = useMutation(MODIFY_USER)
@@ -31,18 +43,35 @@ const Settings = (props) => {
 
     const handleSave = async () => {
         if (pass !== pass2) {
-            alert('Passwords are not the same')
+            setSaveFail({ state: true, message: 'Passwords are not the same' })
+            return
         }
 
-        await modifyUser({
-            variables: {
-                username: name,
-                password: pass,
-                id: userInfo.id,
-                emailAddress: email,
-                emailPassword: emailPass,
-            },
-        })
+        try {
+            await modifyUser({
+                variables: {
+                    username: name,
+                    password: pass,
+                    id: userInfo.id,
+                    emailAddress: email,
+                    emailPassword: emailPass,
+                },
+            })
+            setSaveSuccess(true)
+        } catch {
+            setSaveFail({
+                state: true,
+                message: 'Unable to save the changes...',
+            })
+        }
+    }
+
+    const handleSaveFailClose = () => {
+        setSaveFail({ state: false, message: 'error' })
+    }
+
+    const handleSaveClose = () => {
+        setSaveSuccess(false)
     }
 
     useEffect(() => {
@@ -121,15 +150,15 @@ const Settings = (props) => {
                                         className='loginP'
                                         htmlFor='password'
                                     >
-                                        Password
+                                        New Password
                                     </label>
                                     <input
-                                        // type='password'
+                                        type='password'
                                         id='password'
                                         name='password'
                                         className='loginF loginS'
-                                        // placeholder='Create Password'
-                                        defaultValue={password}
+                                        placeholder='New Password'
+                                        defaultValue={''}
                                         onChange={(e) =>
                                             setPassword(e.target.value)
                                         }
@@ -140,7 +169,7 @@ const Settings = (props) => {
                                         className='loginP'
                                         htmlFor='password2'
                                     >
-                                        Confirm Password
+                                        Confirm New Password
                                     </label>
                                     <input
                                         type='password'
@@ -180,7 +209,7 @@ const Settings = (props) => {
                                         Email Password
                                     </label>
                                     <input
-                                        // type='password'
+                                        type='password'
                                         id='password3'
                                         name='email'
                                         className='loginF loginS'
@@ -204,6 +233,24 @@ const Settings = (props) => {
                     </div>
                 </div>
             </div>
+            <Snackbar
+                open={saveSuccess}
+                autoHideDuration={2000}
+                onClose={handleSaveClose}
+            >
+                <Alert onClose={handleSaveClose} severity='success'>
+                    Saved!
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                open={saveFail.state}
+                autoHideDuration={2000}
+                onClose={handleSaveFailClose}
+            >
+                <Alert onClose={handleSaveFailClose} severity='error'>
+                    {saveFail.message}
+                </Alert>
+            </Snackbar>
         </>
     )
 }
