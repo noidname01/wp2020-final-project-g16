@@ -1,29 +1,33 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+
 import New from '../containers/New'
-import Draft from '../containers/Draft'
 import Template from '../containers/Template'
 import Sent from '../containers/Sent'
 import Settings from '../containers/Settings'
-import Editor from '../components/Editor'
-import Excel from '../components/Excel'
-import Preview from '../components/Preview'
-import Send from '../components/Send'
 
-const Routes = () => {
+import { createBrowserHistory } from 'history'
+
+const history = createBrowserHistory()
+
+const routes = [
+    { path: '/ee/new', Component: New },
+    // { path: '/ee/draft', Component: Draft },
+    { path: '/ee/template', Component: Template },
+    { path: '/ee/sent', Component: Sent },
+    { path: '/ee/settings', Component: Settings },
+]
+
+const Routes = (props) => {
     return (
         <>
-            <Route path='/new' component={New}></Route>
-            <Route path='/draft' component={Draft}></Route>
-            <Route path='/template' component={Template}></Route>
-            <Route path='/sent' component={Sent}></Route>
-            <Route path='/settings' component={Settings}></Route>
-            <Route path='/editor/:state'>
-                <Editor />
-            </Route>
-            <Route path='/excel' component={Excel}></Route>
-            <Route path='/preview' component={Preview}></Route>
-            <Route path='/send' component={Send}></Route>
+            {routes.map(({ path, Component }) => {
+                return (
+                    <Route exact path={path} history={history}>
+                        <Component userInfo={props.userinfo} />
+                    </Route>
+                )
+            })}
         </>
     )
 }

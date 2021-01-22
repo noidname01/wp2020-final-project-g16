@@ -1,82 +1,104 @@
+require('dotenv-defaults').config()
 const express = require('express')
 const path = require('path')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const flash = require('connect-flash')
-const session = require('express-session')
-const passport = require('passport')
 
-// =========require test ==========
-// const mailer = require('./server/test/mailer.js')
-//
-// =========require files =========
-const sendMails = require('./server/sendMails')
-// =========require files =========
+// ========= Apollo(GraphQL) ======
+const { ApolloServer } = require('apollo-server-express')
+const { typeDefs } = require('./server/schema')
+const { resolvers } = require('./server/resolvers')
+// ========= Apollo(GraphQL) ======
+
+// =========require mailer ==========
+const mailer = require('./server/mailer/mailer.js')
+
+const User = require('./server/models/users')
+
+const playground = true
+
+const server = new ApolloServer({ typeDefs, resolvers, playground })
 
 const app = express()
+
+server.applyMiddleware({ app })
 
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'client/dist')))
 
-//==============================routes=================================
-//===========================Test Routes ==============================
-/* app.post('/mailTest', (req, res) => {
-    const { transporterConfig, mailOption } = req.body
-    console.log(req.body)
+app.post('/loginUser', async (req, res) => {
+    const { username, password } = req.body
+    let data = await User.find({
+        username: username,
+        password: password,
+    })
+
+    if (data) {
+        res.status(200).send(data)
+    } else {
+        res.status(404)
+    }
+})
+
+app.post('/checkUser', async (req, res) => {
+    const { username, password } = req.body
+    let data = await User.findOne({
+        username: username,
+    })
+    if (!username) {
+        res.status(200).send(false)
+    }
+    if (!data) {
+        res.status(200).send(true)
+    } else {
+        res.status(200).send(false)
+    }
+})
+
+app.post('/sendMails', (req, res) => {
+    const { userinfo, subject, to, html } = req.body
+    const { emailAddress, emailPassword } = userinfo
+    const transporterConfig = {
+        host: 'smtp.gmail.com',
+        user: emailAddress,
+        pass: emailPassword,
+    }
+
+    const mailOption = {
+        from: emailPassword,
+        to: to,
+        subject: subject,
+        html: html,
+    }
+
     let mailer1 = new mailer(transporterConfig, mailOption)
 
     mailer1.sendMail(res)
 })
- */
-//===========================Test Routes ==============================
-
-app.post('/sendMails', (req, res) => {})
 
 app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname + '/client/dist/index.html'))
-    // next()
 })
 
 // //===========================Login DB==================================
-// // Passport Config
-// require('./src/config/passport')(passport)
 
-// // DB Config
-// const db = require('./src/config/keys').MongoURI
+// DB Config
+// const db = require('./server/config/keys').MongoURI
 
-// // DB Connection
-// mongoose
-//     .connect(db, { useNewUrlParser: true })
-//     .then(() => console.log('Mongo Connected!'))
-//     .catch((err) => console.log(err))
+// DB Connection
 
-// // Express Session
-// app.use(
-//     session({
-//         secret: 'keyboard cat',
-//         resave: true,
-//         saveUninitialized: true,
-//     })
-// )
+if (!process.env.MONGO_URL) {
+    console.error('Missing MONGO_URL!!!')
+    process.exit(1)
+}
 
-// // Passport Middleware
-// app.use(passport.initialize())
-// app.use(passport.session())
+mongoose
+    .connect(process.env.MONGO_URL, { useNewUrlParser: true })
+    .then(() => console.log('Mongo Connected! Path:', process.env.ROOTPATH))
+    .catch((err) => console.log(err))
 
-// // Connect Flash
-// app.use(flash())
-
-// // Global Vars
-// app.use((req, res, next) => {
-//     res.locals.success_msg = req.flash('success_msg')
-//     res.locals.error_msg = req.flash('error_msg')
-//     res.locals.error = req.flash('error')
-//     next()
-// })
-
-//==============================routes=================================
 const port = process.env.PORT || 5000
 app.listen(port)
