@@ -73,6 +73,19 @@ app.post('/checkTemplate', async (req, res) => {
     }
 })
 
+app.post('/checkSent', async (req, res) => {
+    const { userId } = req.body
+    let data = await Sent.find({
+        userId: userId,
+    })
+
+    if (data) {
+        res.status(200).send(data)
+    } else {
+        res.status(404)
+    }
+})
+
 app.post('/sendMails', (req, res) => {
     const { userinfo, subject, to, html } = req.body
     const { emailAddress, emailPassword } = userinfo

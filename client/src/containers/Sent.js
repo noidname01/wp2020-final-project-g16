@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client'
 import { LOOKUP_SENT } from '../graphql'
 import { useLocation } from 'react-router-dom'
 import timeStamp from './Timestamp'
+import axios from 'axios'
 
 const Card = (props) => {
     const { timestamp, subject } = props
@@ -42,13 +43,23 @@ const Sent = (props) => {
     }
 
     useEffect(async () => {
-        const temp = await lookupSent({
-            variables: {
-                userId: userInfo.id,
-            },
-        })
-        console.log(temp.data.lookupSent)
-        setSentInfo(temp.data.lookupSent)
+        axios
+            .post('/checkSent', {
+                userId: props.userInfo.id,
+            })
+            .then((data) => {
+                setSentInfo(data.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        // const temp = await lookupSent({
+        //     variables: {
+        //         userId: userInfo.id,
+        //     },
+        // })
+        // console.log(temp.data.lookupSent)
+        // setSentInfo(temp.data.lookupSent)
     }, [])
 
     useEffect(() => {
