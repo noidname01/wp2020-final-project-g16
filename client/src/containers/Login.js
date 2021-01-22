@@ -41,8 +41,6 @@ const Login = () => {
                 password: passwordInput,
             })
             .then((data) => {
-                // console.log(data)
-                // if()
                 let userInfo = data.data[0]
                 localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
                 userInfoToLocalStorage(userInfo)

@@ -15,6 +15,8 @@ const { resolvers } = require('./server/resolvers')
 const mailer = require('./server/mailer/mailer.js')
 
 const User = require('./server/models/users')
+const Template = require('./server/models/templates')
+const Sent = require('./server/models/sents')
 
 const playground = true
 
@@ -55,6 +57,19 @@ app.post('/checkUser', async (req, res) => {
         res.status(200).send(true)
     } else {
         res.status(200).send(false)
+    }
+})
+
+app.post('/checkTemplate', async (req, res) => {
+    const { userId } = req.body
+    let data = await Template.find({
+        userId: userId,
+    })
+
+    if (data) {
+        res.status(200).send(data)
+    } else {
+        res.status(404)
     }
 })
 
