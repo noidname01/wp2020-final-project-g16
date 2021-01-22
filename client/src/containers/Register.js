@@ -5,6 +5,7 @@ import { CHECK_USERNAME, CREATE_USER } from '../graphql'
 import { v4 as uuid_v4 } from 'uuid'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
+import { rootPath } from '../config/pathConfig'
 
 const Register = () => {
     const [name, setName] = useState('')
