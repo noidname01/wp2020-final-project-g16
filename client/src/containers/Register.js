@@ -55,8 +55,8 @@ const Register = () => {
         }
 
         axios
-            .post(rootPath + 'checkUser', {
-                username: usernameInput,
+            .post('/checkUser', {
+                username: name,
             })
             .then(() => {
                 // create a user
