@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-
-import { useLocation } from 'react-router-dom'
+import neon from '../images/neon.png'
+import trash from '../images/delete.png'
+import { useLocation, Link } from 'react-router-dom'
 // GraphQL dependencies
-import { useMutation } from '@apollo/client'
-import { LOOKUP_TEMPLATE } from '../graphql'
+import { useQuery } from '@apollo/client'
+import { GET_TEMPLATE } from '../graphql'
 
 import Scrollbars from 'react-custom-scrollbars'
+import { Element } from 'react-summernote'
 
 import 'bootstrap/js/src/modal'
 import 'bootstrap/js/src/dropdown'
@@ -13,7 +15,6 @@ import 'bootstrap/js/src/tooltip'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import TempCard from './TempCard'
-import axios from 'axios'
 
 const renderThumb = ({ style, ...props }) => {
     const thumbStyle = {
@@ -27,49 +28,52 @@ const Template = (props) => {
     useLocation()
 
     // const [lookupTemplate] = useMutation(LOOKUP_TEMPLATE)
+    const { loading, data, error } = useQuery(GET_TEMPLATE, {
+        variables: { userId: props.userInfo.id },
+    })
 
-    const [data, setData] = useState(null)
+    // const [data, setData] = useState(null)
 
-    useEffect(async () => {
-        axios
-            .post('/checkTemplate', {
+    /* useEffect(async () => {
+        const temp = await lookupTemplate({
+            variables: {
                 userId: props.userInfo.id,
-            })
-            .then((data) => {
-                setData(data.data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-
-        // const temp = await lookupTemplate({
-        //     variables: {
-        //         userId: props.userInfo.id,
-        //     },
-        // })
-        // console.log(temp.data.lookupTemplate)
-        // setData(temp.data.lookupTemplate)
-    }, [])
+            },
+        })
+        console.log(temp.data.lookupTemplate)
+        setData(temp.data.lookupTemplate)
+    }, []) */
+    useEffect(() => {
+        console.log(data)
+    }, [data])
 
     return (
         <React.Fragment>
-            <div className='frameUp'>Template</div>
-            <div className='frameDown'>
-                <div className='grid frameIn2'>
-                    <Scrollbars renderThumbVertical={renderThumb}>
-                        <div className='flex-row'>
-                            {!data ? (
-                                <div></div>
-                            ) : (
-                                data.map((ele) => {
-                                    console.log('ele:', ele)
-                                    return <TempCard ele={ele}></TempCard>
-                                })
-                            )}
+            {!loading ? (
+                <>
+                    <div className='frameUp'>Template</div>
+                    <div className='frameDown'>
+                        <div className='grid frameIn2'>
+                            <Scrollbars renderThumbVertical={renderThumb}>
+                                <div className='flex-row'>
+                                    {!data ? (
+                                        <div></div>
+                                    ) : (
+                                        data.getTemplate.map((ele) => {
+                                            console.log('ele:', ele)
+                                            return (
+                                                <TempCard ele={ele}></TempCard>
+                                            )
+                                        })
+                                    )}
+                                </div>
+                            </Scrollbars>
                         </div>
-                    </Scrollbars>
-                </div>
-            </div>
+                    </div>
+                </>
+            ) : (
+                <div></div>
+            )}
         </React.Fragment>
     )
 }

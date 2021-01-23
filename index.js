@@ -31,7 +31,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'client/dist')))
 
-app.post('/loginUser', async (req, res) => {
+/* app.post('/loginUser', async (req, res) => {
     const { username, password } = req.body
     let data = await User.find({
         username: username,
@@ -43,9 +43,9 @@ app.post('/loginUser', async (req, res) => {
     } else {
         res.status(404)
     }
-})
+}) */
 
-app.post('/checkUser', async (req, res) => {
+/* app.post('/checkUser', async (req, res) => {
     const { username, password } = req.body
     let data = await User.findOne({
         username: username,
@@ -58,7 +58,7 @@ app.post('/checkUser', async (req, res) => {
     } else {
         res.status(200).send(false)
     }
-})
+}) */
 
 app.post('/checkTemplate', async (req, res) => {
     const { userId } = req.body

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useMutation } from '@apollo/client'
-import { LOOKUP_SENT } from '../graphql'
+import { useQuery } from '@apollo/client'
+import { GET_SENT } from '../graphql'
 import { useLocation } from 'react-router-dom'
 import timeStamp from './Timestamp'
 import axios from 'axios'
@@ -28,21 +28,26 @@ const Sent = (props) => {
     const { userInfo } = props
     useLocation()
 
-    const [lookupSent] = useMutation(LOOKUP_SENT)
+    // const [lookupSent] = useMutation(LOOKUP_SENT)
+    const { loading, data, error } = useQuery(GET_SENT, {
+        variables: {
+            userId: userInfo.id,
+        },
+    })
 
-    const [sentInfo, setSentInfo] = useState([])
-    const [content, setContent] = useState([])
+    // const [sentInfo, setSentInfo] = useState([])
+    // const [content, setContent] = useState([])
 
-    const renderCard = (sentInfo) => {
+    /* const renderCard = () => {
         setContent(
-            sentInfo.map((info) => {
+            data.getSent.map((info) => {
                 let { timestamp, subject } = info
                 return <Card timestamp={timestamp} subject={subject}></Card>
             })
         )
-    }
+    } */
 
-    useEffect(async () => {
+    /* useEffect(async () => {
         axios
             .post('/checkSent', {
                 userId: props.userInfo.id,
@@ -60,22 +65,38 @@ const Sent = (props) => {
         // })
         // console.log(temp.data.lookupSent)
         // setSentInfo(temp.data.lookupSent)
-    }, [])
+    }, []) */
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (sentInfo) {
             renderCard(sentInfo)
         }
-    }, [sentInfo])
+    }, [sentInfo]) */
 
     return (
         <>
-            <div className='frameUp'>Sent</div>
-            <div className='frameDown'>
-                <div className='grid frameIn2'>
-                    <div className='flex-row'>{content}</div>
-                </div>
-            </div>
+            {!loading ? (
+                <>
+                    <div className='frameUp'>Sent</div>
+                    <div className='frameDown'>
+                        <div className='grid frameIn2'>
+                            <div className='flex-row'>
+                                {data.getSent.map((info) => {
+                                    let { timestamp, subject } = info
+                                    return (
+                                        <Card
+                                            timestamp={timestamp}
+                                            subject={subject}
+                                        ></Card>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <div></div>
+            )}
         </>
     )
 }

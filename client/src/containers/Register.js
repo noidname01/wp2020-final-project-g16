@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 // GraphQL dependencies
-import { useQuery, useMutation } from '@apollo/client'
+import { useLazyQuery, useMutation } from '@apollo/client'
 import { CHECK_USERNAME, CREATE_USER } from '../graphql'
 import { v4 as uuid_v4 } from 'uuid'
 import { Link, Redirect } from 'react-router-dom'
-import axios from 'axios'
-import { rootPath } from '../config/pathConfig'
 
 const Register = () => {
     const [name, setName] = useState('')
@@ -16,82 +14,89 @@ const Register = () => {
     const [errors, setErrors] = useState('')
     const [redirect, setRedirect] = useState(null)
 
-    // const { loading, error, data } = useQuery(CHECK_USERNAME, {
-    //     variables: {
-    //         username: name,
-    //     },
-    // })
+    const [checkUsername, { loading, error, data }] = useLazyQuery(
+        CHECK_USERNAME
+    )
+    /* {
+        variables: {
+            username: name,
+        },
+    } 
+     */
 
     const [createUser] = useMutation(CREATE_USER)
 
     const validation = () => {
-        // // Check required fields
-        // if (!name || !password || !password2 || !email || !emailPassword) {
-        //     setErrors('Please fill in all fields')
-        //     return 0
-        // }
-        // // check name availability
-        // if (!data.checkUsername) {
-        //     setErrors('Username Unavailable')
-        //     return 0
-        // }
-        // // password === password2
-        // if (password !== password2) {
-        //     setErrors('Passwords do not match')
-        //     return 0
-        // } else return 1
-    }
-
-    const handleSubmit = async () => {
         // Check required fields
         if (!name || !password || !password2 || !email || !emailPassword) {
             setErrors('Please fill in all fields')
-            return
+            return 0
+        }
+        // check name availability
+        if (!data.checkUsername) {
+            setErrors('Username Unavailable')
+            return 0
         }
         // password === password2
         if (password !== password2) {
             setErrors('Passwords do not match')
-            return
-        }
-
-        axios
-            .post('/checkUser', {
-                username: name,
-            })
-            .then(() => {
-                // create a user
-                createUser({
-                    variables: {
-                        username: name,
-                        password: password,
-                        id: uuid_v4(),
-                        emailAddress: email,
-                        emailPassword: emailPassword,
-                    },
-                })
-                setRedirect(<Redirect to='/login'></Redirect>)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-
-        // if (validation() === 1) {
-        //     console.log('success')
-        //     // create a user
-        //     await createUser({
-        //         variables: {
-        //             username: name,
-        //             password: password,
-        //             id: uuid_v4(),
-        //             emailAddress: email,
-        //             emailPassword: emailPassword,
-        //         },
-        //     })
-        //     setRedirect(<Redirect to='/login'></Redirect>)
-        // } else {
-        //     console.log('errors:', errors)
-        // }
+            return 0
+        } else return 1
     }
+
+    const handleCreateUser = async () => {
+        if (validation() === 1) {
+            console.log('success')
+            // create a user
+            await createUser({
+                variables: {
+                    username: name,
+                    password: password,
+                    id: uuid_v4(),
+                    emailAddress: email,
+                    emailPassword: emailPassword,
+                },
+            })
+            setRedirect(<Redirect to='/login'></Redirect>)
+        } else {
+            console.log('fail')
+            console.log('errors:', errors)
+        }
+        console.log(
+            name + '  ' + password + '  ' + email + '  ' + emailPassword
+        )
+    }
+
+    const handleSubmit = async () => {
+        checkUsername({ variables: { username: name } })
+
+        /* if (validation() === 1) {
+            console.log('success')
+            // create a user
+            await createUser({
+                variables: {
+                    username: name,
+                    password: password,
+                    id: uuid_v4(),
+                    emailAddress: email,
+                    emailPassword: emailPassword,
+                },
+            })
+            setRedirect(<Redirect to='/login'></Redirect>)
+        } else {
+            console.log('fail')
+            console.log('errors:', errors)
+        }
+        console.log(
+            name + '  ' + password + '  ' + email + '  ' + emailPassword
+        ) */
+    }
+
+    useEffect(() => {
+        if (data) {
+            handleCreateUser()
+        }
+    }, [data])
 
     return (
         <div className='frame yCen welcomebg'>
