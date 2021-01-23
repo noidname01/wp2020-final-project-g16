@@ -13,6 +13,7 @@ import 'bootstrap/js/src/tooltip'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import TempCard from './TempCard'
+import axios from 'axios'
 
 const renderThumb = ({ style, ...props }) => {
     const thumbStyle = {
@@ -25,18 +26,29 @@ const renderThumb = ({ style, ...props }) => {
 const Template = (props) => {
     useLocation()
 
-    const [lookupTemplate] = useMutation(LOOKUP_TEMPLATE)
+    // const [lookupTemplate] = useMutation(LOOKUP_TEMPLATE)
 
     const [data, setData] = useState(null)
 
     useEffect(async () => {
-        const temp = await lookupTemplate({
-            variables: {
+        axios
+            .post('/checkTemplate', {
                 userId: props.userInfo.id,
-            },
-        })
-        console.log(temp.data.lookupTemplate)
-        setData(temp.data.lookupTemplate)
+            })
+            .then((data) => {
+                setData(data.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+        // const temp = await lookupTemplate({
+        //     variables: {
+        //         userId: props.userInfo.id,
+        //     },
+        // })
+        // console.log(temp.data.lookupTemplate)
+        // setData(temp.data.lookupTemplate)
     }, [])
 
     return (

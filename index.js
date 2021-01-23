@@ -15,6 +15,8 @@ const { resolvers } = require('./server/resolvers')
 const mailer = require('./server/mailer/mailer.js')
 
 const User = require('./server/models/users')
+const Template = require('./server/models/templates')
+const Sent = require('./server/models/sents')
 
 const playground = true
 
@@ -34,6 +36,47 @@ app.post('/loginUser', async (req, res) => {
     let data = await User.find({
         username: username,
         password: password,
+    })
+
+    if (data) {
+        res.status(200).send(data)
+    } else {
+        res.status(404)
+    }
+})
+
+app.post('/checkUser', async (req, res) => {
+    const { username, password } = req.body
+    let data = await User.findOne({
+        username: username,
+    })
+    if (!username) {
+        res.status(200).send(false)
+    }
+    if (!data) {
+        res.status(200).send(true)
+    } else {
+        res.status(200).send(false)
+    }
+})
+
+app.post('/checkTemplate', async (req, res) => {
+    const { userId } = req.body
+    let data = await Template.find({
+        userId: userId,
+    })
+
+    if (data) {
+        res.status(200).send(data)
+    } else {
+        res.status(404)
+    }
+})
+
+app.post('/checkSent', async (req, res) => {
+    const { userId } = req.body
+    let data = await Sent.find({
+        userId: userId,
     })
 
     if (data) {
