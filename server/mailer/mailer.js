@@ -22,11 +22,11 @@ module.exports = function (transporterConfig, mailOption) {
         this.transporter.sendMail(this.mailOption, (error, info) => {
             if (error) {
                 // alert(error)
-                console.log(error)
+                // console.log(error)
                 res.status(404).send(error)
             } else {
                 // alert('Emails have been sent!')
-                console.log(info)
+                // console.log(info)
                 res.status(200).send(info)
             }
         })

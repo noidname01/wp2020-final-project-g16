@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
 // GraphQL dependencies
-import { useQuery, useMutation } from '@apollo/client'
+import { useLazyQuery, useMutation } from '@apollo/client'
 import { GET_USER } from '../graphql'
 import { Link, Redirect } from 'react-router-dom'
-import axios from 'axios'
-
-import { rootPath } from '../config/pathConfig'
 
 const Login = () => {
     const [usernameInput, setUsernameInput] = useState('')
@@ -13,57 +10,27 @@ const Login = () => {
     const [errors, setErrors] = useState('')
     const [redirect, setRedirect] = useState(null)
 
-    /* const { loading, error, data } = useQuery(GET_USER, {
-        variables: {
+    const [getUser, { loading, error, data }] = useLazyQuery(GET_USER)
+    /* variables: {
             username: usernameInput,
             password: passwordInput,
         },
-    }) */
-
+    } */
     const handleSubmit = () => {
         // console.log('login: ', usernameInput, passwordInput)
 
-        /* if (!loading) {
-            validation()
-        } else {
-            handleSubmit()
-
-        
-        } */
-        if (!usernameInput || !passwordInput) {
-            setErrors('Please fill in all fields')
-            return
-        }
-
-        axios
-            .post('/loginUser', {
-                username: usernameInput,
-                password: passwordInput,
-            })
-            .then((data) => {
-                let userInfo = data.data[0]
-                localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
-                userInfoToLocalStorage(userInfo)
-                localStorage.setItem('mode', 'dark')
-                setRedirect(
-                    <Redirect
-                        to={{
-                            pathname: '/ee',
-                            state: {
-                                userinfo: userInfo,
-                            },
-                        }}
-                    ></Redirect>
-                )
-            })
-            .catch((err) => {
-                // console.log(err)
-            })
+        getUser({
+            variables: { username: usernameInput, password: passwordInput },
+        })
     }
 
     const validation = () => {
         // Check required fields
-        /* if (data.getUser[0] === undefined) {
+        if (!usernameInput || !passwordInput) {
+            setErrors('Please fill in all fields')
+        }
+
+        if (data.getUser[0] === undefined) {
             setErrors('Wrong username and password!!!')
         } else {
             // console.log(data.getUser[0])
@@ -81,7 +48,6 @@ const Login = () => {
                 ></Redirect>
             )
         }
-    } */
     }
 
     // ================ localStorage Test ===================
@@ -105,6 +71,12 @@ const Login = () => {
     useEffect(() => {
         localStorage.setItem('auth', 'false')
     }, [])
+
+    useEffect(() => {
+        if (data) {
+            validation()
+        }
+    }, [data])
 
     return (
         <div className='frame xCen yCen welcomebg'>

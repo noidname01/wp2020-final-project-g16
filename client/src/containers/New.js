@@ -70,7 +70,7 @@ const New = (props) => {
     */
     const parser = (html) => {
         let matches_array = html.match(re)
-        console.log(matches_array)
+        // console.log(matches_array)
 
         if (!matches_array) {
             return []

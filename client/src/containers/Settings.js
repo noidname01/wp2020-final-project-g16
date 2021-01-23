@@ -30,7 +30,7 @@ const Settings = (props) => {
     const [modifyUser] = useMutation(MODIFY_USER)
 
     const handleChangeTheme = () => {
-        console.log(localStorage.getItem('mode'))
+        // console.log(localStorage.getItem('mode'))
         if (localStorage.getItem('mode') === 'dark') {
             localStorage.setItem('mode', 'light')
             setTheme('light')
