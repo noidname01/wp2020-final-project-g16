@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import neon from '../images/neon.png'
-import trash from '../images/delete.png'
-import { useLocation, Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 // GraphQL dependencies
 import { useQuery } from '@apollo/client'
 import { GET_TEMPLATE } from '../graphql'
 
 import Scrollbars from 'react-custom-scrollbars'
-import { Element } from 'react-summernote'
 
 import 'bootstrap/js/src/modal'
 import 'bootstrap/js/src/dropdown'
@@ -27,25 +24,13 @@ const renderThumb = ({ style, ...props }) => {
 const Template = (props) => {
     useLocation()
 
-    // const [lookupTemplate] = useMutation(LOOKUP_TEMPLATE)
     const { loading, data, error } = useQuery(GET_TEMPLATE, {
         variables: { userId: props.userInfo.id },
     })
 
-    // const [data, setData] = useState(null)
-
-    /* useEffect(async () => {
-        const temp = await lookupTemplate({
-            variables: {
-                userId: props.userInfo.id,
-            },
-        })
-        console.log(temp.data.lookupTemplate)
-        setData(temp.data.lookupTemplate)
-    }, []) */
-    useEffect(() => {
+    /*  useEffect(() => {
         console.log(data)
-    }, [data])
+    }, [data]) */
 
     return (
         <React.Fragment>
@@ -60,7 +45,6 @@ const Template = (props) => {
                                         <div></div>
                                     ) : (
                                         data.getTemplate.map((ele) => {
-                                            console.log('ele:', ele)
                                             return (
                                                 <TempCard ele={ele}></TempCard>
                                             )

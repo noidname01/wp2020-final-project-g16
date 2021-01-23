@@ -31,61 +31,6 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'client/dist')))
 
-/* app.post('/loginUser', async (req, res) => {
-    const { username, password } = req.body
-    let data = await User.find({
-        username: username,
-        password: password,
-    })
-
-    if (data) {
-        res.status(200).send(data)
-    } else {
-        res.status(404)
-    }
-}) */
-
-/* app.post('/checkUser', async (req, res) => {
-    const { username, password } = req.body
-    let data = await User.findOne({
-        username: username,
-    })
-    if (!username) {
-        res.status(200).send(false)
-    }
-    if (!data) {
-        res.status(200).send(true)
-    } else {
-        res.status(200).send(false)
-    }
-}) */
-
-app.post('/checkTemplate', async (req, res) => {
-    const { userId } = req.body
-    let data = await Template.find({
-        userId: userId,
-    })
-
-    if (data) {
-        res.status(200).send(data)
-    } else {
-        res.status(404)
-    }
-})
-
-app.post('/checkSent', async (req, res) => {
-    const { userId } = req.body
-    let data = await Sent.find({
-        userId: userId,
-    })
-
-    if (data) {
-        res.status(200).send(data)
-    } else {
-        res.status(404)
-    }
-})
-
 app.post('/sendMails', (req, res) => {
     const { userinfo, subject, to, html } = req.body
     const { emailAddress, emailPassword } = userinfo

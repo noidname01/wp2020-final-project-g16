@@ -12,7 +12,6 @@ const history = createBrowserHistory()
 
 const routes = [
     { path: '/ee/new', Component: New },
-    // { path: '/ee/draft', Component: Draft },
     { path: '/ee/template', Component: Template },
     { path: '/ee/sent', Component: Sent },
     { path: '/ee/settings', Component: Settings },

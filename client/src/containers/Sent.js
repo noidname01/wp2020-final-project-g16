@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_SENT } from '../graphql'
 import { useLocation } from 'react-router-dom'
-import timeStamp from './Timestamp'
-import axios from 'axios'
 
 const Card = (props) => {
     const { timestamp, subject } = props
@@ -34,44 +32,6 @@ const Sent = (props) => {
             userId: userInfo.id,
         },
     })
-
-    // const [sentInfo, setSentInfo] = useState([])
-    // const [content, setContent] = useState([])
-
-    /* const renderCard = () => {
-        setContent(
-            data.getSent.map((info) => {
-                let { timestamp, subject } = info
-                return <Card timestamp={timestamp} subject={subject}></Card>
-            })
-        )
-    } */
-
-    /* useEffect(async () => {
-        axios
-            .post('/checkSent', {
-                userId: props.userInfo.id,
-            })
-            .then((data) => {
-                setSentInfo(data.data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        // const temp = await lookupSent({
-        //     variables: {
-        //         userId: userInfo.id,
-        //     },
-        // })
-        // console.log(temp.data.lookupSent)
-        // setSentInfo(temp.data.lookupSent)
-    }, []) */
-
-    /* useEffect(() => {
-        if (sentInfo) {
-            renderCard(sentInfo)
-        }
-    }, [sentInfo]) */
 
     return (
         <>

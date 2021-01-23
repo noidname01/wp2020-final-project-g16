@@ -17,7 +17,7 @@ const Login = () => {
         },
     } */
     const handleSubmit = () => {
-        console.log('login: ', usernameInput, passwordInput)
+        // console.log('login: ', usernameInput, passwordInput)
 
         getUser({
             variables: { username: usernameInput, password: passwordInput },
@@ -33,7 +33,7 @@ const Login = () => {
         if (data.getUser[0] === undefined) {
             setErrors('Wrong username and password!!!')
         } else {
-            console.log(data.getUser[0])
+            // console.log(data.getUser[0])
             localStorage.setItem('auth', 'true') // data.getUser[0] contains the info of user
             userInfoToLocalStorage(data.getUser[0])
             localStorage.setItem('mode', 'dark')
@@ -53,8 +53,8 @@ const Login = () => {
     // ================ localStorage Test ===================
     const userInfoToLocalStorage = (userInfo) => {
         Object.keys(userInfo).forEach((input) => {
-            console.log(input)
-            console.log(userInfo[input])
+            // console.log(input)
+            // console.log(userInfo[input])
             localStorage.setItem(input, userInfo[input])
         })
     }
@@ -62,7 +62,7 @@ const Login = () => {
 
     const handleKeyUp = (e) => {
         if (e.keyCode === 13) {
-            console.log('login: ', usernameInput, passwordInput)
+            // console.log('login: ', usernameInput, passwordInput)
 
             validation()
         }

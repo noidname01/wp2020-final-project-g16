@@ -69,27 +69,6 @@ const Register = () => {
 
     const handleSubmit = async () => {
         checkUsername({ variables: { username: name } })
-
-        /* if (validation() === 1) {
-            console.log('success')
-            // create a user
-            await createUser({
-                variables: {
-                    username: name,
-                    password: password,
-                    id: uuid_v4(),
-                    emailAddress: email,
-                    emailPassword: emailPassword,
-                },
-            })
-            setRedirect(<Redirect to='/login'></Redirect>)
-        } else {
-            console.log('fail')
-            console.log('errors:', errors)
-        }
-        console.log(
-            name + '  ' + password + '  ' + email + '  ' + emailPassword
-        ) */
     }
 
     useEffect(() => {
