@@ -1,4 +1,12 @@
+
 # wp2020-final-project
+
+## How to run?
+``` bash
+yarn local-install
+yarn dev 
+```
+which will run both frontend & backend
 
 ## Members
 ### 王友廷
